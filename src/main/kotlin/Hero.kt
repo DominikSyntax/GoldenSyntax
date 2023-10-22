@@ -1,11 +1,7 @@
-class Hero {
+open class Hero(open val name:String = String(),open var healthPower:Int = 1000) {
 
-    val name:String = String()
-
-    var healthPower:Int = 1000
-
-    fun heroActionOne(){
-
+    open fun showMyHP(){
+        println(healthPower)
     }
 
 
