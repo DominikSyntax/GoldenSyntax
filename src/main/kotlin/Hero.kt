@@ -6,11 +6,11 @@ open class Hero(open var name:String = String(),open var healthPower:Int = 1000,
     }
 
     open fun punch(enemy: Enemy){
-        enemy.healthPower-=(5..15).random()
+        enemy.healthPower -= ((5..15).random()/100 *damageValue).toInt()
     }
 
     open fun kick(enemy: Enemy){
-        enemy.healthPower-=(10..35).random()
+        enemy.healthPower -= ((10..35).random()/100 *damageValue).toInt()
     }
 
 

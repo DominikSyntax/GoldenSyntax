@@ -24,17 +24,17 @@ class ElectricMutant():Hero(name = "Tekk", healthPower = 1000, damageValue = 100
 
         repeat(cars){
             var damage  = (enemy.healthPower/100 * (7..10).random())
-            enemy.healthPower -= damage
+            enemy.healthPower -= (damage/100 * damageValue).toInt()
             println("Ein Auto hat ${enemy.name} getroffen und ihm $damage Schaden zugefügt")
         }
 
         if (buses>0) {
-            enemy.healthPower -= (enemy.healthPower/100 * (15..25).random())
+            enemy.healthPower -= ((enemy.healthPower/100 * (15..25).random())/100 *damageValue).toInt()
         }
 
         repeat(mopets){
             var damage  = (enemy.healthPower/100 * (3..7).random())
-            enemy.healthPower -= damage
+            enemy.healthPower -= (damage/100 * damageValue).toInt()
         }
     }
 
