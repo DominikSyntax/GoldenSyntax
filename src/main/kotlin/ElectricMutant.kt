@@ -3,7 +3,7 @@
  * Er kann alles, was mit Technik zu tun hat kontrollieren
  */
 
-class ElectricMutant():Hero(name = "Tekk", healthPower = 1000, speed = 150) {
+class ElectricMutant():Hero(name = "Tekk", healthPower = 1000, damageValue = 100) {
 
     /**
      * Jedes Fahrzeug im Umkreis beschleunigt und wird in Richtung des Gegners gelenkt

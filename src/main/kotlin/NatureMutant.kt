@@ -2,7 +2,7 @@
  * Die Heldin Gaia ist ein Natur-Mutant, das bedeutet, Sie hat die Kraft, alles was mit der Natur zu tun hat, zu beeinflussen.
  * Wind, Pflanzen und sogar die Erde selbst hören auf Sie.
  */
-class NatureMutant():Hero(name = "Gaia",healthPower=1000,speed=100) {
+class NatureMutant():Hero(name = "Gaia",healthPower=1000, damageValue = 100) {
 
 
     /**
