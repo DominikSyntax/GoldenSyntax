@@ -31,7 +31,12 @@ class Endboss():Enemy(name = "Dajjal", healthPower = 3000, damagePower = 100) {
     /**
      *
      */
-    fun four(){
+    fun armeOfDead(){
+        // add zwischen 4 oder 10 Untote zur MutableList<Enemy>
+       var armeInt:Int= (4..6).random()
+        repeat(armeInt){
+            enemies.add(Undead())
+        }
 
     }
 
@@ -42,4 +47,5 @@ class Endboss():Enemy(name = "Dajjal", healthPower = 3000, damagePower = 100) {
     fun six(){
 
     }
+
 }

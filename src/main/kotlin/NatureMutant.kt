@@ -4,6 +4,14 @@
  */
 class NatureMutant():Hero(name = "Gaia",healthPower=1000, damagePower = 100) {
 
+    override var mapOfMethoden: Map<Int, Any> =mapOf(
+        1 to thunderStorm(Enemy()),
+        2 to poisonRoots(Enemy()),
+        3 to healing( mutableListOf(Hero())),
+        4 to punch(Enemy()),
+        5 to kick(Enemy())
+    )
+
 
     /**
      * Die Methode thunderStorm soll zwischen 1 und 3 Blitze auf den Gegner schleudern
