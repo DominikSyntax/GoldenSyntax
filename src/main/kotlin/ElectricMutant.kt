@@ -3,7 +3,7 @@
  * Er kann alles, was mit Technik zu tun hat kontrollieren
  */
 
-class ElectricMutant():Hero(name = "Tekk", healthPower = 1000, damageValue = 100) {
+class ElectricMutant():Hero(name = "Tekk", healthPower = 1000, damagePower = 100) {
 
     /**
      * Jedes Fahrzeug im Umkreis beschleunigt und wird in Richtung des Gegners gelenkt
@@ -24,17 +24,17 @@ class ElectricMutant():Hero(name = "Tekk", healthPower = 1000, damageValue = 100
 
         repeat(cars){
             var damage  = (enemy.healthPower/100 * (7..10).random())
-            enemy.healthPower -= (damage/100 * damageValue).toInt()
+            enemy.healthPower -= (damage/100 * damagePower).toInt()
             println("Ein Auto hat ${enemy.name} getroffen und ihm $damage Schaden zugefügt")
         }
 
         if (buses>0) {
-            enemy.healthPower -= ((enemy.healthPower/100 * (15..25).random())/100 *damageValue).toInt()
+            enemy.healthPower -= ((enemy.healthPower/100 * (15..25).random())/100 *damagePower).toInt()
         }
 
         repeat(mopets){
             var damage  = (enemy.healthPower/100 * (3..7).random())
-            enemy.healthPower -= (damage/100 * damageValue).toInt()
+            enemy.healthPower -= (damage/100 * damagePower).toInt()
         }
     }
 
