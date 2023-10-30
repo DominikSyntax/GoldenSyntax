@@ -16,6 +16,7 @@ Während sich die ganze Welt daran gewöhnt hat, in Frieden miteinander zu leben
 
 Dajjal, der Antichrist, das Ende von allem, der Vorbote der Apokalypse….
 
+![image](https://github.com/DominikSyntax/GoldenSyntax/assets/144677824/ff8c8292-ca79-461b-8b10-505c3358fe1f)
 
 
 
