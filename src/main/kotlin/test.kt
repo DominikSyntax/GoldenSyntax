@@ -1,8 +1,6 @@
-var heros:MutableList<Hero> = mutableListOf()
-
-var enemies:MutableList<Enemy> = mutableListOf(Endboss())
 
 fun main() {
+    /*
     // Ich brauche einen Runden-Zähler für Angriffe, die z.b. mehrere Runden eine Auswirkung haben
     var roundCounter:Int = 0
 
@@ -40,29 +38,37 @@ fun main() {
     fun round(heros:MutableList<Hero>,enemies:MutableList<Enemy>){
         for (hero in heros){
             println("Was soll $hero machen?")
-            println("Du hast die Wahl aus ${hero.mapOfMethoden}")
+            println("Du hast die Wahl aus :")
+            for (action in hero.listOfMethoden){
+                var count = 1
+                println("$count für $action")
+                count++
+            }
             var userInt = readln().toInt()
 
 
-            if (hero.mapOfMethoden.containsKey(userInt)){
-                if (enemies.size>1) {
-                    println("Okay, wir haben mehrere Gegner! Gegen wen soll die Attacke gehen?")
-                    for (enemy in enemies){
-                        var count = 1
-                        println("$count + $enemy" )
-                        count++
+            try {
+                var action =hero.listOfMethoden[userInt]
+                NatureMutant().
+            }catch (e:Exception) {
+                println("Ungültige Aktion $e")
+            }
+            if (enemies.size>1) {
+                println("Okay, wir haben mehrere Gegner! Gegen wen soll die Attacke gehen?")
+                for (enemy in enemies){
+                    var count = 1
+                    println("$count für $enemy" )
+                    count++
                     }
-                    var enemyChoise = readln().toInt()
 
-                    if (!enemies.contains(enemies[enemyChoise])){
-                        println("Falsche Angabe")
-                    }else
-                        var akutEnemy = enemies[enemyChoise]
+                try {
+                    var enemyChoise = enemies[readln().toInt()]
+                }catch (e:Exception) {
+                    println("Sorry, da war etwas nicht richtig. $e Fehler ")
                 }
+                hero.
 
-                var methodeInput =hero.mapOfMethoden.values.elementAt(userInt-1)
-                var attack= hero.mapOfMethoden.values.toList()
-                attack[userInt]()
+
 
             }else
                 println("Ungültige Eingabe")
@@ -70,4 +76,6 @@ fun main() {
 
 
     }
+
+*/
 }

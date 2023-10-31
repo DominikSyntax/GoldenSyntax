@@ -2,31 +2,26 @@
  * Die Heldin Gaia ist ein Natur-Mutant, das bedeutet, Sie hat die Kraft, alles was mit der Natur zu tun hat, zu beeinflussen.
  * Wind, Pflanzen und sogar die Erde selbst hören auf Sie.
  */
-class NatureMutant():Hero(name = "Gaia",healthPower=1000, damagePower = 100) {
-
-    override var mapOfMethoden: Map<Int, Any> =mapOf(
-        1 to thunderStorm(Enemy()),
-        2 to poisonRoots(Enemy()),
-        3 to healing( mutableListOf(Hero())),
-        4 to punch(Enemy()),
-        5 to kick(Enemy())
-    )
+class NatureMutant(override var name: String ="Gaia", override var healthPower: Int = 1000, override var damagePower: Int= 100) : Hero(name, healthPower, damagePower) {
 
 
     /**
      * Die Methode thunderStorm soll zwischen 1 und 3 Blitze auf den Gegner schleudern
      * @param enemy
      */
-    fun thunderStorm(enemy: Enemy){
+    fun thunderStorm(enemy: Enemy): Int {
+
         println("Es ziehen dunkle Wolken auf über Gaia und ihren Freunden...")
         var shocksInt = (1..3).random()
-
-        repeat(shocksInt){
-            enemy.healthPower -= enemy.healthPower/100 * (7..12).random()
+        println("$shocksInt Blitze haben $enemy getroffen")
+        var abzug = 0
+        repeat(shocksInt) {
+            abzug += enemy.healthPower / 100 * (7..12).random()
         }
+        println("$abzug wurden ${enemy.name} von seiner HP abgezogen")
+        enemy.healthPower -= abzug
+        return enemy.healthPower
     }
-
-
 
 
     /**
@@ -34,15 +29,15 @@ class NatureMutant():Hero(name = "Gaia",healthPower=1000, damagePower = 100) {
      * Zusätzlich verursacht diese Methode zwischen 3 und 5 Runden einen Gift-Schaden von je 7 % Lebensenergie.
      *@param enemy
      */
-    fun poisonRoots(enemy: Enemy){
+    fun poisonRoots(enemy: Enemy): Int {
 
         // random rounds, die die Lebenspunkte abgezogen werden
-        var randomRounds:Int = (3..5).random()
-        var deduction = enemy.healthPower/100 * 7
-
+        var randomRounds: Int = (3..5).random()
+        var deduction = enemy.healthPower / 100 * 7
+        return randomRounds
+        return deduction
 
         //  enemy damagePower -50 % für 1 Runde
-
 
 
     }
@@ -50,9 +45,9 @@ class NatureMutant():Hero(name = "Gaia",healthPower=1000, damagePower = 100) {
     /**
      *
      */
-    fun healing(heros:MutableList<Hero>){
-        for (hero in heros){
-            hero.healthPower += hero.healthPower/100 * (7..10).random()
+    fun healing(heros: MutableList<Hero>) {
+        for (hero in heros) {
+            hero.healthPower += hero.healthPower / 100 * (7..10).random()
         }
 
     }

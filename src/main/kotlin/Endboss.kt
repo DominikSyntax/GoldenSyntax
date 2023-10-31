@@ -1,4 +1,4 @@
-class Endboss():Enemy(name = "Dajjal", healthPower = 3000, damagePower = 100) {
+class Endboss(override var name: String= "Dajjal", override var healthPower: Int=3000, override var damagePower: Int=100):Enemy(name,healthPower,damagePower) {
     /**
      * Verursacht Flächenschaden, d.h. trifft alle Helden gleichzeitig
      */
@@ -31,12 +31,14 @@ class Endboss():Enemy(name = "Dajjal", healthPower = 3000, damagePower = 100) {
     /**
      *
      */
-    fun armeOfDead(){
+    /*fun armeOfDead(){
         // add zwischen 4 oder 10 Untote zur MutableList<Enemy>
        var armeInt:Int= (4..6).random()
         repeat(armeInt){
-            enemies.add(Undead())
+            enemies.add(Undead("Egon"))
         }
+
+     */
 
     }
 
@@ -48,4 +50,4 @@ class Endboss():Enemy(name = "Dajjal", healthPower = 3000, damagePower = 100) {
 
     }
 
-}
+

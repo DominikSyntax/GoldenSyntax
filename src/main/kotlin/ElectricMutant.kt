@@ -3,7 +3,7 @@
  * Er kann alles, was mit Technik zu tun hat kontrollieren
  */
 
-class ElectricMutant():Hero(name = "Tekk", healthPower = 1000, damagePower = 100) {
+class ElectricMutant(override var name:String = "Tekk",override var healthPower:Int = 1000,override var damagePower:Int = 100):Hero(name, healthPower, damagePower) {
 
     /**
      * Jedes Fahrzeug im Umkreis beschleunigt und wird in Richtung des Gegners gelenkt
