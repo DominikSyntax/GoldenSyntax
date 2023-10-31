@@ -32,7 +32,7 @@ fun main() {
 
         println("Dein Team besteht aus")
         for (hero in mySet)
-            println("${hero.name}")
+            println(hero.name)
     }
 /*
     //While (any hero oder Enemy HealthPower >0)
