@@ -75,4 +75,13 @@ class ElectricMutant(override var name:String = "Tekk",override var healthPower:
         }
     }
 
+    /**
+     * lässt sich nur 1x im Spiel für einen helden einsetzen
+     * pro runde 2% Lebensenergie zurück
+     * damagePower + 10%
+     */
+    fun nanoBots(hero:Hero){
+
+    }
+
 }
