@@ -7,7 +7,14 @@ fun main() {
 
 
     while (enemyOne.healthPower>0){
+        for (i in roundCounter..roundCounter){
+            var twoPerCent= (heroOne.healthPower/100 *2).toInt()
+            heroOne.healthPower += twoPerCent
+            println("${heroOne.name} hat $twoPerCent Lebenspunkte durch die Nano Bots bekommen")
+        }
 
+
+        heroTwo.nanoBots(heroOne,roundCounter)
         heroTwo.traficContol(enemyOne)
         heroOne.thunderStorm(enemyOne)
         println(enemyOne.healthPower)

@@ -77,10 +77,12 @@ class ElectricMutant(override var name:String = "Tekk",override var healthPower:
 
     /**
      * lässt sich nur 1x im Spiel für einen helden einsetzen
-     * pro runde 2% Lebensenergie zurück
+     * pro runde 2% Lebensenergie zurück, für 20 Runden
      * damagePower + 10%
      */
-    fun nanoBots(hero:Hero){
+    fun nanoBots(hero:Hero,count:Int){
+        hero.damagePower += (hero.damagePower/100 *10).toInt()
+        println("${hero.name} hat durch die NanoBots 10% an Schlagkraft gewonnen")
 
     }
 
