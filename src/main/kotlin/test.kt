@@ -1,3 +1,5 @@
+import java.lang.Exception
+import java.lang.NumberFormatException
 
 fun main() {
 
@@ -23,12 +25,19 @@ fun main() {
 
     while (mySet.size<3) {
         println("Wen möchtest du zu deinem Team hinzufügen?")
-        var userChoise = readln().toInt()
-        if (userChoise <= heroList.size) {
+        var userChoise:Int
+        try {userChoise= readln().toInt()
+        }catch (e:NumberFormatException){
+            println("Bitte nur Zahlen eingeben")
+            continue
+        }
+
+        if (userChoise < 1 || userChoise>4) {
+            println("Keine gültige Auswahl")
+        }else{
             var userHero: Hero = heroList[userChoise-1]
             mySet.add(userHero)
-        }else
-            println("Keine gültige Auswahl")
+        }
 
         println("Dein Team besteht aus")
         for (hero in mySet)
