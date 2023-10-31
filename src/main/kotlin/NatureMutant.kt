@@ -42,7 +42,7 @@ class NatureMutant(override var name: String ="Gaia", override var healthPower: 
      *@param enemy
      */
     fun poisonRoots(enemy: Enemy,round:Int){
-
+        var roundStart = round
         // random rounds, die die Lebenspunkte abgezogen werden
         var randomRounds = (1..5).random()
 
@@ -50,7 +50,7 @@ class NatureMutant(override var name: String ="Gaia", override var healthPower: 
 
         var endRound = round+randomRounds
 
-        for (i in round..endRound) {
+        while (roundStart<round+randomRounds) {
             var abzug = 0
             if (enemy.healthPower == 0) {
                 println("${enemy.name} hat keine Lebenspunkte mehr")
@@ -64,8 +64,10 @@ class NatureMutant(override var name: String ="Gaia", override var healthPower: 
             }
             if (enemy.healthPower >= abzug) {
                 enemy.healthPower -= abzug
-            } else
+            } else {
                 enemy.healthPower = 0
+            }
+            roundStart++
         }
         if (enemy.healthPower>0){
             for (i in round..round){

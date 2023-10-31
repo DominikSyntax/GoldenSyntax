@@ -5,8 +5,10 @@ fun main() {
     var enemyOne = Endboss()
     var roundCounter = 1
 
+    heroOne.poisonRoots(enemyOne,roundCounter)
+    println("Das war Runde $roundCounter")
 
-    while (enemyOne.healthPower>0){
+    /*while (enemyOne.healthPower>0){
         for (i in roundCounter..roundCounter){
             var twoPerCent= (heroOne.healthPower/100 *2).toInt()
             heroOne.healthPower += twoPerCent
@@ -14,13 +16,14 @@ fun main() {
         }
 
 
-        heroTwo.nanoBots(heroOne,roundCounter)
+
+
         heroTwo.traficContol(enemyOne)
         heroOne.thunderStorm(enemyOne)
         println(enemyOne.healthPower)
         println("Das war Runde $roundCounter")
         roundCounter++
-    }
+    }*/
 }
 
 
