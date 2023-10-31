@@ -8,19 +8,20 @@ class NatureMutant(override var name: String ="Gaia", override var healthPower: 
     /**
      * Die Methode thunderStorm soll zwischen 1 und 3 Blitze auf den Gegner schleudern
      * @param enemy
+     * @return enemy.healthPower
      */
-    fun thunderStorm(enemy: Enemy): Int {
+    fun thunderStorm(enemy: Enemy){
 
         println("Es ziehen dunkle Wolken auf über Gaia und ihren Freunden...")
         var shocksInt = (1..3).random()
         println("$shocksInt Blitze haben $enemy getroffen")
         var abzug = 0
         repeat(shocksInt) {
-            abzug += enemy.healthPower / 100 * (7..12).random()
+            abzug += (enemy.healthPower / 100 * (5..8).random())/100 *damagePower
         }
         println("$abzug wurden ${enemy.name} von seiner HP abgezogen")
-        enemy.healthPower -= abzug
-        return enemy.healthPower
+        enemy.healthPower -= abzug.toInt()
+        //return enemy.healthPower
     }
 
 
@@ -29,13 +30,13 @@ class NatureMutant(override var name: String ="Gaia", override var healthPower: 
      * Zusätzlich verursacht diese Methode zwischen 3 und 5 Runden einen Gift-Schaden von je 7 % Lebensenergie.
      *@param enemy
      */
-    fun poisonRoots(enemy: Enemy): Int {
+    fun poisonRoots(enemy: Enemy){
 
         // random rounds, die die Lebenspunkte abgezogen werden
         var randomRounds: Int = (3..5).random()
         var deduction = enemy.healthPower / 100 * 7
-        return randomRounds
-        return deduction
+
+
 
         //  enemy damagePower -50 % für 1 Runde
 
