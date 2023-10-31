@@ -1,39 +1,40 @@
 
 fun main() {
-    /*
+
     // Ich brauche einen Runden-Zähler für Angriffe, die z.b. mehrere Runden eine Auswirkung haben
     var roundCounter:Int = 0
 
 
 
-    var heroMap:Map<Int,Hero> = mapOf(
-        1 to NatureMutant(),
-        2 to ElectricMutant(),
-        // 3 to Human GunNut(),
-        // 4 to Human Sientist(),
-        // 5 to Wardroid()
-    )
-
+    var heroList:MutableList<Hero> = mutableListOf(NatureMutant(),ElectricMutant(),GunNut(), Scientist())
+    var mySet:MutableSet<Hero> = mutableSetOf()
 
 
 
 
     println("Bitte such dir ein Team von 3 Helden aus um gegen Dajjal anzutreten")
-    println("Du hast die Wahl aus $heroMap.")
+    println("Du hast die Wahl aus \n" +
+            "1 für ${heroList[0].name} \n" +
+            "2 für ${heroList[1].name} \n" +
+            "3 für ${heroList[2].name} \n" +
+            "4 für ${heroList[3].name} \n")
 
-    while (heros.size<3) {
+    println()
+
+    while (mySet.size<3) {
         println("Wen möchtest du zu deinem Team hinzufügen?")
         var userChoise = readln().toInt()
-        if (heroMap.containsKey(userChoise)) {
-            var userHero: Hero = heroMap.values.elementAt(userChoise-1)
-            heros.add(userHero)
+        if (userChoise <= heroList.size) {
+            var userHero: Hero = heroList[userChoise-1]
+            mySet.add(userHero)
         }else
             println("Keine gültige Auswahl")
 
-        println("Dein Team besteht aus $heros")
-
+        println("Dein Team besteht aus")
+        for (hero in mySet)
+            println("${hero.name}")
     }
-
+/*
     //While (any hero oder Enemy HealthPower >0)
     fun round(heros:MutableList<Hero>,enemies:MutableList<Enemy>){
         for (hero in heros){
