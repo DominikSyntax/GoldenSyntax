@@ -15,7 +15,7 @@ class ElectricMutant(override var name:String = "Tekk",override var healthPower:
         var mopets = 3
 
         println("OMG, schau dir die Fahrzeuge an! $cars Autos , $buses Bus und $mopets Roller beschleunigen sich wie von Zauberhand Richtung ${enemy.name}")
-        if (enemy.name.contains("Dajjal")) {
+        if (enemy.name =="Dajjal") {
             buses = 0
             println("Oh nein, Dajjal konnte den Bus in Staub verwandeln ")
             cars = 3
@@ -23,18 +23,55 @@ class ElectricMutant(override var name:String = "Tekk",override var healthPower:
         }
 
         repeat(cars){
-            var damage  = (enemy.healthPower/100 * (7..10).random())
-            enemy.healthPower -= (damage/100 * damagePower).toInt()
+            var damage  = 0
+            damage +=  ((enemy.healthPower/100) * (7..10).random()).toInt()
+            if (damage==0){
+                println("Es geht aufs Ende zu mit ${enemy.name}")
+                damage = 5
+            }
+            if (enemy.healthPower > damage){
+                enemy.healthPower -= damage
+            }else {
+                enemy.healthPower = 0
+                println("${enemy.name} wurde besiegt")
+                return
+            }
             println("Ein Auto hat ${enemy.name} getroffen und ihm $damage Schaden zugefügt")
         }
 
         if (buses>0) {
-            enemy.healthPower -= ((enemy.healthPower/100 * (15..25).random())/100 *damagePower).toInt()
+            var damage = 0
+            damage += ((enemy.healthPower/100) * (15..25).random()).toInt()
+
+            if (damage==0){
+                println("Es geht aufs Ende zu mit ${enemy.name}")
+                damage = 15
+            }
+            if (enemy.healthPower > damage){
+                enemy.healthPower -= damage
+            }else {
+                enemy.healthPower = 0
+                println("${enemy.name} wurde besiegt")
+                return
+            }
+            println("Ein Bus hat ${enemy.name}getroffen und ihm $damage Schaden zugefügt")
         }
 
         repeat(mopets){
-            var damage  = (enemy.healthPower/100 * (3..7).random())
-            enemy.healthPower -= (damage/100 * damagePower).toInt()
+            var damage  = 0
+            damage += ((enemy.healthPower/100) * (3..7).random()).toInt()
+            if (damage==0){
+                println("Es geht aufs Ende zu mit ${enemy.name}")
+                damage = 5
+            }
+            if (enemy.healthPower > damage){
+                enemy.healthPower -= damage
+            }else {
+                enemy.healthPower = 0
+                println("${enemy.name} wurde besiegt")
+                return
+            }
+            println("Ein Roller hat ${enemy.name}getroffen und ihm $damage Schaden zugefügt")
         }
     }
 

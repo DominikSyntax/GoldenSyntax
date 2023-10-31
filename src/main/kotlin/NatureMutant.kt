@@ -30,12 +30,9 @@ class NatureMutant(override var name: String ="Gaia", override var healthPower: 
             } else {
                 println("Die Blitze haben Ihm den Rest gegeben")
                 println("${enemy.name} hat keine Lebensenergie mehr")
+                enemy.healthPower = 0
             }
-
         }
-
-
-
     }
 
 
@@ -70,10 +67,11 @@ class NatureMutant(override var name: String ="Gaia", override var healthPower: 
             } else
                 enemy.healthPower = 0
         }
-
-        for (i in round..round){
-            enemy.damagePower/100 * 50
-            println("${enemy.name} ist geschwächt, er hat nur die hälfte seiner Angriffskraft ")
+        if (enemy.healthPower>0){
+            for (i in round..round){
+                enemy.damagePower/100 * 50
+                println("${enemy.name} ist geschwächt, er hat nur die hälfte seiner Angriffskraft ")
+            }
         }
     }
 
