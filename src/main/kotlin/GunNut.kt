@@ -17,6 +17,12 @@ class GunNut(
         var damage = 0
         for (bullet in 1..bullets){
             damage += (5..10).random()
+            if (enemy.healthPower > damage){
+                enemy.healthPower -= damage
+            }else {
+                enemy.healthPower = 0
+                break
+            }
         }
         println("$bullets haben ${enemy.name} bei dem Maschienengewähr Angriff getroffen , mit einem Gesamtschaden von $damage")
     }
