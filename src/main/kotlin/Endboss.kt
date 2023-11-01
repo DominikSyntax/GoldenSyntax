@@ -3,6 +3,7 @@ class Endboss(override var name: String= "Dajjal", override var healthPower: Int
 
     /**
      * Verursacht Flächenschaden, d.h. trifft alle Helden gleichzeitig
+     * @param MutableList<Hero>
      */
     fun sandStorm(heros: MutableList<Hero>) {
         println("$name hat einen Sandsturm ausgelöst")
@@ -14,10 +15,11 @@ class Endboss(override var name: String= "Dajjal", override var healthPower: Int
     }
 
 
+
     /**
-     * Trifft nur einen Helden, pro Runde HP des Helden -10 % solange bis die HP <= 20 % der Standart HP ist (also 200)
+     * Trifft nur einen Helden, pro Runde die HP des Helden -10 %, solange bis die HP <= 20 % der Standart HP ist (also 200)
      */
-    fun selfAttack(hero: Hero) {
+    fun selfAttack(hero: Hero) {                                                // Alle Personenklassen brauchen noch eine val standartHP für genau sowas
         println("Dajjal's Zauber wirkt auf ${hero.name}")
         if (hero.healthPower >= 200) {
             var damage = 0
@@ -34,6 +36,7 @@ class Endboss(override var name: String= "Dajjal", override var healthPower: Int
         var witch = Witch()
         list.add(witch)
     }
+
 
     /**
      *DAJJAL beschört die Untoten, es werden zwischen 4 und 10 Zombies der Gergnerliste hinzugefügt
