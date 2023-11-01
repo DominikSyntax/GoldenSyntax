@@ -1,6 +1,6 @@
 import java.lang.NumberFormatException
 
-// Die Funktionen für die main.kt hier drin hab ich auf alle erdenklichen Fehler getesten und sie Funktionieren so wie ich will
+// Die Funktionen für die main.kt hier drin, hab ich auf alle erdenklichen Fehler getesten.
 
 
 
