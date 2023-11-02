@@ -1,6 +1,6 @@
 import java.lang.NumberFormatException
 
-// Die Funktionen für die main.kt hier drin, hab ich auf alle erdenklichen Fehler getesten.
+// Die Funktionen für die main.kt hier drin, hab ich auf alle erdenklichen Fehler getesten(nur die erste bis jetzt, in der zweiten könnten noch Fehler sein)
 
 
 
@@ -9,13 +9,15 @@ import java.lang.NumberFormatException
 -   -   -   -   -   -   -   -   -   -   TO DO's   -   -   -   -   -   -   -   -   -   -   -   -   -   -
 - * Alle Personenklassen brauchen noch eine val startHP, um die Aufgabe zu lösen (Endgegner Funktion) -
 -                                                                                                     -
-- * Underboss nur 1x Aufrufen können                                                                  - erledigt
-- * Endboss braucht noch 2 Funktionen                                                                 - erledigt
-- * Underboss braucht noch 1 Funktionen                                                            -
+- * heilen heißt natürlich nur 100% der start HP! aber um  fäir zu bleiben darf alles was über die    -
+-   100 % geht auch nur eine zeit darüber bestehen                                                    -
+-                                                                                                     -
+- * Underboss braucht noch 1 Funktionen                                                               -
 - * Damit das mit den Runden klappt, brauche ich wahrscheinlich, einen return wert für die Runden     -
 -   auf die ich von außen zugreifen kann. In der Runden- Schleife (sobald es sie richtig gibt)        -
 - * ich glaube es ist besser die Namen der Helden , nicht in der Klasse festzulegen, sodern später    -
 -   in der main.kt                                                                                    -
+- * ElectricMutant und Scientist brauchen noch Funktionen                                             -
 -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   - -
  */
 

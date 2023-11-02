@@ -12,9 +12,9 @@ class NatureMutant(
 ) : Hero(name, healthPower, damagePower) {
     override fun printAllFunktion() {
         super.printAllFunktion()
-        println(
-            "3 -> thunderStorm : Lässt ein Gewitter aufziehen und Blitze auf die Gegner nieder \n" +
-                    "4 -> poisonRoots:    "
+        println("3 -> thunderStorm : Lässt ein Gewitter aufziehen und Blitze auf die Gegner nieder \n" +
+                "4 -> poisonRoots: Die Gift Wurzeln umschlingen den Gegner und fügt über mehrere Runden Schaden zu \n" +
+                "5 -> healing: Heilt dein ganzes Team ein Stück"
         )
     }
 
@@ -84,7 +84,7 @@ class NatureMutant(
     }
 
     /**
-     *
+     *Heilt einen Set<Hero>
      */
     fun healing(heros: MutableSet<Hero>) {
         for (hero in heros) {

@@ -5,6 +5,26 @@
 
 class ElectricMutant(override var name:String = "Tekk",override var healthPower:Int = 1000,override var damagePower:Int = 100):Hero(name, healthPower, damagePower) {
 
+    override fun printAllFunktion() {
+        super.printAllFunktion()
+        println(
+            "3 -> thunderStorm : Lässt ein Gewitter aufziehen und Blitze auf die Gegner nieder \n" +
+                    "4 -> poisonRoots:    "
+        )
+    }
+
+
+    override fun attack(int: Int,hero: Hero,enemy: Enemy,enemies:MutableList <Enemy>,heros:MutableSet<Hero>) {
+
+        when (int) {
+            1 -> punch(enemy)
+            2 -> kick(enemy)
+            3 -> traficContol(enemy)
+            4 -> poisonRoots(enemy)
+            5 -> healing(heros)
+        }
+    }
+
     /**
      * Jedes Fahrzeug im Umkreis beschleunigt und wird in Richtung des Gegners gelenkt
      * @param enemy
