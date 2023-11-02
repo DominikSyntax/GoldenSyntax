@@ -2,7 +2,7 @@ open class Hero(open var name:String = String(),open var healthPower:Int = 1000,
 
 
 
-    /*
+
     init {
         println(name)
     }
@@ -17,5 +17,5 @@ open class Hero(open var name:String = String(),open var healthPower:Int = 1000,
     fun kick(enemy: Enemy){
         enemy.healthPower -= ((10..35).random()/100 *damagePower).toInt()
     }
-    */
+
 }

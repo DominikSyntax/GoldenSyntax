@@ -2,7 +2,7 @@
  * Die Heldin Gaia ist ein Natur-Mutant, das bedeutet, Sie hat die Kraft, alles was mit der Natur zu tun hat, zu beeinflussen.
  * Wind, Pflanzen und sogar die Erde selbst hören auf Sie.
  */
-class NatureMutant(override var name: String ="Gaia", override var healthPower: Int = 1000, override var damagePower: Int= 100) : Hero(name, healthPower, damagePower) {
+class NatureMutant(override var name: String , override var healthPower: Int = 1000, override var damagePower: Int= 100) : Hero(name, healthPower, damagePower) {
 
 
     /**

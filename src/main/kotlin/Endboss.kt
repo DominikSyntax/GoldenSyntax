@@ -1,4 +1,4 @@
-class Endboss(override var name: String= "Dajjal", override var healthPower: Int=3000, override var damagePower: Int=100):Enemy(name,healthPower,damagePower) {
+class Endboss(override var name: String, override var healthPower: Int=3000, override var damagePower: Int=100):Enemy(name,healthPower,damagePower) {
 
 
     /**
@@ -33,8 +33,13 @@ class Endboss(override var name: String= "Dajjal", override var healthPower: Int
      * Ruft den UnderBoss zur Hilfe (geht nur 1 x im Spiel)
      */
     fun underBoss(list: MutableList<Enemy>) {
-        var witch = Witch()
-        list.add(witch)
+        var witch = Witch("Agnes Waterhouse")
+        if (list.contains(Witch())){
+            println("$name hat versucht noch eine Hexe zu beschören, das ging zum Glück daneben...")
+        }else {
+            println("$name hat die Hexe ${witch.name} herbei gerufen")
+            list.add(witch)
+        }
     }
 
 
@@ -61,12 +66,12 @@ class Endboss(override var name: String= "Dajjal", override var healthPower: Int
         }
     }
 
-    fun five() {
-
+    fun shield(enemy: Enemy) {
+        enemy.healthPower += 100
     }
 
-    fun six() {
-
+    fun strongDamage(enemy: Enemy) {
+        enemy.damagePower += (enemy.damagePower/100 * 12)
     }
 }
 

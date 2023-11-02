@@ -9,12 +9,13 @@ import java.lang.NumberFormatException
 -   -   -   -   -   -   -   -   -   -   TO DO's   -   -   -   -   -   -   -   -   -   -   -   -   -   -
 - * Alle Personenklassen brauchen noch eine val startHP, um die Aufgabe zu lösen (Endgegner Funktion) -
 -                                                                                                     -
-- * Underboss nur 1x Aufrufen können                                                                  -
-- * Endboss braucht noch 2 Funktionen                                                                 -
-- * Underboss braucht noch alle Funktionen                                                            -
+- * Underboss nur 1x Aufrufen können                                                                  - erledigt
+- * Endboss braucht noch 2 Funktionen                                                                 - erledigt
+- * Underboss braucht noch 1 Funktionen                                                            -
 - * Damit das mit den Runden klappt, brauche ich wahrscheinlich, einen return wert für die Runden     -
 -   auf die ich von außen zugreifen kann. In der Runden- Schleife (sobald es sie richtig gibt)        -
--                                                                                                     -
+- * ich glaube es ist besser die Namen der Helden , nicht in der Klasse festzulegen, sodern später    -
+-   in der main.kt                                                                                    -
 -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   - -
  */
 
@@ -23,7 +24,8 @@ import java.lang.NumberFormatException
 
 
 
-fun makeYouTeam() {
+fun makeYouTeam(heroList: MutableList<Hero>):MutableSet<Hero> {
+    var mySet: MutableSet<Hero> = mutableSetOf()
     println("Bitte such dir ein Team von 3 Helden zusammen, um gegen ${Endboss().name} anzutreten")
     println(
         "Du hast die Wahl aus \n" +
@@ -95,4 +97,5 @@ fun makeYouTeam() {
     for (hero in mySet) {
         print("${hero.name}, ")
     }
+    return mySet
 }
