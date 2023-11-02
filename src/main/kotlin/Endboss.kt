@@ -34,7 +34,7 @@ class Endboss(override var name: String, override var healthPower: Int=3000, ove
      */
     fun underBoss(list: MutableList<Enemy>) {
         var witch = Witch("Agnes Waterhouse")
-        if (list.contains(Witch())){
+        if (list.contains(Witch("Agnes Waterhouse"))){
             println("$name hat versucht noch eine Hexe zu beschören, das ging zum Glück daneben...")
         }else {
             println("$name hat die Hexe ${witch.name} herbei gerufen")

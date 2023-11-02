@@ -26,7 +26,7 @@ import java.lang.NumberFormatException
 
 fun makeYouTeam(heroList: MutableList<Hero>):MutableSet<Hero> {
     var mySet: MutableSet<Hero> = mutableSetOf()
-    println("Bitte such dir ein Team von 3 Helden zusammen, um gegen ${Endboss().name} anzutreten")
+    println("Bitte such dir ein Team von 3 Helden zusammen, um gegen ${Endboss("Dajjal").name} anzutreten")
     println(
         "Du hast die Wahl aus \n" +
                 "1 für ${heroList[0].name} \n" +
