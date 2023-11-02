@@ -99,3 +99,20 @@ fun makeYouTeam(heroList: MutableList<Hero>):MutableSet<Hero> {
     }
     return mySet
 }
+
+ fun choice(wen: String, enemies: MutableList<Enemy>, mySet: MutableSet<Hero>) {
+
+     if (enemies.contains(Enemy(wen))) {
+        enemyChoice = Enemy(wen)
+     }else if (mySet.contains(Hero(wen))) {
+        heroChoice = Hero(wen)
+     }else if (wen == "Helden") {
+        goodChoice = mySet
+     }else if (wen == "Gegner") {
+         badChoice = enemies
+     }else
+         println("So schwer kann es doch nicht sein, du musst ja nicht einmal selber kämpfen. Nur einen Namen richtig eingeben")
+
+
+}
+

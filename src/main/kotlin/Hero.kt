@@ -1,7 +1,15 @@
 open class Hero(open var name:String = String(),open var healthPower:Int = 1000, open var damagePower:Int=100) {
 
 
+    open fun attack(int: Int,hero: Hero,enemy: Enemy,enemies:MutableList <Enemy>,heros:MutableSet<Hero>){
 
+        when (int) {
+            1 -> punch(enemy)
+            2 -> kick(enemy)
+
+        }
+
+    }
 
 
     open fun printAllFunktion(){
@@ -9,10 +17,10 @@ open class Hero(open var name:String = String(),open var healthPower:Int = 1000,
                 "2 -> kick: fügt einem Gegner zwischen 10 und 35 Punkten Schaden hinzu (bei 100% Damage Power)")
     }
 
-    open fun punch(enemy: Enemy){
+    fun punch(enemy: Enemy){
         enemy.healthPower -= ((5..15).random()/100 *damagePower).toInt()
     }
-    open fun kick(enemy: Enemy){
+    fun kick(enemy: Enemy){
         enemy.healthPower -= ((10..35).random()/100 *damagePower).toInt()
     }
 
