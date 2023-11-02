@@ -3,8 +3,6 @@ import java.lang.NumberFormatException
 // Die Funktionen für die main.kt hier drin, hab ich auf alle erdenklichen Fehler getesten(nur die erste bis jetzt, in der zweiten könnten noch Fehler sein)
 
 
-
-
 /*
 -   -   -   -   -   -   -   -   -   -   TO DO's   -   -   -   -   -   -   -   -   -   -   -   -   -   -
 - * Alle Personenklassen brauchen noch eine val startHP, um die Aufgabe zu lösen (Endgegner Funktion) -
@@ -18,6 +16,7 @@ import java.lang.NumberFormatException
 - * ich glaube es ist besser die Namen der Helden , nicht in der Klasse festzulegen, sodern später    -
 -   in der main.kt                                                                                    -
 - * ElectricMutant und Scientist brauchen noch Funktionen                                             -
+- * isDead implimenteieren (überall)
 -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   - -
  */
 
@@ -26,7 +25,7 @@ import java.lang.NumberFormatException
 
 
 
-fun makeYouTeam(heroList: MutableList<Hero>):MutableSet<Hero> {
+fun makeYouTeam(heroList: MutableList<Hero>): MutableSet<Hero> {
     var mySet: MutableSet<Hero> = mutableSetOf()
     println("Bitte such dir ein Team von 3 Helden zusammen, um gegen ${Endboss("Dajjal").name} anzutreten")
     println(
@@ -102,19 +101,44 @@ fun makeYouTeam(heroList: MutableList<Hero>):MutableSet<Hero> {
     return mySet
 }
 
- fun choice(wen: String, enemies: MutableList<Enemy>, mySet: MutableSet<Hero>) {
+fun choice(wen: String, enemies: MutableList<Enemy>, mySet: MutableSet<Hero>) {
 
-     if (enemies.contains(Enemy(wen))) {
+    if (enemies.contains(Enemy(wen))) {
         enemyChoice = Enemy(wen)
-     }else if (mySet.contains(Hero(wen))) {
+    } else if (mySet.contains(Hero(wen))) {
         heroChoice = Hero(wen)
-     }else if (wen == "Helden") {
+    } else if (wen == "Helden") {
         goodChoice = mySet
-     }else if (wen == "Gegner") {
-         badChoice = enemies
-     }else
-         println("So schwer kann es doch nicht sein, du musst ja nicht einmal selber kämpfen. Nur einen Namen richtig eingeben")
+    } else if (wen == "Gegner") {
+        badChoice = enemies
+    } else
+        println("So schwer kann es doch nicht sein, du musst ja nicht einmal selber kämpfen. Nur einen Namen richtig eingeben")
 
 
 }
+
+/*fun evilfight(heros: MutableSet<Hero>, evils: MutableList<Enemy>) {
+
+    for (badGuy in evils) {
+        if (badGuy == Endboss()) {
+            if (!badGuy.isDead) {
+                var dice = (1..6).random()
+                var randomHero = heros.random()
+
+                when (dice) {
+                    1 -> badGuy.
+                    2 -> boss.selfAttack(randomHero)
+                    3 -> boss.underBoss(evils)
+                    4 -> boss.armeOfDead(evils)
+                    5 -> boss.shield(evils.random())
+                    6 -> boss.strongDamage(evils.random())
+                }
+
+            }
+
+
+
+            }
+
+*/
 

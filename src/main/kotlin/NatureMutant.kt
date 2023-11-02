@@ -9,7 +9,8 @@ class NatureMutant(
     override var name: String,
     override var healthPower: Int = 1000,
     override var damagePower: Int = 100,
-) : Hero(name, healthPower, damagePower) {
+
+) : Hero(name, healthPower, damagePower,) {
     override fun printAllFunktion() {
         super.printAllFunktion()
         println("3 -> thunderStorm : Lässt ein Gewitter aufziehen und Blitze auf die Gegner nieder \n" +

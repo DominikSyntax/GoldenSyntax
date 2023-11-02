@@ -1,11 +1,43 @@
-class Endboss(override var name: String, override var healthPower: Int=3000, override var damagePower: Int=100):Enemy(name,healthPower,damagePower) {
+class Endboss(override var name: String ="Dajjal", override var healthPower: Int=3000, override var damagePower: Int=100):Enemy(name,healthPower,damagePower) {
+
+    override var isDead: Boolean = false
+    var helperIsUsed:Boolean = false
+    var armeIsUsed:Boolean = false
+    override val standartHP: Int = 3000
+
+    override fun fight(heros: MutableSet<Hero>,badOnes:MutableList<Enemy>) {
+        val list = mutableListOf(1, 2, 3, 4, 5, 6,)
+
+        if (helperIsUsed) {
+            list.remove(3)
+        }
+        if (armeIsUsed) {
+            list.remove(4)
+        }
+
+        var dice = list.random()
+        var randomHero = heros.random()
+
+        when (dice) {
+            1 -> sandStorm(heros)
+            2 -> selfAttack(randomHero)
+            3 -> underBoss(badOnes)
+            4 -> armeOfDead(badOnes)
+            5 -> strongDamage(badOnes.random())
+            6 -> shield(badOnes.random())
+        }
+    }
 
 
-    /**
+
+
+
+
+        /**
      * Verursacht Flächenschaden, d.h. trifft alle Helden gleichzeitig
      * @param MutableList<Hero>
      */
-    fun sandStorm(heros: MutableList<Hero>) {
+    fun sandStorm(heros: MutableSet<Hero>) {
         println("$name hat einen Sandsturm ausgelöst")
         for (hero in heros) {
             var damage = (50..100).random()
@@ -19,10 +51,11 @@ class Endboss(override var name: String, override var healthPower: Int=3000, ove
     /**
      * Trifft nur einen Helden, pro Runde die HP des Helden -10 %, solange bis die HP <= 20 % der Standart HP ist (also 200)
      */
-    fun selfAttack(hero: Hero) {                                                // Alle Personenklassen brauchen noch eine val standartHP für genau sowas
+    fun selfAttack(hero: Hero) {
+        var twentyPercent = hero.standartHP/100 *20
         println("Dajjal's Zauber wirkt auf ${hero.name}")
-        if (hero.healthPower >= 200) {
-            var damage = 0
+        if (hero.healthPower >= twentyPercent) {
+            var damage:Int
             damage = (hero.healthPower * 0.9).toInt()
             println("${name}'s Zauber hat ${hero.name} $damage Schaden von den HP abgezogen")
         }
@@ -34,21 +67,20 @@ class Endboss(override var name: String, override var healthPower: Int=3000, ove
      */
     fun underBoss(list: MutableList<Enemy>) {
         var witch = Witch("Agnes Waterhouse")
-        if (list.contains(Witch("Agnes Waterhouse"))){
-            println("$name hat versucht noch eine Hexe zu beschören, das ging zum Glück daneben...")
-        }else {
-            println("$name hat die Hexe ${witch.name} herbei gerufen")
-            list.add(witch)
+        list.add(witch)
+        helperIsUsed = true
+
         }
-    }
+
 
 
     /**
      *DAJJAL beschört die Untoten, es werden zwischen 4 und 10 Zombies der Gergnerliste hinzugefügt
      */
     fun armeOfDead(list: MutableList<Enemy>) {
+
         // add zwischen 4 oder 10 Untote zur MutableList<Enemy>
-        var listOfAllUndead = listOf(
+        var listOfAllUndead:MutableList<Undead> = mutableListOf(
             Undead("ZombieOne"),
             Undead("ZombieTwo"),
             Undead("ZombieTree"),
@@ -61,10 +93,15 @@ class Endboss(override var name: String, override var healthPower: Int=3000, ove
             Undead("ZombieTen")
         )
         var armeInt: Int = (4..10).random()
+
         repeat(armeInt) {
-            list.add(listOfAllUndead.first())
+            var zombie= listOfAllUndead.random()
+            list.add(zombie)
+            listOfAllUndead.remove(zombie)
         }
+        armeIsUsed = true
     }
+
 
     fun shield(enemy: Enemy) {
         enemy.healthPower += 100
