@@ -27,5 +27,33 @@ class GunNut(
         println("$bullets haben ${enemy.name} bei dem Maschienengewähr Angriff getroffen , mit einem Gesamtschaden von $damage")
     }
 
+    fun airstrike(enemies:MutableList<Hero>){
+        println("$name hat Luftunterstützung angefordert....")
+        var damage:Int
+        for (enemy in enemies){
+            damage = (enemy.standartHP/100) * (9..35).random().toInt()
+            if (damage >= enemy.healthPower ){
+                println("Der Luftschlag war zuviel für ${enemy.name}")
+                println()
+                Thread.sleep(1500)
+                enemy.healthPower = 0
+                enemy.isDead = true
+            }else {
+                if (damage <= 35) {
+                    println("${enemy.name} hatte Glück und nur ein kleiner Splitter abbekommen. $damage Schaden ")
+                    println()
+                } else if (damage <= 150 && damage > 35) {
+                    println("${enemy.name} hat einige Tiefe Fleischwunden. $damage Schaden ")
+                    println()
+                } else if (damage > 150) {
+                    println("Der Luftschlag hat ${enemy.name} hart getroffen. $damage Schaden ")
+                    println()
+                }
+                enemy.healthPower -= damage
+                Thread.sleep(1500)
+            }
+        }
+    }
+
 
 }
