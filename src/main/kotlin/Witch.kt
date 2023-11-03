@@ -23,18 +23,29 @@ class Witch(
      * Die Hexe betet Dajjal an, dieser wird dadurch stärker (also + damagePower) und bekommt HP+
      * schön wäre es, wenn er in der Zeit, wo die Hexe betet, auf Sie aufpasst und Schaden abwendet
      */
-    fun prayToTheBoss(boss: Endboss): Int {
-        val rounds = (2..4).random()
-        boss.damagePower += 25
-        boss.healthPower += 50
-        return rounds
+    fun prayToTheBoss(boss: Endboss): List<Int> {
+        var rounds = (2..4).random()
+        var plusDamage = (10..15).random()
+        var plusHealth = (25..50).random()
+        boss.damagePower += plusDamage
+        boss.healthPower += plusHealth
+        println("$name betet zu ${boss.name}")
+        println()
+        println("${boss.name} erhält $rounds lang $plusHealth Punkte Lebenskraft und $damagePower Punkte Schadenskraft")
+        println()
+        return listOf(rounds,plusHealth,plusDamage)
     }
 
 
-    fun poisen(hero: Hero): Int {
+    fun poisen(hero: Hero): List<Int> {
         var rounds: Int = (1..3).random()
-        hero.healthPower -= 25
-        return rounds
+        var damage = ((hero.standartHP/100 *(3..7).random())/100 *damagePower).toInt()
+        println("$name hat giftige Wurzeln um ${hero.name} geschlungen. ")
+        println()
+        Thread.sleep(1500)
+        println("Für $rounds werden $damage Lebenspunkte abgezogen")
+        hero.healthPower
+        return listOf(rounds,damage,hero.healthPower)
 
     }
 
