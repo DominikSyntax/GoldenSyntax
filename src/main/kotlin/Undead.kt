@@ -6,4 +6,5 @@ class Undead(name: String, override var healthPower: Int=200, override var damag
     fun hold(hero: Hero){
         hero.damagePower -= 10
     }
+
 }
