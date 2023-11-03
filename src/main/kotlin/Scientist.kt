@@ -105,6 +105,7 @@ class Scientist(
                 println("Der Prof hat den Jahres -Verbruch, eines mittelgroßen Landen, mit nur einen Schuss verbraucht. Diese Attacke kannst du für den Rest des Spieles nicht mehr nutzen")
                 println()
                 Thread.sleep(1500)
+                rickIsUsed = true
 
             }
 
