@@ -1,11 +1,12 @@
 class Endboss(override var name: String ="Dajjal", override var healthPower: Int=3000, override var damagePower: Int=100):Enemy(name,healthPower,damagePower) {
 
+
     override var isDead: Boolean = false
     var helperIsUsed:Boolean = false
     var armeIsUsed:Boolean = false
     override val standartHP: Int = 3000
 
-    override fun fight(heros: MutableSet<Hero>,badOnes:MutableList<Enemy>) {
+    override fun fight(boss: Endboss, enemies: MutableList<Enemy>, heros: MutableSet<Hero>) {
         val list = mutableListOf(1, 2, 3, 4, 5, 6,)
 
         if (helperIsUsed) {
@@ -21,10 +22,10 @@ class Endboss(override var name: String ="Dajjal", override var healthPower: Int
         when (dice) {
             1 -> sandStorm(heros)
             2 -> selfAttack(randomHero)
-            3 -> underBoss(badOnes)
-            4 -> armeOfDead(badOnes)
-            5 -> strongDamage(badOnes.random())
-            6 -> shield(badOnes.random())
+            3 -> underBoss(enemies)
+            4 -> armeOfDead(enemies)
+            5 -> strongDamage(enemies.random())
+            6 -> shield(enemies.random())
         }
     }
 

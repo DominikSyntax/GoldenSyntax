@@ -4,9 +4,15 @@ class Witch(
 ) : Enemy(name, healthPower, damagePower) {
 
 
-    override fun fight(boss: Endboss,enemies: MutableList<Enemy>, heros: MutableSet<Hero>) {
+    override fun fight(enemies: MutableList<Enemy>, heros: MutableSet<Hero>) {
         var dice = (1..6).random()
         var randomHero = heros.random()
+        var boss:Endboss
+
+        for(enemy in enemies){
+            if (enemy == Endboss("Dajjal"))
+                boss = Endboss(enemy)
+        }
 
         when (dice) {
             1 -> prayToTheBoss(boss)

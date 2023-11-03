@@ -1,7 +1,7 @@
 class Undead(name: String, override var healthPower: Int=200, override var damagePower: Int=25):Enemy(name,healthPower,damagePower) {
 
 
-    override fun fight(boss: Endboss,enemies: MutableList<Enemy>, heros: MutableSet<Hero>) {
+    override fun fight(enemies: MutableList<Enemy>, heros: MutableSet<Hero>) {
         var dice = listOf(1,2).random()
         var randomHero = heros.random()
 
