@@ -7,7 +7,8 @@ open class Enemy(open var name:String = String(),open var healthPower:Int = 1000
 
 
 
-    open fun fight(enemies: MutableList<Enemy>, heros: MutableSet<Hero>) {}
+
+    open fun fight(boss: Endboss, enemies: MutableList<Enemy>, heros: MutableSet<Hero>) {}
 }
 
 
