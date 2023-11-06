@@ -10,7 +10,7 @@ class Endboss(
     var armeIsUsed: Boolean = false
     override val standartHP: Int = 3000
 
-    override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
+    override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>){
         val list = mutableListOf(1, 2, 3, 4, 5, 6)
 
         if (helperIsUsed) {
@@ -31,6 +31,7 @@ class Endboss(
             5 -> strongDamage(enemies.random())
             6 -> shield(enemies.random())
         }
+
     }
 
 
@@ -66,18 +67,19 @@ class Endboss(
     /**
      * Ruft den UnderBoss zur Hilfe (geht nur 1 x im Spiel)
      */
-    fun underBoss(list: MutableList<Enemy>) {
+    fun underBoss(list: MutableList<Enemy>):MutableList<Enemy> {
         var witch = Witch("Agnes Waterhouse")
-        list.add(witch)
+        list += witch
         helperIsUsed = true
-
+        println("$name hat ${witch.name} beschworen, Sie hilft Ihm jetzt im Kampf gegen das Gute ")
+        return list
     }
 
 
     /**
      *DAJJAL beschört die Untoten, es werden zwischen 4 und 10 Zombies der Gergnerliste hinzugefügt
      */
-    fun armeOfDead(list: MutableList<Enemy>) {
+    fun armeOfDead(list: MutableList<Enemy>):MutableList<Enemy> {
 
         // add zwischen 4 oder 10 Untote zur MutableList<Enemy>
         var listOfAllUndead: MutableList<Undead> = mutableListOf(
@@ -93,22 +95,27 @@ class Endboss(
             Undead("ZombieTen")
         )
         var armeInt: Int = (4..10).random()
-
+        var listOfZombies:MutableList<Undead> = mutableListOf()
         repeat(armeInt) {
             var zombie = listOfAllUndead.random()
-            list.add(zombie)
+            listOfZombies.add(zombie)
             listOfAllUndead.remove(zombie)
+            println("$name hat ${zombie.name} zum leben erweckt, die Guten haben also einen neuen Gegner")
         }
+        list += listOfZombies
+        return list
         armeIsUsed = true
     }
 
 
     fun shield(enemy: Enemy) {
         enemy.healthPower += 100
+        println("$name hat seine Lebenspunkte um 100 erhöht")
     }
 
     fun strongDamage(enemy: Enemy) {
         enemy.damagePower += (enemy.damagePower / 100 * 12)
+        println("$name hat seine Schadenskraft um 12 % erhöht")
     }
 }
 

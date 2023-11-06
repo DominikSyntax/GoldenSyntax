@@ -131,48 +131,37 @@ fun evilChoice(enemies:MutableList<Enemy>):Enemy {
 }
 
 fun rounds(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
-    if (allGoodsAreDead(heros)) {
-        println("Keine weitere Runde mehr, die bösen haben endlich mal gewonnen.... ")
-    }else if (allBadsAreDead(enemies)) {
-        println(
-            "Nicht schon wieder ein Happy End, das mag ich nur bei TaiMassagen, die Helden haben zwar gewonnen doch was sie nicht gemerkt haben ist das ein Komet , \n" +
-                    "doppelt so groß wie der, der die Dinos ausgelöscht hat, auf die Erde zugeflogen ist. \n" +
-                    "Alle Menschen , und Tiere sind gestorben... Der ganze Planet ist explodiert... Aber hey, vorher haben die guten gewonnen , gut gemacht "
-        )
-    }else {
 
-        println("Runde : $counter")
+    println("Runde : $counter")
+    println()
+    println("Zuerst sind deine Helden dran")
+
+    // hier noch eine einfache Abfrage, ob die Bag genutzt wurde
+
+    for (hero in heros) {
+        println("Du bist mit ${hero.name} am Zug")
+        println("Was möchtest du machen, du hast die Wahl aus...")
+        hero.printAllFunktion()
+        var userChoiceFun = readln().toInt()
+        if (hero.isDead) {
+            println("Mit ${hero.name} ist nichts mehr anzufangen, das Weichei hat den Tod vorgezogen, anstatt sich seiner verantwortung zu stellen")
+        } else {
+            hero.attack(bag, userChoiceFun, enemies, heros)
+        }
         println()
-        println("Zuerst sind deine Helden dran")
-
-        // hier noch eine einfache Abfrage, ob die Bag genutzt wurde
-
-        for (hero in heros) {
-            println("Du bist mit ${hero.name} am Zug")
-            println("Was möchtest du machen, du hast die Wahl aus...")
-            hero.printAllFunktion()
-            var userChoiceFun = readln().toInt()
-            if (hero.isDead) {
-                println("Mit ${hero.name} ist nichts mehr anzufangen, das Weichei hat den Tod vorgezogen, anstatt sich seiner verantwortung zu stellen")
-            } else {
-                hero.attack(bag, userChoiceFun, enemies, heros)
-            }
-            println()
-            Thread.sleep(1500)
-        }
-        println("Die haben gut ausgeteilt, mal sehen was der Gegner macht... ")
-
-        for (enemy in enemies) {
-            println("${enemy.name} ist am Zug")
-            enemy.fight(enemies, heros)
-            println()
-            Thread.sleep(1500)
-        }
-
-        allGoodsAreDead(heros)
-        allBadsAreDead(enemies)
+        Thread.sleep(1500)
     }
+    println("Die haben gut ausgeteilt, mal sehen was der Gegner macht... ")
+
+    for (enemy in enemies){
+        println("${enemy.name} ist am Zug")
+        enemy.fight(enemies, heros)
+        println()
+        Thread.sleep(1500)
+    }
+
 }
+
 
 fun allGoodsAreDead(heros: MutableList<Hero>):Boolean{
     var allDead = false
