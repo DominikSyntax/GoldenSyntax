@@ -4,6 +4,18 @@ class GunNut(
     override var damagePower: Int = 150
 ) : Human(name, healthPower, damagePower) {
 
+    override fun attack(int: Int,hero: Hero,enemy: Enemy,enemies:MutableList <Enemy>,heros:MutableSet<Hero>) {
+
+        when (int) {
+            1 -> punch(enemy)
+            2 -> kick(enemy)
+            3 -> bazooka(enemy)
+            4 -> machineGun(enemy)
+            5 -> airstrike(enemies)
+            6 -> bag.useBag(heros)
+        }
+    }
+
     fun bazooka(enemy: Enemy) {
         if (enemy.healthPower > 150) {
             enemy.healthPower -= 150
@@ -27,7 +39,7 @@ class GunNut(
         println("$bullets haben ${enemy.name} bei dem Maschienengewähr Angriff getroffen , mit einem Gesamtschaden von $damage")
     }
 
-    fun airstrike(enemies:MutableList<Hero>){
+    fun airstrike(enemies:MutableList<Enemy>){
         println("$name hat Luftunterstützung angefordert....")
         var damage:Int
         for (enemy in enemies){

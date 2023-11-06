@@ -1,3 +1,4 @@
+import Bag
 open class Hero(open var name:String = String(),open var healthPower:Int = 1000, open var damagePower:Int=100) {
     open var isDead:Boolean =false
     open val standartHP = 1000
@@ -17,6 +18,7 @@ open class Hero(open var name:String = String(),open var healthPower:Int = 1000,
     open fun printAllFunktion(){
         println("1 -> punch: fügt einem Gegner Schaden hinzu  \n" +
                 "2 -> kick: fügt einem Gegner Schaden hinzu ")
+
     }
 
     fun punch(enemy: Enemy){

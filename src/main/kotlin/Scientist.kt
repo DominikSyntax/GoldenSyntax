@@ -5,6 +5,18 @@ class Scientist(
 
     var rickIsUsed = false
 
+    override fun attack(int: Int,hero: Hero,enemy: Enemy,enemies:MutableList <Enemy>,heros:MutableSet<Hero>) {
+
+        when (int) {
+            1 -> punch(enemy)
+            2 -> kick(enemy)
+            3 -> tankChocolate(hero)
+            4 -> macGyver(enemy)
+            5 -> rickAndMorty(enemies)
+            6 -> bag.useBag(heros)
+        }
+    }
+
     fun tankChocolate(hero: Hero) {
         println("Der Professor hatte noch etwas Panzer Schokolade für ${hero.name}")
         if (!hero.usedTankChocolade) {

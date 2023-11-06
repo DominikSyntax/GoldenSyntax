@@ -2,9 +2,9 @@
  * Tekk ist das Kücken, mit gerade einmal 22 Jahren. Dafür ist er aber auch deutlich schneller als die Anderen
  * Er kann alles, was mit Technik zu tun hat kontrollieren
  */
-
+import Bag
 class ElectricMutant(override var name:String = "Tekk",override var healthPower:Int = 1000,override var damagePower:Int = 100):Hero(name, healthPower, damagePower) {
-
+    var bag:Bag = Bag()
     override fun printAllFunktion() {
         super.printAllFunktion()
         println(
@@ -22,6 +22,7 @@ class ElectricMutant(override var name:String = "Tekk",override var healthPower:
             3 -> traficContol(enemy)
             4 -> nanoBots(hero)
             5 -> livingCable(enemies)
+            6 -> bag.useBag(heros)
         }
     }
 
