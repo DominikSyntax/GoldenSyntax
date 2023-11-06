@@ -23,7 +23,9 @@ fun main() {
     var goodOnes = false
 
     while (goodOnes == false || badOnes == false){
-        rounds(bag,myTeam,enemies,roundCounter)
+        roundForGoods(bag,myTeam,enemies,roundCounter)
+        roundForBads(myTeam,enemies,roundCounter)
+        roundCounter++
         goodOnes = allGoodsAreDead(myTeam)
         badOnes = allBadsAreDead(enemies)
         if (goodOnes) {

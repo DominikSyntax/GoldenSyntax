@@ -130,7 +130,7 @@ fun evilChoice(enemies:MutableList<Enemy>):Enemy {
 
 }
 
-fun rounds(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
+fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
 
     println("Runde : $counter")
     println()
@@ -151,11 +151,13 @@ fun rounds(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy>, coun
         println()
         Thread.sleep(1500)
     }
-    println("Die haben gut ausgeteilt, mal sehen was der Gegner macht... ")
-
+}
+fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int){
+    println("Die haben gut ausgeteilt, mal sehen was der Gegner macht in seiner $counter Runde... ")
+    var copyOfEnemy:MutableList<Enemy> = enemies
     for (enemy in enemies){
         println("${enemy.name} ist am Zug")
-        enemy.fight(enemies, heros)
+        enemy.fight(copyOfEnemy, heros)
         println()
         Thread.sleep(1500)
     }
