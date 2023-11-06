@@ -4,7 +4,7 @@ open class Bag {
     /**
      * Kann nur 1x pro Runde eingesetzt werden, anstelle einer anderen Funktion
      */
-    open fun useBag(heros: MutableSet<Hero>) {
+    open fun useBag(heros: MutableList<Hero>) {
         var healingDrinkInt = 3
         var vitaminsInt = 1
         println("Im eurem Beutel befinden sich $healingDrinkInt Heiltränke und $vitaminsInt Vitamine.")
@@ -49,8 +49,8 @@ open class Bag {
                         return // wird zurück zur Eingabe geleitet
                     }
 
-                    var heroList = heros.toList()
-                    var userHero = heroList[userHeroInput - 1]
+
+                    var userHero = heros[userHeroInput - 1]
 
 
                     if (heros.size > userHeroInput) {
@@ -95,8 +95,8 @@ open class Bag {
                         return // wird zurück zur Eingabe geleitet
                     }
 
-                    var heroList = heros.toList()
-                    var userHero = heroList[userHeroInput - 1]
+
+                    var userHero = heros[userHeroInput - 1]
 
                     if (heros.size > userHeroInput) {
                         println(" So viele Helden hast du gar nicht")

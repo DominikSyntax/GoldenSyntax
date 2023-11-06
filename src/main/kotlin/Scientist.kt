@@ -5,13 +5,29 @@ class Scientist(
 
     var rickIsUsed = false
 
-    override fun attack(int: Int,hero: Hero,enemy: Enemy,enemies:MutableList <Enemy>,heros:MutableSet<Hero>) {
+    override fun printAllFunktion() {
+        println(
+            "1 -> Schlagen \n" +
+                    "2 -> Treten \n" +
+                    "3 ->  Fahrzeugkontrolle \n" +
+                    "4 -> NanoBot Hilfe \n" +
+                    "5 -> lebendige Kabel \n" +
+                    "6 -> Rucksack benutzen"
+        )
+    }
+
+    /**
+     * Die Attack Funktion hat jeder Held, sie bekommt:
+     * @param bag - einen gemeinsamen Rucksack
+     * @param int - die Auswahl der Funktion nach printAll Funktion
+     */
+    override fun attack(bag: Bag ,int: Int,enemies:MutableList <Enemy>,heros:MutableList<Hero>) {
 
         when (int) {
-            1 -> punch(enemy)
-            2 -> kick(enemy)
-            3 -> tankChocolate(hero)
-            4 -> macGyver(enemy)
+            1 -> punch(evilChoice(enemies))
+            2 -> kick(evilChoice(enemies))
+            3 -> tankChocolate(heroChoice(heros))
+            4 -> macGyver(evilChoice(enemies))
             5 -> rickAndMorty(enemies)
             6 -> bag.useBag(heros)
         }

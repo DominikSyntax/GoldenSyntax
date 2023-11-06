@@ -4,13 +4,25 @@ class GunNut(
     override var damagePower: Int = 150
 ) : Human(name, healthPower, damagePower) {
 
-    override fun attack(int: Int,hero: Hero,enemy: Enemy,enemies:MutableList <Enemy>,heros:MutableSet<Hero>) {
+    override fun printAllFunktion() {
+        println(
+            "1 -> Schlagen \n" +
+                    "2 -> Treten \n" +
+                    "3 ->  Bazooka \n" +
+                    "4 -> Maschinengewähr \n" +
+                    "5 -> Luftschlag \n" +
+                    "6 -> Rucksack benutzen"
+
+        )
+    }
+
+    override fun attack(bag: Bag,int: Int,enemies:MutableList <Enemy>,heros:MutableList<Hero>) {
 
         when (int) {
-            1 -> punch(enemy)
-            2 -> kick(enemy)
-            3 -> bazooka(enemy)
-            4 -> machineGun(enemy)
+            1 -> punch(evilChoice(enemies))
+            2 -> kick(evilChoice(enemies))
+            3 -> bazooka(evilChoice(enemies))
+            4 -> machineGun(evilChoice(enemies))
             5 -> airstrike(enemies)
             6 -> bag.useBag(heros)
         }
@@ -36,7 +48,7 @@ class GunNut(
                 break
             }
         }
-        println("$bullets haben ${enemy.name} bei dem Maschienengewähr Angriff getroffen , mit einem Gesamtschaden von $damage")
+        println("$bullets Kugeln haben ${enemy.name} bei dem Maschienengewähr Angriff getroffen , mit einem Gesamtschaden von $damage")
     }
 
     fun airstrike(enemies:MutableList<Enemy>){

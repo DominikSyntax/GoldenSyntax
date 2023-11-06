@@ -4,22 +4,22 @@ class Witch(
 ) : Enemy(name, healthPower, damagePower) {
 
 
-    override fun fight(enemies: MutableList<Enemy>, heros: MutableSet<Hero>) {
+    override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
         var dice = (1..6).random()
         var randomHero = heros.random()
-        var boss:Endboss
-
-        for(enemy in enemies){
-            if (enemy == Endboss("Dajjal"))
-                boss = Endboss(enemy)
+        var boss: Endboss? = null
+        for (enemy in enemies){
+            if (enemy is Endboss)
+                boss = enemy
         }
 
+
         when (dice) {
-            1 -> prayToTheBoss(boss)
+            1 -> prayToTheBoss(boss!!)
             2 -> poisen(randomHero)
             3 -> powerToTheBadGuys(enemies)
             4 -> möllemann(heros)
-            5 -> yoga()
+            5 -> yoga(boss!!)
 
         }
 
@@ -65,7 +65,7 @@ class Witch(
 
     }
 
-    fun möllemann(heros: MutableSet<Hero>) {
+    fun möllemann(heros: MutableList<Hero>) {
         var usedList: MutableList<Boolean> = mutableListOf(false, false, false, false)
         var randomHero = heros.random()
         var damage = (50..100).random()
@@ -136,7 +136,7 @@ class Witch(
 
     }
 
-    fun yoga() {
+    fun yoga(endboss: Endboss) {
         var plusHealth = healthPower / 100 * (5..9).random().toInt()
         var plusDamage = damagePower / 100
 

@@ -25,8 +25,8 @@ import java.lang.NumberFormatException
 
 
 
-fun makeYouTeam(heroList: MutableList<Hero>): MutableSet<Hero> {
-    var mySet: MutableSet<Hero> = mutableSetOf()
+fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
+    var myTeam: MutableSet<Hero> = mutableSetOf()
     println("Bitte such dir ein Team von 3 Helden zusammen, um gegen ${Endboss("Dajjal").name} anzutreten")
     println(
         "Du hast die Wahl aus \n" +
@@ -48,7 +48,7 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableSet<Hero> {
     var userChoise: Int = 0
     var preChoise: Int = 0
 
-    while (mySet.size < 3) {
+    while (myTeam.size < 3) {
         try {
             userChoise = readln().toInt()
         } catch (e: NumberFormatException) {
@@ -78,44 +78,118 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableSet<Hero> {
             )
         } else {
             var userHero: Hero = heroList[userChoise - 1]
-            mySet.add(userHero)
+            myTeam.add(userHero)
         }
 
 
-        if (mySet.size == 1) {
-            println("Einen hast du, deine Wahl ist auf ${mySet.last().name} gefallen, es fehlen noch 2")
+        if (myTeam.size == 1) {
+            println("Einen hast du, deine Wahl ist auf ${myTeam.last().name} gefallen, es fehlen noch 2")
         }
-        if (mySet.size == 2) {
+        if (myTeam.size == 2) {
             println(
                 "Es ist unglaublich Bob, ich muss mir an den Kopf fassen, wir haben tatsächlich schon Zwei Helden. \n" +
-                        "Du bist auf jeden Fall jetzt schon einer der besten Spieler ! Dein Neuzugang heißt ${mySet.last().name}"
+                        "Du bist auf jeden Fall jetzt schon einer der besten Spieler ! Dein Neuzugang heißt ${myTeam.last().name}"
             )
         }
         preChoise = userChoise
 
     }
     println(" Geschafft! Dein Team besteht aus: ")
-    for (hero in mySet) {
+    for (hero in myTeam) {
         print("${hero.name}, ")
     }
-    return mySet
+    var myTeamList = myTeam.toMutableList()
+    return myTeamList
 }
 
-fun choice(wen: String, enemies: MutableList<Enemy>, mySet: MutableSet<Hero>) {
+fun heroChoice(heros:MutableList<Hero>):Hero {
+    var chosenHero:Hero
+    var heroInt:Int = 1
+    println("Für diese Aktion, musst du dir einen Helden aussuchen")
+    for (hero in heros){
+        println("Gib die $heroInt für ${hero.name} ein")
+        heroInt++
+    }
+    var userInputInt:Int = readln().toInt()
+    chosenHero = heros[userInputInt-1]
+    heroInt = 1
+    return chosenHero
+}
 
-    if (enemies.contains(Enemy(wen))) {
-        enemyChoice = Enemy(wen)
-    } else if (mySet.contains(Hero(wen))) {
-        heroChoice = Hero(wen)
-    } else if (wen == "Helden") {
-        goodChoice = mySet
-    } else if (wen == "Gegner") {
-        badChoice = enemies
-    } else
-        println("So schwer kann es doch nicht sein, du musst ja nicht einmal selber kämpfen. Nur einen Namen richtig eingeben")
-
+fun evilChoice(enemies:MutableList<Enemy>):Enemy {
+    var chosenEnemy:Enemy
+    var enemyInt:Int = 1
+    println("Für diese Aktion, musst du dir einen Gegner aussuchen")
+    for (enemy in enemies){
+        println("Gib die $enemyInt für ${enemy.name} ein")
+        enemyInt++
+    }
+    var userInputInt:Int = readln().toInt()
+    chosenEnemy= enemies[userInputInt-1]
+    return chosenEnemy
 
 }
+
+fun rounds(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
+    if (allGoodsAreDead(heros)) {
+        println("Keine weitere Runde mehr, die bösen haben endlich mal gewonnen.... ")
+    }else if (allBadsAreDead(enemies)) {
+        println(
+            "Nicht schon wieder ein Happy End, das mag ich nur bei TaiMassagen, die Helden haben zwar gewonnen doch was sie nicht gemerkt haben ist das ein Komet , \n" +
+                    "doppelt so groß wie der, der die Dinos ausgelöscht hat, auf die Erde zugeflogen ist. \n" +
+                    "Alle Menschen , und Tiere sind gestorben... Der ganze Planet ist explodiert... Aber hey, vorher haben die guten gewonnen , gut gemacht "
+        )
+    }else {
+
+        println("Runde : $counter")
+        println()
+        println("Zuerst sind deine Helden dran")
+
+        // hier noch eine einfache Abfrage, ob die Bag genutzt wurde
+
+        for (hero in heros) {
+            println("Du bist mit ${hero.name} am Zug")
+            println("Was möchtest du machen, du hast die Wahl aus...")
+            hero.printAllFunktion()
+            var userChoiceFun = readln().toInt()
+            if (hero.isDead) {
+                println("Mit ${hero.name} ist nichts mehr anzufangen, das Weichei hat den Tod vorgezogen, anstatt sich seiner verantwortung zu stellen")
+            } else {
+                hero.attack(bag, userChoiceFun, enemies, heros)
+            }
+            println()
+            Thread.sleep(1500)
+        }
+        println("Die haben gut ausgeteilt, mal sehen was der Gegner macht... ")
+
+        for (enemy in enemies) {
+            println("${enemy.name} ist am Zug")
+            enemy.fight(enemies, heros)
+            println()
+            Thread.sleep(1500)
+        }
+
+        allGoodsAreDead(heros)
+        allBadsAreDead(enemies)
+    }
+}
+
+fun allGoodsAreDead(heros: MutableList<Hero>):Boolean{
+    var allDead = false
+    if (heros.all { it.isDead  }){
+        allDead = true
+    }
+    return allDead
+
+}
+fun allBadsAreDead(enemies: MutableList<Enemy>):Boolean{
+    var allDead = false
+    if (enemies.all{it.isDead}){
+        allDead = true
+    }
+    return allDead
+}
+
 
 /*fun evilfight(heros: MutableSet<Hero>, evils: MutableList<Enemy>) {
 

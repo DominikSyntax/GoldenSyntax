@@ -12,24 +12,29 @@ class NatureMutant(
 
 ) : Hero(name, healthPower, damagePower,) {
     override fun printAllFunktion() {
-        super.printAllFunktion()
-        println("3 -> thunderStorm : Lässt ein Gewitter aufziehen und Blitze auf die Gegner nieder \n" +
-                "4 -> poisonRoots: Die Gift Wurzeln umschlingen den Gegner und fügt über mehrere Runden Schaden zu \n" +
-                "5 -> healing: Heilt dein ganzes Team ein Stück"
+
+        println(
+            "1 -> Schlagen \n" +
+                    "2 -> Treten \n" +
+                    "3 -> Gewittersturm \n" +
+                    "4 -> Giftwurzeln  \n" +
+                    "5 -> Teamheilung "
         )
     }
 
 
-    override fun attack(int: Int,hero: Hero,enemy: Enemy,enemies:MutableList <Enemy>,heros:MutableSet<Hero>) {
+    override fun attack(bag: Bag,int: Int,enemies:MutableList <Enemy>,heros:MutableList<Hero>) {
 
         when (int) {
-            1 -> punch(enemy)
-            2 -> kick(enemy)
+            1 -> punch(evilChoice(enemies))
+            2 -> kick(evilChoice(enemies))
             3 -> thunderStorm(enemies)
-            4 -> poisonRoots(enemy)
+            4 -> poisonRoots(evilChoice(enemies))
             5 -> healing(heros)
         }
     }
+
+
     /**
      * Die Methode thunderStorm soll zwischen 1 und 3 Blitze auf den Gegner schleudern
      * @param enemy
@@ -87,9 +92,11 @@ class NatureMutant(
     /**
      *Heilt einen Set<Hero>
      */
-    fun healing(heros: MutableSet<Hero>) {
+    fun healing(heros: MutableList<Hero>) {
         for (hero in heros) {
-            hero.healthPower += hero.healthPower / 100 * (7..10).random()
+            var helthInt:Int = hero.standartHP / 100 * (7..10).random().toInt()
+            hero.healthPower += helthInt
+            println("${hero.name} wurden die Lebenmspunkte um $helthInt erhöht")
         }
 
     }

@@ -1,33 +1,37 @@
 import Bag
-open class Hero(open var name:String = String(),open var healthPower:Int = 1000, open var damagePower:Int=100) {
-    open var isDead:Boolean =false
+
+open class Hero(open var name: String = String(), open var healthPower: Int = 1000, open var damagePower: Int = 100) {
+    open var isDead: Boolean = false
     open val standartHP = 1000
     open var usedTankChocolade = false
 
-    open fun attack(int: Int,hero: Hero,enemy: Enemy,enemies:MutableList <Enemy>,heros:MutableSet<Hero>){
+    open fun attack(bag: Bag, int: Int, enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
 
         when (int) {
-            1 -> punch(enemy)
-            2 -> kick(enemy)
+            1 -> punch(evilChoice(enemies))
+            2 -> kick(evilChoice(enemies))
 
         }
 
     }
 
 
-    open fun printAllFunktion(){
-        println("1 -> punch: fügt einem Gegner Schaden hinzu  \n" +
-                "2 -> kick: fügt einem Gegner Schaden hinzu ")
+    open fun printAllFunktion() {
+        println(
+            "1 -> Schlagen  \n" +
+                    "2 -> Treten "
+        )
 
     }
 
-    fun punch(enemy: Enemy){
-        var abzug= ((5..15).random()/100 *damagePower).toInt()
+    open fun punch(enemy: Enemy) {
+        var abzug =((enemy.standartHP/100 * (5..7).random())/ 100 * damagePower).toInt()
         enemy.healthPower -= abzug
         println("${enemy.name} wurden durch den Schlag von $name $abzug Lebenspunkte abgezogen")
     }
-    fun kick(enemy: Enemy){
-        var abzug= ((10..35).random()/100 *damagePower).toInt()
+
+    open fun kick(enemy: Enemy) {
+        var abzug = ((enemy.standartHP/100 * (7..9).random()) / 100 * damagePower).toInt()
         enemy.healthPower -= abzug
         println("${enemy.name} wurden durch den Tritt von $name $abzug Lebenspunkte abgezogen")
     }
