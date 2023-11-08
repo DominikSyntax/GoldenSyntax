@@ -8,17 +8,13 @@ class Endboss(
     override var isDead: Boolean = false
     var helperIsUsed: Boolean = false
     var armeIsUsed: Boolean = false
-    override val standartHP: Int = 3000
+    override val standartHP: Int = healthPower
+
+
 
     override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>){
         val list = mutableListOf(1, 2, 3, 4, 5, 6)
 
-        if (helperIsUsed) {
-            list.remove(3)
-        }
-        if (armeIsUsed) {
-            list.remove(4)
-        }
 
         var dice = list.random()
         var randomHero = heros.random()
@@ -67,19 +63,25 @@ class Endboss(
     /**
      * Ruft den UnderBoss zur Hilfe (geht nur 1 x im Spiel)
      */
-    fun underBoss(list: MutableList<Enemy>):MutableList<Enemy> {
-        var witch = Witch("Agnes Waterhouse")
-        list += witch
-        helperIsUsed = true
-        println("$name hat ${witch.name} beschworen, Sie hilft Ihm jetzt im Kampf gegen das Gute ")
-        return list
+    fun underBoss(list: MutableList<Enemy>){
+        var witch:Witch = Witch("Agnes Waterhouse")
+        if (!helperIsUsed) {
+            list += witch
+            helperIsUsed = true
+            println("$name hat ${witch.name} beschworen, Sie hilft Ihm jetzt im Kampf gegen das Gute ")
+        }else{
+            println("$name ist etwas vergesslich, er wollte die hexe nochmal beschwören. Das geht natürlich nicht aber ihre Lebensenergie steigt um 15 % ")
+            var bonus = (witch.healthPower/100 * 15).toInt()
+
+        }
+
     }
 
 
     /**
      *DAJJAL beschört die Untoten, es werden zwischen 4 und 10 Zombies der Gergnerliste hinzugefügt
      */
-    fun armeOfDead(list: MutableList<Enemy>):MutableList<Enemy> {
+    fun armeOfDead(list: MutableList<Enemy>){
 
         // add zwischen 4 oder 10 Untote zur MutableList<Enemy>
         var listOfAllUndead: MutableList<Undead> = mutableListOf(
@@ -96,15 +98,20 @@ class Endboss(
         )
         var armeInt: Int = (4..10).random()
         var listOfZombies:MutableList<Undead> = mutableListOf()
-        repeat(armeInt) {
-            var zombie = listOfAllUndead.random()
-            listOfZombies.add(zombie)
-            listOfAllUndead.remove(zombie)
-            println("$name hat ${zombie.name} zum leben erweckt, die Guten haben also einen neuen Gegner")
+        if (!armeIsUsed) {
+            repeat(armeInt) {
+                var zombie = listOfAllUndead.random()
+                listOfZombies.add(zombie)
+                listOfAllUndead.remove(zombie)
+                println("$name hat ${zombie.name} zum leben erweckt, die Guten haben also einen neuen Gegner")
+            }
+            armeIsUsed = true
+            list += listOfZombies
+        }else{
+            println("Die Untoten wurden schon beschworen, glück gehabt")
         }
-        list += listOfZombies
-        return list
-        armeIsUsed = true
+
+
     }
 
 

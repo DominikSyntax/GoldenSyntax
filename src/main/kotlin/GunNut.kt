@@ -19,10 +19,10 @@ class GunNut(
     override fun attack(bag: Bag,int: Int,enemies:MutableList <Enemy>,heros:MutableList<Hero>) {
 
         when (int) {
-            1 -> punch(evilChoice(enemies))
-            2 -> kick(evilChoice(enemies))
-            3 -> bazooka(evilChoice(enemies))
-            4 -> machineGun(evilChoice(enemies))
+            1 -> punch(evilChoice(enemies)!!)
+            2 -> kick(evilChoice(enemies)!!)
+            3 -> bazooka(evilChoice(enemies)!!)
+            4 -> machineGun(evilChoice(enemies)!!)
             5 -> airstrike(enemies)
             6 -> bag.useBag(heros)
         }

@@ -10,7 +10,7 @@ class NatureMutant(
     override var healthPower: Int = 1000,
     override var damagePower: Int = 100,
 
-) : Hero(name, healthPower, damagePower,) {
+    ) : Hero(name, healthPower, damagePower) {
     override fun printAllFunktion() {
 
         println(
@@ -18,21 +18,25 @@ class NatureMutant(
                     "2 -> Treten \n" +
                     "3 -> Gewittersturm \n" +
                     "4 -> Giftwurzeln  \n" +
-                    "5 -> Teamheilung "
+                    "5 -> Teamheilung \n" +
+                    "6 -> Rucksack benutzen"
         )
     }
 
 
-    override fun attack(bag: Bag,int: Int,enemies:MutableList <Enemy>,heros:MutableList<Hero>) {
-
+    override fun attack(bag: Bag, int: Int, enemies: MutableList<Enemy>, heros: MutableList<Hero>){
         when (int) {
-            1 -> punch(evilChoice(enemies))
-            2 -> kick(evilChoice(enemies))
-            3 -> thunderStorm(enemies)
-            4 -> poisonRoots(evilChoice(enemies))
-            5 -> healing(heros)
+                1 -> punch(evilChoice(enemies))
+                2 -> kick(evilChoice(enemies))
+                3 -> thunderStorm(enemies)
+                4 -> poisonRoots(evilChoice(enemies))
+                5 -> healing(heros)
+                6 -> bag.useBag(heros)
+                else -> println("Die Attackenauswahl war nicht gültig")
         }
+
     }
+
 
 
     /**
@@ -94,7 +98,7 @@ class NatureMutant(
      */
     fun healing(heros: MutableList<Hero>) {
         for (hero in heros) {
-            var helthInt:Int = hero.standartHP / 100 * (7..10).random().toInt()
+            var helthInt: Int = hero.standartHP / 100 * (7..10).random().toInt()
             hero.healthPower += helthInt
             println("${hero.name} wurden die Lebenmspunkte um $helthInt erhöht")
         }

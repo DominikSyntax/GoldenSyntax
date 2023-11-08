@@ -5,6 +5,8 @@ open class Hero(open var name: String = String(), open var healthPower: Int = 10
     open val standartHP = 1000
     open var usedTankChocolade = false
 
+
+
     open fun attack(bag: Bag, int: Int, enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
 
         when (int) {
@@ -25,13 +27,13 @@ open class Hero(open var name: String = String(), open var healthPower: Int = 10
     }
 
     open fun punch(enemy: Enemy) {
-        var abzug =((enemy.standartHP/100 * (5..7).random())/ 100 * damagePower).toInt()
+        var abzug =enemy.standartHP/100 * (5..7).random()
         enemy.healthPower -= abzug
         println("${enemy.name} wurden durch den Schlag von $name $abzug Lebenspunkte abgezogen")
     }
 
     open fun kick(enemy: Enemy) {
-        var abzug = ((enemy.standartHP/100 * (7..9).random()) / 100 * damagePower).toInt()
+        var abzug = enemy.standartHP/100 * (7..9).random()
         enemy.healthPower -= abzug
         println("${enemy.name} wurden durch den Tritt von $name $abzug Lebenspunkte abgezogen")
     }

@@ -1,6 +1,6 @@
 class Undead(name: String, override var healthPower: Int=200, override var damagePower: Int=25):Enemy(name,healthPower,damagePower) {
 
-
+    override val standartHP: Int = healthPower
     override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
         var dice = listOf(1,2).random()
         var randomHero = heros.random()
@@ -12,7 +12,7 @@ class Undead(name: String, override var healthPower: Int=200, override var damag
     }
 
     fun bite(hero: Hero){
-        var damage = (((25..50).random())/100 * damagePower).toInt()
+        var damage = (25..50).random()
         if (hero.healthPower > damage){
             println("$name hat ${hero.name} gebissen und dadurch $damage Schaden verursacht.")
             hero.healthPower -= damage
@@ -28,7 +28,7 @@ class Undead(name: String, override var healthPower: Int=200, override var damag
     }
 
     fun hold(hero: Hero){
-        var minusDamagePower = (((7..10).random()/100) * damagePower).toInt()
+        var minusDamagePower = (7..10).random()
         if (hero.damagePower > minusDamagePower){
             println("$name hält ${hero.name} fest, die Angriffskraft wurde um $minusDamagePower reduziert")
             hero.damagePower -= minusDamagePower

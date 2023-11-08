@@ -25,6 +25,7 @@ fun main() {
     while (goodOnes == false || badOnes == false){
         roundForGoods(bag,myTeam,enemies,roundCounter)
         roundForBads(myTeam,enemies,roundCounter)
+
         roundCounter++
         goodOnes = allGoodsAreDead(myTeam)
         badOnes = allBadsAreDead(enemies)
