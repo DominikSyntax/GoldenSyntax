@@ -23,7 +23,7 @@ class ElectricMutant(
     }
 
 
-    override fun attack(bagIsUsed:Boolean,bag:Bag, int: Int, enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
+    override fun attack(bag:Bag, int: Int, enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
         var isBagUsed = false
         when (int) {
             1 -> punch(evilChoice(enemies))
@@ -33,9 +33,7 @@ class ElectricMutant(
             5 -> livingCable(enemies)
             6 -> bag.useBag(heros)
         }
-        if (int==6){
-            isBagUsed = true
-        }
+
 
 
     }
