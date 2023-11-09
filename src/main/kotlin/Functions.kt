@@ -215,6 +215,8 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
 fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
     println("Die haben gut ausgeteilt, mal sehen was der Gegner macht in seiner $counter Runde... ")
     var enemiesCopy = enemies.toMutableList()
+    var selfAttackisUsed:Boolean
+
     for (hero in heros) {
         if (hero.healthPower <= 0) {
             hero.healthPower = 0
@@ -255,28 +257,6 @@ fun allBadsAreDead(enemies: MutableList<Enemy>): Boolean {
 }
 
 
-/*fun evilfight(heros: MutableSet<Hero>, evils: MutableList<Enemy>) {
-
-    for (badGuy in evils) {
-        if (badGuy == Endboss()) {
-            if (!badGuy.isDead) {
-                var dice = (1..6).random()
-                var randomHero = heros.random()
-
-                when (dice) {
-                    1 -> badGuy.
-                    2 -> boss.selfAttack(randomHero)
-                    3 -> boss.underBoss(evils)
-                    4 -> boss.armeOfDead(evils)
-                    5 -> boss.shield(evils.random())
-                    6 -> boss.strongDamage(evils.random())
-                }
-
-            }
-
-
-
-            }
-
-*/
-
+fun greeting(){
+    println(" Herzlich willkommen bei Golden Syntax")
+}
