@@ -1,3 +1,5 @@
+import charakter.*
+
 fun main() {
     var gaiaHero: NatureMutant = NatureMutant("Gaia")           //zuerst muss jeder einmal initalisiert werden
     var tekkHero: ElectricMutant = ElectricMutant("Tekk")

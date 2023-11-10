@@ -1,3 +1,8 @@
+package charakter
+
+import Bag
+import evilChoice
+
 class GunNut(
     override var name: String = "Jonny Rambo",
     override var healthPower: Int = 1500,
@@ -16,7 +21,7 @@ class GunNut(
         )
     }
 
-    override fun attack(bag: Bag,int: Int,enemies:MutableList <Enemy>,heros:MutableList<Hero>) {
+    override fun attack(bag: Bag, int: Int, enemies:MutableList <Enemy>, heros:MutableList<Hero>) {
 
         when (int) {
             1 -> punch(evilChoice(enemies))

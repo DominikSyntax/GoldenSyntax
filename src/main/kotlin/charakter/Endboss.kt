@@ -1,3 +1,5 @@
+package charakter
+
 class Endboss(
     override var name: String = "Dajjal",
     override var healthPower: Int = 3000,
@@ -33,7 +35,7 @@ class Endboss(
 
     /**
      * Verursacht Flächenschaden, d.h. trifft alle Helden gleichzeitig
-     * @param MutableList<Hero>
+     * @param MutableList<charakter.Hero>
      */
     fun sandStorm(heros: MutableList<Hero>) {
         println("$name hat einen Sandsturm ausgelöst")
@@ -65,7 +67,7 @@ class Endboss(
      * Ruft den UnderBoss zur Hilfe (geht nur 1 x im Spiel)
      */
     fun underBoss(list: MutableList<Enemy>){
-        var witch:Witch = Witch("Agnes Waterhouse")
+        var witch: Witch = Witch("Agnes Waterhouse")
         if (!helperIsUsed) {
             list += witch
             helperIsUsed = true
@@ -84,7 +86,7 @@ class Endboss(
      */
     fun armeOfDead(list: MutableList<Enemy>){
 
-        // add zwischen 4 oder 10 Untote zur MutableList<Enemy>
+        // add zwischen 4 oder 10 Untote zur MutableList<charakter.Enemy>
         var listOfAllUndead: MutableList<Undead> = mutableListOf(
             Undead("ZombieOne"),
             Undead("ZombieTwo"),

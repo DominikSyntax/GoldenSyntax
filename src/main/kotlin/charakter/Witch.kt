@@ -1,3 +1,5 @@
+package charakter
+
 class Witch(
     override var name: String, override var healthPower: Int = 1500,
     override var damagePower: Int = 100

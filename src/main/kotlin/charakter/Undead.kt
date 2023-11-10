@@ -1,4 +1,7 @@
-class Undead(name: String, override var healthPower: Int=200, override var damagePower: Int=25):Enemy(name,healthPower,damagePower) {
+package charakter
+
+class Undead(name: String, override var healthPower: Int=200, override var damagePower: Int=25):
+    Enemy(name,healthPower,damagePower) {
 
     override val standartHP: Int = healthPower
     override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>) {

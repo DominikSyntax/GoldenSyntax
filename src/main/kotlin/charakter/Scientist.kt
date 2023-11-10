@@ -1,3 +1,9 @@
+package charakter
+
+import Bag
+import evilChoice
+import heroChoice
+
 class Scientist(
     override var name: String = "Prof. Proton", override var healthPower: Int = 750,
     override var damagePower: Int = 75
@@ -21,7 +27,7 @@ class Scientist(
      * @param bag - einen gemeinsamen Rucksack
      * @param int - die Auswahl der Funktion nach printAll Funktion
      */
-    override fun attack(bag: Bag ,int: Int,enemies:MutableList <Enemy>,heros:MutableList<Hero>) {
+    override fun attack(bag: Bag, int: Int, enemies:MutableList <Enemy>, heros:MutableList<Hero>) {
 
         when (int) {
             1 -> punch(evilChoice(enemies))

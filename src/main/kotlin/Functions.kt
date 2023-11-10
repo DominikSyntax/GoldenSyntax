@@ -1,4 +1,6 @@
-import java.lang.NullPointerException
+import charakter.Endboss
+import charakter.Enemy
+import charakter.Hero
 import kotlin.NumberFormatException
 
 // Die Funktionen für die main.kt hier drin, hab ich auf alle erdenklichen Fehler getesten(nur die erste bis jetzt, in der zweiten könnten noch Fehler sein)
@@ -174,6 +176,7 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
 
     // hier noch eine einfache Abfrage, ob die Bag genutzt wurde
 
+
     for (hero in heros) {
         println("Du bist mit ${hero.name} am Zug")
         println("Was möchtest du machen, du hast die Wahl aus...")
@@ -206,16 +209,18 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
 
 
 
+
+
     Thread.sleep(1500)
 }
-
-
 
 
 fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
     println("Die haben gut ausgeteilt, mal sehen was der Gegner macht in seiner $counter Runde... ")
     var enemiesCopy = enemies.toMutableList()
-    var selfAttackisUsed:Boolean
+    var selfAttackisUsed: Boolean
+
+
 
     for (hero in heros) {
         if (hero.healthPower <= 0) {
@@ -236,6 +241,7 @@ fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter:
         }
 
     }
+
 }
 
 
@@ -257,6 +263,6 @@ fun allBadsAreDead(enemies: MutableList<Enemy>): Boolean {
 }
 
 
-fun greeting(){
+fun greeting() {
     println(" Herzlich willkommen bei Golden Syntax")
 }

@@ -1,8 +1,12 @@
+package charakter
+
 /**
  * Tekk ist das Kücken, mit gerade einmal 22 Jahren. Dafür ist er aber auch deutlich schneller als die Anderen
  * Er kann alles, was mit Technik zu tun hat kontrollieren
  */
 import Bag
+import evilChoice
+import heroChoice
 
 class ElectricMutant(
     override var name: String = "Tekk",

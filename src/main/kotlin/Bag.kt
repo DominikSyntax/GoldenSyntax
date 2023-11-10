@@ -1,3 +1,5 @@
+import charakter.Hero
+
 open class Bag() {
 
     var healingDrinkInt = 3

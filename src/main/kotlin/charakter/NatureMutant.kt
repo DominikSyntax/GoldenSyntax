@@ -1,5 +1,7 @@
-import com.sun.jdi.Method
-import kotlin.math.E
+package charakter
+
+import Bag
+import evilChoice
 
 /**
  * Die Heldin Gaia ist ein Natur-Mutant, das bedeutet, Sie hat die Kraft, alles was mit der Natur zu tun hat, zu beeinflussen.
@@ -95,7 +97,7 @@ class NatureMutant(
     }
 
     /**
-     *Heilt einen Set<Hero>
+     *Heilt einen Set<charakter.Hero>
      */
     fun healing(heros: MutableList<Hero>) {
         for (hero in heros) {

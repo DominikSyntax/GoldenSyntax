@@ -1,4 +1,7 @@
+package charakter
+
 import Bag
+import evilChoice
 
 open class Hero(open var name: String = String(), open var healthPower: Int = 1000, open var damagePower: Int = 100) {
     open var isDead: Boolean = false
