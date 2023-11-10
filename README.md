@@ -18,6 +18,12 @@ Dajjal, der Antichrist, das Ende von allem, der Vorbote der Apokalypse….
 
 ![image](https://github.com/DominikSyntax/GoldenSyntax/assets/144677824/ff8c8292-ca79-461b-8b10-505c3358fe1f)
 
+## Spielablauf 
+
+- Zuerst sucht man sich sein Team aus , 3 Leute braucht man insgesamt
+- Dann kämpft jeder Held aus dem Team nach der Reihe gegen die Bösen
+- dann sind die Bösen am Zug , jeder von denen kann einen Angriff starten 
+
 
 
 
