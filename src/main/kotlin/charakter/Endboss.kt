@@ -51,13 +51,10 @@ class Endboss(
      * Trifft nur einen Helden, pro Runde die HP des Helden -10 %, solange bis die HP <= 20 % der Standart HP ist (also 200)
      */
     fun selfAttack(hero: Hero) {
-        var twentyPercent = hero.standartHP / 100 * 20
-        println("Dajjal's Zauber wirkt auf ${hero.name}")
-        while (hero.healthPower >= twentyPercent) {
-            var damage: Int
-            damage = (hero.standartHP/100 * 10).toInt()
-            hero.healthPower -= damage
-            println("${name}'s Zauber hat ${hero.name} $damage Schaden von den HP abgezogen")
+        if (hero.endbossFluch){
+            println("Der Fluch der Selbstzerstörung ist bereits genutzt")
+        }else {
+            hero.endbossFluch = true
         }
 
     }

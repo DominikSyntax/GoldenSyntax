@@ -9,6 +9,9 @@ open class Hero(open var name: String = String(), open var healthPower: Int = 10
     open var usedTankChocolade = false
     open var nanoAreUsed = false
     open  var otherHeroHaveNanos =false
+    open var endbossFluch = false
+
+
 
     open fun printInfo(){
         println("Mit $name,  ...")

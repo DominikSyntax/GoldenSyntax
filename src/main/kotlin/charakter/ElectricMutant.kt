@@ -16,6 +16,8 @@ class ElectricMutant(
 
     override var nanoAreUsed = false
     override var otherHeroHaveNanos =false
+    override var endbossFluch: Boolean = false
+
 
     override fun printInfo(){
         println("""

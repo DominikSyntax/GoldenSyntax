@@ -4,7 +4,6 @@ import charakter.Hero
 import kotlin.NumberFormatException
 
 
-
 /*
 
 -   -   -   -   -   -   -   -   -   -   TO DO's   -   -   -   -   -   -   -   -   -   -   -   -   -   -
@@ -17,8 +16,20 @@ import kotlin.NumberFormatException
  */
 
 
-
-
+fun verflucht(heros: MutableList<Hero>) {
+    for (hero in heros) {
+        var twentyPercent = hero.standartHP / 100 * 20
+        if (hero.endbossFluch && (hero.healthPower > twentyPercent)) {
+            println("Dajjal's Fluch, der Autoimmunkrankheit hat ${hero.name} fest im Griff. ${hero.name}'s Körper Kämpft gegen sich selbst ")
+            var abzug = hero.healthPower / 100 * 10
+            hero.healthPower -= abzug
+            println("$abzug Lebenspunkte wurden dem Helden abgezogen")
+        } else if (hero.endbossFluch && (hero.healthPower <= twentyPercent)) {
+            println("Du hast den Fluch schon verwendet aber bei einer Lebensenergie von unter $twentyPercent von ${hero.standartHP} lässt der Fluch nach")
+            println("Ich weiß, was ist das für ein Fluch , der Rücksicht auf deinen Gesundheitszustand nimmt ? Der Auftraggeber wollte es einfach so")
+        }
+    }
+}
 
 
 fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
@@ -50,7 +61,7 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
         absatz()
 
     }
-    int=1
+    int = 1
     var userChoise: Int = 0
     var preChoise: Int = 0
 
@@ -124,19 +135,19 @@ fun heroChoice(heros: MutableList<Hero>): Hero {
     }
     var userInputInt: Int = 0
     try {
-        userInputInt= readln().toInt()
-    }catch (e:NumberFormatException){
+        userInputInt = readln().toInt()
+    } catch (e: NumberFormatException) {
         println("Nur Chuck Norris kann mit Buchstaben die richtige Zahl eingeben, ich denke nicht das du das verstehst Einstein, deswegen such ich einen Helden für dich aus")
         chosenHero = heros.random()
     }
 
 
-    if (userInputInt> heros.size) {
+    if (userInputInt > heros.size) {
         println("Denk nochmal nach Kollege, ich glaube so viele Helden hast du nicht")
         println("Um es dir leichter zu machen suche ich dir dieses mal jemanden aus.")
         chosenHero = heros.random()
     } else {
-        chosenHero = heros[userInputInt-1]
+        chosenHero = heros[userInputInt - 1]
     }
 
     heroInt = 1
@@ -151,7 +162,7 @@ fun evilChoice(enemies: MutableList<Enemy>): Enemy {
 
 
     println("Für diese Aktion, musst du dir einen Gegner aussuchen")
-    if (enemies.size<2){
+    if (enemies.size < 2) {
         println("Aktuell gibt es nur ${enemies[0].name}, ich nehm dir die schwere Wahl ab und richte deinen Angiff mal gegen ihn. ")
         chosenEnemy = enemies.first()
         return chosenEnemy
@@ -188,13 +199,14 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
     println("Runde : $counter")
     println()
     println("Zuerst sind deine Helden dran")
+    verflucht(heros)
 
 
 
 
     for (hero in heros) {
-        if (hero.nanoAreUsed){
-            if (hero.healthPower>0) {
+        if (hero.nanoAreUsed) {
+            if (hero.healthPower > 0) {
                 var healing = hero.healthPower / 100 * 2
                 hero.healthPower += healing
             }
@@ -305,7 +317,31 @@ fun greeting() {
 }
 
 fun absatz() {
-    var loading = listOf<String>("-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-")
+    var loading = listOf<String>(
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+    )
     println()
     Thread.sleep(200)
     for (i in loading) {
