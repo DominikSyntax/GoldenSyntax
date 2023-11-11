@@ -58,7 +58,7 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
     for (h in heroList) {
         println("$int für ${h.name}")
         int++
-        absatz()
+        println()
 
     }
     int = 1
@@ -161,6 +161,7 @@ fun evilChoice(enemies: MutableList<Enemy>): Enemy {
     var enemyInt: Int = 1
 
 
+
     println("Für diese Aktion, musst du dir einen Gegner aussuchen")
     if (enemies.size < 2) {
         println("Aktuell gibt es nur ${enemies[0].name}, ich nehm dir die schwere Wahl ab und richte deinen Angiff mal gegen ihn. ")
@@ -197,80 +198,294 @@ fun evilChoice(enemies: MutableList<Enemy>): Enemy {
 fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
     absatz()
     println("Runde : $counter")
-    println()
-    println("Zuerst sind deine Helden dran")
-    verflucht(heros)
 
 
+    if (deadBads) {
+        println(
+            """
+            ███▄▄▄▄      ▄████████  ▄█  ███▄▄▄▄   
+            ███▀▀▀██▄   ███    ███ ███  ███▀▀▀██▄ 
+            ███   ███   ███    █▀  ███▌ ███   ███ 
+            ███   ███  ▄███▄▄▄     ███▌ ███   ███ 
+            ███   ███ ▀▀███▀▀▀     ███▌ ███   ███ 
+            ███   ███   ███    █▄  ███  ███   ███ 
+            ███   ███   ███    ███ ███  ███   ███ 
+             ▀█   █▀    ██████████ █▀    ▀█   █▀  
+                                      
+        Die guten haben schon wieder gewonnen, aber nicht in meinem Spiel. Das kann ich als Programmierer nicht zulassen.
+        """
+        )
+        absatz()
+        println(
+            "Die Helden haben alle Feinde besiegt, ihnen ist jedoch bei dem Kampf nicht aufgefallen, das ein " +
+                    """  ▄█   ▄█▄  ▄██████▄    ▄▄▄▄███▄▄▄▄      ▄████████     ███     
+                     ███ ▄███▀ ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███ ▀█████████▄ 
+                     ███▐██▀   ███    ███ ███   ███   ███   ███    █▀     ▀███▀▀██ 
+                    ▄█████▀    ███    ███ ███   ███   ███  ▄███▄▄▄         ███   ▀ 
+                   ▀▀█████▄    ███    ███ ███   ███   ███ ▀▀███▀▀▀         ███     
+                     ███▐██▄   ███    ███ ███   ███   ███   ███    █▄      ███     
+                     ███ ▀███▄ ███    ███ ███   ███   ███   ███    ███     ███     
+                     ███   ▀█▀  ▀██████▀   ▀█   ███   █▀    ██████████    ▄████▀   
+                             ▀                                                             """ +
+                    "(3x so groß und doppelt so schnell, wie der, der die Dinos ausgelöscht hat) \n" +
+                    "auf die Erde zugeflogen kam. \n" +
+                    ""
+        )
+        Thread.sleep(500)
+        println("Alle freuen sich, kleine Kinder spielen auf dem Spielplatz und plötzlich......")
+        println()
+        println(
+            """
+            █████████▄   ▄██████▄   ▄██████▄    ▄▄▄▄███▄▄▄▄   
+             ███    ███ ███    ███ ███    ███ ▄██▀▀▀███▀▀▀██▄ 
+             ███    ███ ███    ███ ███    ███ ███   ███   ███ 
+            ▄███▄▄▄██▀  ███    ███ ███    ███ ███   ███   ███ 
+           ▀▀███▀▀▀██▄  ███    ███ ███    ███ ███   ███   ███ 
+             ███    ██▄ ███    ███ ███    ███ ███   ███   ███ 
+             ███    ███ ███    ███ ███    ███ ███   ███   ███ 
+           ▄█████████▀   ▀██████▀   ▀██████▀   ▀█   ███   █▀  
+                                                   
+        """.trimIndent()
+        )
+        println("Der ganze Planet explodiert, alle und alles tot..... überall Gedärme und Körperteile im Weltraum .... ENDE!")
 
 
-    for (hero in heros) {
-        if (hero.nanoAreUsed) {
-            if (hero.healthPower > 0) {
-                var healing = hero.healthPower / 100 * 2
-                hero.healthPower += healing
+    } else if (deadGoods) {
+        println(
+            """
+                 ▄█    ▄████████  ▄█     █▄   ▄██████▄     ▄█    █▄     ▄█                    ▄████████ ███▄▄▄▄   ████████▄   ▄█        ▄█   ▄████████    ▄█    █▄    
+                 ███   ███    ███ ███     ███ ███    ███   ███    ███   ███                   ███    ███ ███▀▀▀██▄ ███   ▀███ ███       ███  ███    ███   ███    ███   
+                 ███   ███    ███ ███     ███ ███    ███   ███    ███   ███                   ███    █▀  ███   ███ ███    ███ ███       ███▌ ███    █▀    ███    ███   
+                 ███   ███    ███ ███     ███ ███    ███  ▄███▄▄▄▄███▄▄ ███                  ▄███▄▄▄     ███   ███ ███    ███ ███       ███▌ ███         ▄███▄▄▄▄███▄▄ 
+                 ███ ▀███████████ ███     ███ ███    ███ ▀▀███▀▀▀▀███▀  ███                 ▀▀███▀▀▀     ███   ███ ███    ███ ███       ███▌ ███        ▀▀███▀▀▀▀███▀  
+                 ███   ███    ███ ███     ███ ███    ███   ███    ███   ███                   ███    █▄  ███   ███ ███    ███ ███       ███  ███    █▄    ███    ███   
+                 ███   ███    ███ ███ ▄█▄ ███ ███    ███   ███    ███   ███▌    ▄             ███    ███ ███   ███ ███   ▄███ ███▌    ▄ ███  ███    ███   ███    ███   
+             █▄ ▄███   ███    █▀   ▀███▀███▀   ▀██████▀    ███    █▀    █████▄▄██             ██████████  ▀█   █▀  ████████▀  █████▄▄██ █▀   ████████▀    ███    █▀    
+             ▀▀▀▀▀▀                                                     ▀                                                     ▀                                        
+                                      
+        Die bösen haben endlich mal gewonnen, das einzige Happy End das ich mag , ist ein romantisches Date mit mir, meiner Hand und einem Taschentuch
+        """
+        )
+        absatz()
+        println(
+            "Die Bösen haben alle Helden besiegt, ihnen ist jedoch bei dem Kampf nicht aufgefallen, das ein " +
+                    """  ▄█   ▄█▄  ▄██████▄    ▄▄▄▄███▄▄▄▄      ▄████████     ███     
+                     ███ ▄███▀ ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███ ▀█████████▄ 
+                     ███▐██▀   ███    ███ ███   ███   ███   ███    █▀     ▀███▀▀██ 
+                    ▄█████▀    ███    ███ ███   ███   ███  ▄███▄▄▄         ███   ▀ 
+                   ▀▀█████▄    ███    ███ ███   ███   ███ ▀▀███▀▀▀         ███     
+                     ███▐██▄   ███    ███ ███   ███   ███   ███    █▄      ███     
+                     ███ ▀███▄ ███    ███ ███   ███   ███   ███    ███     ███     
+                     ███   ▀█▀  ▀██████▀   ▀█   ███   █▀    ██████████    ▄████▀   
+                             ▀                                                             """ +
+                    "(3x so groß und doppelt so schnell, wie der, der die Dinos ausgelöscht hat) \n" +
+                    "auf die Erde zugeflogen kam. \n" +
+                    ""
+        )
+        Thread.sleep(500)
+        println("Alle Menschen auf der Erde leben in Angst und Schrecken. Doch plötzlich......")
+        println()
+        println(
+            """
+            █████████▄   ▄██████▄   ▄██████▄    ▄▄▄▄███▄▄▄▄   
+             ███    ███ ███    ███ ███    ███ ▄██▀▀▀███▀▀▀██▄ 
+             ███    ███ ███    ███ ███    ███ ███   ███   ███ 
+            ▄███▄▄▄██▀  ███    ███ ███    ███ ███   ███   ███ 
+           ▀▀███▀▀▀██▄  ███    ███ ███    ███ ███   ███   ███ 
+             ███    ██▄ ███    ███ ███    ███ ███   ███   ███ 
+             ███    ███ ███    ███ ███    ███ ███   ███   ███ 
+           ▄█████████▀   ▀██████▀   ▀██████▀   ▀█   ███   █▀  
+                                                   
+        """.trimIndent()
+        )
+        println("Der ganze Planet explodiert, alle und jeder sind tot..... überall Gedärme und Körperteile im Weltraum .... ENDE!")
+
+
+    } else {
+        println()
+        println("Zuerst sind deine Helden dran")
+        verflucht(heros)
+        for (hero in heros) {
+            if (hero.nanoAreUsed) {
+                if (hero.healthPower > 0) {
+                    var healing = hero.healthPower / 100 * 2
+                    hero.healthPower += healing
+                } else {
+                    println("Einem toten können auch die Nanobots nicht mehr helfen")
+                }
             }
-        }
-        println("Du bist mit ${hero.name} am Zug")
-        println("Was möchtest du machen, du hast die Wahl aus...")
-        hero.printAllFunktion(bag)
-        var userChoiceFun: Int
-        try {
-            userChoiceFun = readln().toInt()
-        } catch (e: NumberFormatException) {
-            println(
-                "Nummern, sind die Dinger hinter dem - auf deinem Konto \n" +
-                        "Nur Chuck Norris darf hier auch Buchstaben eingeben!"
-            )
-            return
-        }
+            println("Du bist mit ${hero.name} am Zug")
+            println("Was möchtest du machen, du hast die Wahl aus...")
+            hero.printAllFunktion(bag)
+
+            var userChoiceFun: Int
 
 
-        hero.attack(bag, userChoiceFun, enemies, heros)
+            try {
+                userChoiceFun = readln().toInt()
+            } catch (e: NumberFormatException) {
+                println(
+                    "Nummern, sind die Dinger hinter dem - auf deinem Konto \n" +
+                            "Nur Chuck Norris darf hier auch Buchstaben eingeben!"
 
-        for (enemy in enemies) {
-            if (enemy.healthPower <= 0) {
-                enemy.healthPower = 0
-                enemy.isDead = true
-                println("Mit ${enemy.name} ist nichts mehr anzufangen, das Weichei hat den Tod vorgezogen, anstatt sich seiner Verantwortung zu stellen")
-            } else {
-                println("${enemy.name} hat noch ${enemy.healthPower} Lebenspunkte ")
+                )
+                return
             }
+
+
+            hero.attack(bag, userChoiceFun, enemies, heros)
+            for (enemy in enemies) {
+                if (enemy.healthPower <= 0) {
+                    enemy.healthPower = 0
+                    enemy.isDead = true
+                    absatz()
+                    println("Mit ${enemy.name} ist nichts mehr anzufangen, das Weichei hat den Tod vorgezogen, anstatt sich seiner Verantwortung zu stellen")
+                    println()
+                } else {
+                    absatz()
+                    println("${enemy.name} hat noch ${enemy.healthPower} Lebenspunkte ")
+                    println()
+                }
+            }
+
+
         }
+        bag.bagIsUsed = false
+        absatz()
 
     }
-    bag.bagIsUsed = false
-    absatz()
 }
 
 
 fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
     absatz()
     println("Die haben gut ausgeteilt, mal sehen was der Gegner macht in seiner $counter Runde... ")
+    println()
+
     var enemiesCopy = enemies.toMutableList()
-    var selfAttackisUsed: Boolean
 
 
+    if (deadBads) {
+        println(
+            """
+            ███▄▄▄▄      ▄████████  ▄█  ███▄▄▄▄   
+            ███▀▀▀██▄   ███    ███ ███  ███▀▀▀██▄ 
+            ███   ███   ███    █▀  ███▌ ███   ███ 
+            ███   ███  ▄███▄▄▄     ███▌ ███   ███ 
+            ███   ███ ▀▀███▀▀▀     ███▌ ███   ███ 
+            ███   ███   ███    █▄  ███  ███   ███ 
+            ███   ███   ███    ███ ███  ███   ███ 
+             ▀█   █▀    ██████████ █▀    ▀█   █▀  
+                                      
+        Die guten haben schon wieder gewonnen, aber nicht in meinem Spiel. Das kann ich als Programmierer nicht zulassen.
+        """
+        )
+        absatz()
+        println(
+            "Die Helden haben alle Feinde besiegt, ihnen ist jedoch bei dem Kampf nicht aufgefallen, das ein " +
+                    """  ▄█   ▄█▄  ▄██████▄    ▄▄▄▄███▄▄▄▄      ▄████████     ███     
+                     ███ ▄███▀ ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███ ▀█████████▄ 
+                     ███▐██▀   ███    ███ ███   ███   ███   ███    █▀     ▀███▀▀██ 
+                    ▄█████▀    ███    ███ ███   ███   ███  ▄███▄▄▄         ███   ▀ 
+                   ▀▀█████▄    ███    ███ ███   ███   ███ ▀▀███▀▀▀         ███     
+                     ███▐██▄   ███    ███ ███   ███   ███   ███    █▄      ███     
+                     ███ ▀███▄ ███    ███ ███   ███   ███   ███    ███     ███     
+                     ███   ▀█▀  ▀██████▀   ▀█   ███   █▀    ██████████    ▄████▀   
+                             ▀                                                             """ +
+                    "(3x so groß und doppelt so schnell, wie der, der die Dinos ausgelöscht hat) \n" +
+                    "auf die Erde zugeflogen kam. \n" +
+                    ""
+        )
+        Thread.sleep(500)
+        println("Alle freuen sich, kleine Kinder spielen auf dem Spielplatz und plötzlich......")
+        println()
+        println(
+            """
+            █████████▄   ▄██████▄   ▄██████▄    ▄▄▄▄███▄▄▄▄   
+             ███    ███ ███    ███ ███    ███ ▄██▀▀▀███▀▀▀██▄ 
+             ███    ███ ███    ███ ███    ███ ███   ███   ███ 
+            ▄███▄▄▄██▀  ███    ███ ███    ███ ███   ███   ███ 
+           ▀▀███▀▀▀██▄  ███    ███ ███    ███ ███   ███   ███ 
+             ███    ██▄ ███    ███ ███    ███ ███   ███   ███ 
+             ███    ███ ███    ███ ███    ███ ███   ███   ███ 
+           ▄█████████▀   ▀██████▀   ▀██████▀   ▀█   ███   █▀  
+                                                   
+        """.trimIndent()
+        )
+        println("Der ganze Planet explodiert, alle und alles tot..... überall Gedärme und Körperteile im Weltraum .... ENDE!")
 
-    for (hero in heros) {
-        if (hero.healthPower <= 0) {
-            hero.healthPower = 0
-            hero.isDead = true
-        } else {
-            for (enemy in enemiesCopy) {
-                println("${enemy.name} ist am Zug")
-                enemy.fight(enemies, heros)
-                absatz()
-            }
+
+    } else if (deadGoods) {
+        println(
+            """
+                 ▄█    ▄████████  ▄█     █▄   ▄██████▄     ▄█    █▄     ▄█                    ▄████████ ███▄▄▄▄   ████████▄   ▄█        ▄█   ▄████████    ▄█    █▄    
+                 ███   ███    ███ ███     ███ ███    ███   ███    ███   ███                   ███    ███ ███▀▀▀██▄ ███   ▀███ ███       ███  ███    ███   ███    ███   
+                 ███   ███    ███ ███     ███ ███    ███   ███    ███   ███                   ███    █▀  ███   ███ ███    ███ ███       ███▌ ███    █▀    ███    ███   
+                 ███   ███    ███ ███     ███ ███    ███  ▄███▄▄▄▄███▄▄ ███                  ▄███▄▄▄     ███   ███ ███    ███ ███       ███▌ ███         ▄███▄▄▄▄███▄▄ 
+                 ███ ▀███████████ ███     ███ ███    ███ ▀▀███▀▀▀▀███▀  ███                 ▀▀███▀▀▀     ███   ███ ███    ███ ███       ███▌ ███        ▀▀███▀▀▀▀███▀  
+                 ███   ███    ███ ███     ███ ███    ███   ███    ███   ███                   ███    █▄  ███   ███ ███    ███ ███       ███  ███    █▄    ███    ███   
+                 ███   ███    ███ ███ ▄█▄ ███ ███    ███   ███    ███   ███▌    ▄             ███    ███ ███   ███ ███   ▄███ ███▌    ▄ ███  ███    ███   ███    ███   
+             █▄ ▄███   ███    █▀   ▀███▀███▀   ▀██████▀    ███    █▀    █████▄▄██             ██████████  ▀█   █▀  ████████▀  █████▄▄██ █▀   ████████▀    ███    █▀    
+             ▀▀▀▀▀▀                                                     ▀                                                     ▀                                        
+                                      
+        Die bösen haben endlich mal gewonnen, das einzige Happy End das ich mag , ist ein romantisches Date mit mir, meiner Hand und einem Taschentuch
+        """
+        )
+        absatz()
+        println(
+            "Die Bösen haben alle Helden besiegt, ihnen ist jedoch bei dem Kampf nicht aufgefallen, das ein " +
+                    """  ▄█   ▄█▄  ▄██████▄    ▄▄▄▄███▄▄▄▄      ▄████████     ███     
+                     ███ ▄███▀ ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███ ▀█████████▄ 
+                     ███▐██▀   ███    ███ ███   ███   ███   ███    █▀     ▀███▀▀██ 
+                    ▄█████▀    ███    ███ ███   ███   ███  ▄███▄▄▄         ███   ▀ 
+                   ▀▀█████▄    ███    ███ ███   ███   ███ ▀▀███▀▀▀         ███     
+                     ███▐██▄   ███    ███ ███   ███   ███   ███    █▄      ███     
+                     ███ ▀███▄ ███    ███ ███   ███   ███   ███    ███     ███     
+                     ███   ▀█▀  ▀██████▀   ▀█   ███   █▀    ██████████    ▄████▀   
+                             ▀                                                             """ +
+                    "(3x so groß und doppelt so schnell, wie der, der die Dinos ausgelöscht hat) \n" +
+                    "auf die Erde zugeflogen kam. \n" +
+                    ""
+        )
+        Thread.sleep(500)
+        println("Alle Menschen auf der Erde leben in Angst und Schrecken. Doch plötzlich......")
+        println()
+        println(
+            """
+            █████████▄   ▄██████▄   ▄██████▄    ▄▄▄▄███▄▄▄▄   
+             ███    ███ ███    ███ ███    ███ ▄██▀▀▀███▀▀▀██▄ 
+             ███    ███ ███    ███ ███    ███ ███   ███   ███ 
+            ▄███▄▄▄██▀  ███    ███ ███    ███ ███   ███   ███ 
+           ▀▀███▀▀▀██▄  ███    ███ ███    ███ ███   ███   ███ 
+             ███    ██▄ ███    ███ ███    ███ ███   ███   ███ 
+             ███    ███ ███    ███ ███    ███ ███   ███   ███ 
+           ▄█████████▀   ▀██████▀   ▀██████▀   ▀█   ███   █▀  
+                                                   
+        """.trimIndent()
+        )
+        println("Der ganze Planet explodiert, alle und jeder sind tot..... überall Gedärme und Körperteile im Weltraum .... ENDE!")
+
+
+    } else {
+
+        for (enemy in enemiesCopy) {
+            println("${enemy.name} ist am Zug")
+            enemy.fight(enemies, heros)
             for (hero in heros) {
-                println("${hero.name} hat noch ${hero.healthPower} Lebensenergie")
-                absatz()
+                if (hero.healthPower <= 0) {
+                    hero.healthPower = 0
+                    hero.isDead = true
+                    println("${hero.name} hat den Angriff nicht überlebt")
+                    absatz()
 
+                } else {
+                    println("${hero.name} hat noch ${hero.healthPower} Lebensenergie")
+                    absatz()
+                }
             }
         }
 
     }
-
 }
 
 
@@ -280,6 +495,7 @@ fun allGoodsAreDead(heros: MutableList<Hero>): Boolean {
         allDead = true
     }
     return allDead
+
 
 }
 
