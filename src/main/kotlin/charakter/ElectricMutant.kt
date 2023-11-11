@@ -18,6 +18,16 @@ class ElectricMutant(
     override var otherHeroHaveNanos =false
 
     override fun printInfo(){
+        println("""
+             __   _                                      
+             /   /_`  /_/  /_/                           
+            /   /_,  /`\  /`\                            
+                                             
+ __   _    _    __   _  _     _       _      
+ //_//_`  /_`/ /// //_//_`  //_`  /|// /| | |
+// //_,  /  /_///_// \/_,  /._/  / |/_/ |/|/ 
+            
+        """.trimIndent())
         super.printInfo()
         println("... einen starken Elektro Mutanten. Mit der Fähigkeit alles was irgendwie mit Technik zu tun hat zu kontrollieren. ")
     }

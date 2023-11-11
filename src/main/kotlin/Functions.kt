@@ -187,7 +187,7 @@ fun evilChoice(enemies: MutableList<Enemy>): Enemy {
 }
 
 fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
-
+    absatz()
     println("Runde : $counter")
     println()
     println("Zuerst sind deine Helden dran")
@@ -236,6 +236,7 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
 
 
 fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
+    absatz()
     println("Die haben gut ausgeteilt, mal sehen was der Gegner macht in seiner $counter Runde... ")
     var enemiesCopy = enemies.toMutableList()
     var selfAttackisUsed: Boolean
@@ -288,16 +289,19 @@ fun greeting() {
     println(" Herzlich willkommen bei ...")
     println(
         """
- ____            ___       __                     ____                    __                      
-/\  _`\         /\_ \     /\ \                   /\  _`\                 /\ \__                   
-\ \ \L\_\    ___\//\ \    \_\ \     __    ___    \ \,\L\_\  __  __    ___\ \ ,_\    __     __  _  
- \ \ \L_L   / __`\\ \ \   /'_` \  /'__`\/' _ `\   \/_\__ \ /\ \/\ \ /' _ `\ \ \/  /'__`\  /\ \/'\ 
-  \ \ \/, \/\ \L\ \\_\ \_/\ \L\ \/\  __//\ \/\ \    /\ \L\ \ \ \_\ \/\ \/\ \ \ \_/\ \L\.\_\/>  </ 
-   \ \____/\ \____//\____\ \___,_\ \____\ \_\ \_\   \ `\____\/`____ \ \_\ \_\ \__\ \__/.\_\/\_/\_\
-    \/___/  \/___/ \/____/\/__,_ /\/____/\/_/\/_/    \/_____/`/___/> \/_/\/_/\/__/\/__/\/_/\//\/_/
-                                                                /\___/                            
-                                                                \/__/                        
+ ____            ___       __                           ____                    __                      
+/\  _`\         /\_ \      /\ \                       /\  _`\                 /\ \__                   
+\ \ \L\_\     ___ \//\ \     \_\ \     __    ___     \ \,\L\_\   __  __    ___\ \ ,_\      __     __  _  
+ \ \ \L_L    / __`\ \ \ \    /'_` \   /'__`\ /' _ `\   \/_\__ \  /\ \/\ \  /' _ `\ \ \/  /'__`\  /\ \/'\ 
+  \ \ \/, \ /\ \L\ \ \_\ \_ /\ \L\ \ /\  __/ /\ \/\ \    /\ \L\ \  \ \_\ \ /\ \/\ \ \ \_/\ \L\.\_\/>  </ 
+   \ \____/ \ \____// \____\  \___,_\  \____ \ \_\ \_\   \ `\____\ /`____ \  \_\ \_\ \__\ \__/.\_\/\_/\_\
+    \/___/   \/___/  \/____/ \/__,_ / \/____/ \/_/\/_/    \/_____/ `/___/>  \/_/\/_/\/__/\/__/\/_/\//\/_/
+                                                                  /\___/                            
+                                                                  \/__/                        
+    Golden Syntax...by Dominik Weber v 1.1
+      * v1.2 coming soon * 
       
+      * = (das heißt übersetzt ... es wird noch besser)
     """
     )
     absatz()
@@ -311,5 +315,6 @@ fun absatz() {
         print(i)
         Thread.sleep(120)
     }
+    println()
 
 }

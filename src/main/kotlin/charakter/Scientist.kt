@@ -14,6 +14,15 @@ class Scientist(
     override var otherHeroHaveNanos =false
 
     override fun printInfo(){
+        println("""
+            ;-.                                    ;-.          .           
+            |  )          ,-                       |  )         |           
+            |-'  ;-. ,-.  |  ,-. ,-. ,-. ,-. ;-.   |-'  ;-. ,-. |-  ,-. ;-. 
+            |    |   | |  |- |-' `-. `-. | | |     |    |   | | |   | | | | 
+            '    '   `-'  |  `-' `-' `-' `-' '     '    '   `-' `-' `-' ' ' 
+                         -'                                                 
+            
+        """.trimIndent())
         super.printInfo()
         println("... einen wahnsinnigen Professor, mit der ein oder anderen Überraschung für den Gegner ")
     }
