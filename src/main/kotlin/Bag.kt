@@ -53,7 +53,7 @@ open class Bag() {
                         try {
                             userHeroInput = readln().toInt()
                         } catch (e: NumberFormatException) {
-                            println("Du kennst den Unterschied zwischen Zahlen und Buchstaben? Ich möchte eine Zahl du Experte.")
+                            println("Nur Chuck Norris darf hier eingeben , was er möchte. Für dich gelten andere Regeln .... Zahlen Junge .... 1,2 oder 3  ob du wirklich richtig wählst, siehst du wenn diese meldung nicht kommt ")
                             return // wird zurück zur Eingabe geleitet
                         }
 
@@ -61,7 +61,7 @@ open class Bag() {
                         var userHero = heros[userHeroInput - 1]
 
 
-                        if (heros.size > userHeroInput) {
+                        if (heros.size < userHeroInput) {
                             println(" So viele Helden hast du gar nicht")
                             return // wird zurück zur Eingabe geleitet
 
