@@ -1,31 +1,38 @@
 import charakter.*
+// ALLE HELDEN
+var gaiaHero: NatureMutant = NatureMutant()           //zuerst muss jeder einmal initalisiert werden
+var tekkHero: ElectricMutant = ElectricMutant()
+var jonnyHero: GunNut = GunNut()
+var profHero: Scientist = Scientist()
+var heroList: MutableList<Hero> = mutableListOf(gaiaHero, tekkHero, jonnyHero, profHero)
+var myTeam: MutableList<Hero> = mutableListOf()
+
+// Der Rucksack
+var bag = Bag()
+
+// DER ENDBOSS (den Nebenboss brauche ich hier noch nicht)
+var endboss: Endboss = Endboss()
+var enemies = mutableListOf<Enemy>(endboss)
+
+// Einen Rundenzähler
+var roundCounter: Int = 1
+
+// ständiges überprüfen, ob jemand tot ist (kann ich bestimmt noch ein paar mal aus dem code entfernen
+var goodOnes: Boolean = false
+var badOnes: Boolean =false
 
 fun main() {
-    var gaiaHero: NatureMutant = NatureMutant("Gaia")           //zuerst muss jeder einmal initalisiert werden
-    var tekkHero: ElectricMutant = ElectricMutant("Tekk")
-    var jonnyHero: GunNut = GunNut()
-    var profHero: Scientist = Scientist()
-    var endboss: Endboss = Endboss()
-    var bag = Bag()
 
-
-    var roundCounter: Int = 1
-
-    var heroList: MutableList<Hero> = mutableListOf(gaiaHero, tekkHero, jonnyHero, profHero)
-    var enemies = mutableListOf<Enemy>(endboss)
-    var goodOnes: Boolean = false
-    var badOnes: Boolean =false
-
-
-    greeting()                                              // Hier fängt das Spiel an 1
-    var myTeam: MutableList<Hero> = makeYouTeam(heroList)
-
+    greeting()
+    myTeam= makeYouTeam(heroList)
 
     do  {
         roundForGoods(bag, myTeam, enemies, roundCounter)
+        badOnes = allBadsAreDead(enemies)
+
         roundForBads(myTeam, enemies, roundCounter)
         goodOnes = allGoodsAreDead(myTeam)
-        badOnes = allBadsAreDead(enemies)
+
         if (goodOnes) {
             println("Keine weitere Runde mehr, die bösen haben endlich mal gewonnen.... ")
         } else if (badOnes) {

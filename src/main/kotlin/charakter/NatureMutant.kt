@@ -8,7 +8,7 @@ import evilChoice
  * Wind, Pflanzen und sogar die Erde selbst hören auf Sie.
  */
 class NatureMutant(
-    override var name: String,
+    override var name: String = "GAIA",
     override var healthPower: Int = 1000,
     override var damagePower: Int = 100,
 
