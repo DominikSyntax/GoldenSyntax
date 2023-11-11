@@ -9,6 +9,11 @@ class GunNut(
     override var damagePower: Int = 150
 ) : Human(name, healthPower, damagePower) {
 
+
+    override fun printInfo(){
+        super.printInfo()
+        println("... zwar nur einen Menschen, aber einen absoluten Waffen Spezialisten ")
+    }
     override fun printAllFunktion(bag: Bag) {
         if (bag.bagIsUsed){
             println(

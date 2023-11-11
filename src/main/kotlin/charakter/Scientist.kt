@@ -11,6 +11,11 @@ class Scientist(
 
     var rickIsUsed = false
 
+    override fun printInfo(){
+        super.printInfo()
+        println("... einen wahnsinnigen Professor, mit der ein oder anderen Überraschung für den Gegner ")
+    }
+
     override fun printAllFunktion(bag: Bag) {
         if (bag.bagIsUsed){
             println(

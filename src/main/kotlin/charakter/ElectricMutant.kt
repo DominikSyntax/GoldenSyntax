@@ -14,20 +14,41 @@ class ElectricMutant(
     override var damagePower: Int = 100
 ) : Hero(name, healthPower, damagePower) {
 
-        var nanoAreUsed = false
-    override fun printAllFunktion(bag: Bag) {
-        if (bag.bagIsUsed)
-            println("Der Rucksack ist in dieser Runde nicht mehr verfügbar")
+    var nanoAreUsed = false
 
-        if (nanoAreUsed){
-            println("" +
-                    "1 -> Schlagen \n" +
-                    "2 -> Treten \n" +
-                    "3 -> Fahrzeugkontrolle \n" +
-                    "4 -> NanoBot NICHT VERFÜGBAR \n" +
-                    "5 -> lebendige Kabel \n" +
-                    "6 -> Rucksack benutzen")
-        }else {
+    override fun printInfo(){
+        super.printInfo()
+        println("... einen starken Elektro Mutanten. Mit der Fähigkeit alles was irgendwie mit Technik zu tun hat zu kontrollieren. ")
+    }
+    override fun printAllFunktion(bag: Bag) {
+        if (bag.bagIsUsed) {
+            println("Der Rucksack ist in dieser Runde nicht mehr verfügbar")
+            println(
+                "1 -> Schlagen \n" +
+                        "2 -> Treten \n" +
+                        "3 -> Fahrzeugkontrolle \n" +
+                        "4 -> NanoBot Hilfe \n" +
+                        "5 -> lebendige Kabel \n"
+            )
+        } else if (bag.bagIsUsed && nanoAreUsed) {
+            println(
+                "" +
+                        "1 -> Schlagen \n" +
+                        "2 -> Treten \n" +
+                        "3 -> Fahrzeugkontrolle \n" +
+                        "4 -> NanoBot NICHT VERFÜGBAR \n" +
+                        "5 -> lebendige Kabel \n"
+            )
+        } else if (nanoAreUsed) {
+            println(
+                "1 -> Schlagen \n" +
+                        "2 -> Treten \n" +
+                        "3 -> Fahrzeugkontrolle \n" +
+                        "4 -> NanoBot NICHT VERFÜGBAR \n" +
+                        "5 -> lebendige Kabel \n" +
+                        "6 -> Rucksack benutzen"
+            )
+        } else {
             println(
                 "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
@@ -44,7 +65,7 @@ class ElectricMutant(
     override fun attack(bag: Bag, int: Int, enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
         if (nanoAreUsed) {
             println("Die Nano Bots wurden schon benutzt, sie können nur 1x im Spiel eingesetzt werden.")
-        } else
+        }
         if (bag.bagIsUsed) {
             when (int) {
                 1 -> punch(evilChoice(enemies))

@@ -8,6 +8,10 @@ open class Hero(open var name: String = String(), open var healthPower: Int = 10
     open val standartHP = 1000
     open var usedTankChocolade = false
 
+    open fun printInfo(){
+        println("Mit $name,  ...")
+    }
+
 
 
     open fun attack(bag: Bag, int: Int, enemies: MutableList<Enemy>, heros: MutableList<Hero>) {

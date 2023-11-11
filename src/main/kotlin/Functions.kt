@@ -30,14 +30,20 @@ import kotlin.NumberFormatException
 
 fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
     var myTeam: MutableSet<Hero> = mutableSetOf()
+    var int = 1
     println("Bitte such dir ein Team von 3 Helden zusammen, um gegen ${Endboss("Dajjal").name} anzutreten")
-    println(
-        "Du hast die Wahl aus \n" +
-                "1 für ${heroList[0].name} \n" +
-                "2 für ${heroList[1].name} \n" +
-                "3 für ${heroList[2].name} \n" +
-                "4 für ${heroList[3].name} \n"
-    )
+
+    println()
+    for (hero in heroList) {
+        println()
+        println("Gib die  $int ein und kämpfst  ")
+        hero.printInfo()
+        println()
+        int++
+    }
+    int =1
+
+
 
     println()
 
@@ -102,7 +108,9 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
         print("${hero.name}, ")
     }
     var myTeamList = myTeam.toMutableList()
+    absatz()
     return myTeamList
+
 }
 
 fun heroChoice(heros: MutableList<Hero>): Hero {
@@ -117,15 +125,21 @@ fun heroChoice(heros: MutableList<Hero>): Hero {
             heroInt++
         }
     }
-    var userInputInt: Int = readln().toInt() - 1
+    var userInputInt: Int = 0
+    try {
+        userInputInt= readln().toInt()
+    }catch (e:NumberFormatException){
+        println("Nur Chuck Norris kann mit Buchstaben die richtige Zahl eingeben, ich denke nicht das du das verstehst Einstein, deswegen such ich einen Helden für dich aus")
+        chosenHero = heros.random()
+    }
 
 
-    if (userInputInt > heros.size - 1) {
+    if (userInputInt> heros.size) {
         println("Denk nochmal nach Kollege, ich glaube so viele Helden hast du nicht")
         println("Um es dir leichter zu machen suche ich dir dieses mal jemanden aus.")
         chosenHero = heros.random()
     } else {
-        chosenHero = heros[userInputInt]
+        chosenHero = heros[userInputInt-1]
     }
 
     heroInt = 1
@@ -140,6 +154,11 @@ fun evilChoice(enemies: MutableList<Enemy>): Enemy {
 
 
     println("Für diese Aktion, musst du dir einen Gegner aussuchen")
+    if (enemies.size<2){
+        println("Aktuell gibt es nur ${enemies[0].name}, ich nehm dir die schwere Wahl ab und richte deinen Angiff mal gegen ihn. ")
+        chosenEnemy = enemies.first()
+        return chosenEnemy
+    }
 
     for (enemy in enemies) {
         if (enemy.healthPower <= 0 || enemy.isDead) {
@@ -183,10 +202,15 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
         try {
             userChoiceFun = readln().toInt()
         } catch (e: NumberFormatException) {
-            println("Nummern, sind die Dinger hinter dem - auf deinem Konto \n" +
-                    "Nur Chuck Norris darf hier auch Buchstaben eingeben!")
+            println(
+                "Nummern, sind die Dinger hinter dem - auf deinem Konto \n" +
+                        "Nur Chuck Norris darf hier auch Buchstaben eingeben!"
+            )
             return
         }
+
+
+        hero.attack(bag, userChoiceFun, enemies, heros)
 
         for (enemy in enemies) {
             if (enemy.healthPower <= 0) {
@@ -198,17 +222,9 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
             }
         }
 
-        hero.attack(bag, userChoiceFun, enemies, heros)
-
-
     }
     bag.bagIsUsed = false
-
-
-
-
-
-    Thread.sleep(1500)
+    absatz()
 }
 
 
@@ -227,12 +243,11 @@ fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter:
             for (enemy in enemiesCopy) {
                 println("${enemy.name} ist am Zug")
                 enemy.fight(enemies, heros)
-                println()
-                Thread.sleep(1500)
+                absatz()
             }
             for (hero in heros) {
                 println("${hero.name} hat noch ${hero.healthPower} Lebensenergie")
-                println()
+                absatz()
 
             }
         }
@@ -261,5 +276,33 @@ fun allBadsAreDead(enemies: MutableList<Enemy>): Boolean {
 
 
 fun greeting() {
-    println(" Herzlich willkommen bei Golden Syntax")
+    absatz()
+
+    println(" Herzlich willkommen bei ...")
+    println(
+        """
+ ____            ___       __                     ____                    __                      
+/\  _`\         /\_ \     /\ \                   /\  _`\                 /\ \__                   
+\ \ \L\_\    ___\//\ \    \_\ \     __    ___    \ \,\L\_\  __  __    ___\ \ ,_\    __     __  _  
+ \ \ \L_L   / __`\\ \ \   /'_` \  /'__`\/' _ `\   \/_\__ \ /\ \/\ \ /' _ `\ \ \/  /'__`\  /\ \/'\ 
+  \ \ \/, \/\ \L\ \\_\ \_/\ \L\ \/\  __//\ \/\ \    /\ \L\ \ \ \_\ \/\ \/\ \ \ \_/\ \L\.\_\/>  </ 
+   \ \____/\ \____//\____\ \___,_\ \____\ \_\ \_\   \ `\____\/`____ \ \_\ \_\ \__\ \__/.\_\/\_/\_\
+    \/___/  \/___/ \/____/\/__,_ /\/____/\/_/\/_/    \/_____/`/___/> \/_/\/_/\/__/\/__/\/_/\//\/_/
+                                                                /\___/                            
+                                                                \/__/                        
+      
+    """
+    )
+    absatz()
+}
+
+fun absatz() {
+    var loading = listOf<String>("-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-")
+    println()
+    Thread.sleep(200)
+    for (i in loading) {
+        print(i)
+        Thread.sleep(120)
+    }
+
 }

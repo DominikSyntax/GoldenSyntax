@@ -13,6 +13,11 @@ class NatureMutant(
     override var damagePower: Int = 100,
 
     ) : Hero(name, healthPower, damagePower) {
+
+    override fun printInfo(){
+        super.printInfo()
+        println("... eine Mutantin, die wie Ihr Name schon erahnen lässt, die Macht über die Natur hat  ")
+    }
     override fun printAllFunktion(bag: Bag) {
         if (bag.bagIsUsed){
             println(

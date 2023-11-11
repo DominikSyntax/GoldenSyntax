@@ -37,9 +37,6 @@ fun main() {
         }
         roundCounter++
     }while (goodOnes||badOnes)
-1
-
-
 }
 
 
