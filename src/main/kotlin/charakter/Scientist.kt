@@ -11,24 +11,32 @@ class Scientist(
 
     var rickIsUsed = false
     override var nanoAreUsed = false
-    override var otherHeroHaveNanos =false
+    override var otherHeroHaveNanos = false
 
-    override fun printInfo(){
-        println("""
-            ;-.                                    ;-.          .           
-            |  )          ,-                       |  )         |           
-            |-'  ;-. ,-.  |  ,-. ,-. ,-. ,-. ;-.   |-'  ;-. ,-. |-  ,-. ;-. 
-            |    |   | |  |- |-' `-. `-. | | |     |    |   | | |   | | | | 
-            '    '   `-'  |  `-' `-' `-' `-' '     '    '   `-' `-' `-' ' ' 
-                         -'                                                 
-            
-        """.trimIndent())
+    override fun printInfo() {
+        println(
+            """
+                                 .-.                  ___                           ___                                                      ___                          
+                                /    \               (   )                         (   )                                                    (   )                         
+   .-..    ___ .-.      .--.    | .`. ;            .-.| |   ___ .-.              .-.| |   ___ .-.               .-..    ___ .-.      .--.    | |_       .--.    ___ .-.   
+  /    \  (   )   \    /    \   | |(___)          /   \ |  (   )   \            /   \ |  (   )   \             /    \  (   )   \    /    \  (   __)    /    \  (   )   \  
+ ' .-,  ;  | ' .-. ;  |  .-. ;  | |_             |  .-. |   | ' .-. ;          |  .-. |   | ' .-. ;           ' .-,  ;  | ' .-. ;  |  .-. ;  | |      |  .-. ;  |  .-. .  
+ | |  . |  |  / (___) | |  | | (   __)           | |  | |   |  / (___)         | |  | |   |  / (___)          | |  . |  |  / (___) | |  | |  | | ___  | |  | |  | |  | |  
+ | |  | |  | |        | |  | |  | |              | |  | |   | |                | |  | |   | |                 | |  | |  | |        | |  | |  | |(   ) | |  | |  | |  | |  
+ | |  | |  | |        | |  | |  | |              | |  | |   | |                | |  | |   | |                 | |  | |  | |        | |  | |  | | | |  | |  | |  | |  | |  
+ | |  ' |  | |        | '  | |  | |       .-.    | '  | |   | |         .-.    | '  | |   | |         .-.     | |  ' |  | |        | '  | |  | ' | |  | '  | |  | |  | |  
+ | `-'  '  | |        '  `-' /  | |      (   )   ' `-'  /   | |        (   )   ' `-'  /   | |        (   )    | `-'  '  | |        '  `-' /  ' `-' ;  '  `-' /  | |  | |  
+ | \__.'  (___)        `.__.'  (___)      `-'     `.__,'   (___)        `-'     `.__,'   (___)        `-'     | \__.'  (___)        `.__.'    `.__.    `.__.'  (___)(___) 
+ | |                                                                                                          | |                                                         
+(___)                                                                                                        (___)                                                        
+        """.trimIndent()
+        )
         super.printInfo()
         println("... einen wahnsinnigen Professor, mit der ein oder anderen Überraschung für den Gegner ")
     }
 
     override fun printAllFunktion(bag: Bag) {
-        if (bag.bagIsUsed){
+        if (bag.bagIsUsed) {
             println(
                 "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
@@ -36,7 +44,7 @@ class Scientist(
                         "4 -> Mac Gyver \n" +
                         "5 -> Rick & Morty \n"
             )
-        }else {
+        } else {
             println(
                 "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
@@ -53,7 +61,7 @@ class Scientist(
      * @param bag - einen gemeinsamen Rucksack
      * @param int - die Auswahl der Funktion nach printAll Funktion
      */
-    override fun attack(bag: Bag, int: Int, enemies:MutableList <Enemy>, heros:MutableList<Hero>) {
+    override fun attack(bag: Bag, int: Int, enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
         if (bag.bagIsUsed) {
             when (int) {
                 1 -> punch(evilChoice(enemies))
@@ -84,19 +92,21 @@ class Scientist(
             println()
             println("Das ist jetzt einmal gut gegangen, dir bist aber schon klar was Panzerschockolade ist? Beim nächsten mal hat ${hero.name} vielleicht nicht so ein Glück")
             hero.usedTankChocolade = true
-        }else{
-            println("Hatte ist dich nicht gewarnt? Du willst ${hero.name} zwei mal am selben Tag M E T H geben? \n" +
-                    "Vielleicht rufe ich schon einmal bei deinem Bewährungshelfer an, während du noch spielst...")
+        } else {
+            println(
+                "Hatte ist dich nicht gewarnt? Du willst ${hero.name} zwei mal am selben Tag M E T H geben? \n" +
+                        "Vielleicht rufe ich schon einmal bei deinem Bewährungshelfer an, während du noch spielst..."
+            )
             println()
             println("Ohje, ${hero.name} sieht auch gar nicht mal so gut aus ")
             Thread.sleep(1500)
-            if (hero.healthPower >50) {
+            if (hero.healthPower > 50) {
                 hero.healthPower -= 50
                 hero.damagePower -= 12
                 println(" Oh man, 50 Punkte an Lebensenergie verloren und 12 Punkte schwächer ist ${hero.name} jetzt auch noch")
                 println()
                 Thread.sleep(1500)
-            }else{
+            } else {
                 println("${hero.name} hatte einen Herzinfarkt und ist raus aus dem rennen")
                 hero.isDead = true
                 hero.healthPower = 0
@@ -135,14 +145,14 @@ class Scientist(
 
     }
 
-    fun rickAndMorty(enemies:MutableList<Enemy>) {
-        var abzug:Int
+    fun rickAndMorty(enemies: MutableList<Enemy>) {
+        var abzug: Int
         if (rickIsUsed) {
             println("Sorry, ich hab dir aber auch gesagt das es zuviel Energie benötigt")
             println()
             println("Wenn du so ein Schlaumi bist, hol doch deine Doppelgänger aus den anderen Dimensionen und greif die Gegner an.")
 
-        }else{
+        } else {
             println("Der Prof. scheint auch jedes Klischee, eines verrückten Wissenschaftlers zu bedienen... einfallsreicher Programmierer ... Respekt ")
             println()
             Thread.sleep(1500)
@@ -155,16 +165,16 @@ class Scientist(
             println("...")
             Thread.sleep(1500)
             println("Unzählige Professoren kommen durch das Loch auf unsere Seite und greifen die Gegner an ")
-            for (enemy in enemies){
-                abzug = enemy.healthPower/100 * (7..10).random()
-                if (abzug <= 50){
+            for (enemy in enemies) {
+                abzug = enemy.healthPower / 100 * (7..10).random()
+                if (abzug <= 50) {
                     println()
                     println("...tja, die anderen sind wohl auch nicht so häufig im Fitness Studio gewesen.")
                     println("$abzug Abzug an Lebenspunkten bei ${enemy.name}, besser als nix")
-                }else if ((abzug > 50) && (abzug <= 150)){
+                } else if ((abzug > 50) && (abzug <= 150)) {
                     println("... okay, die Anzahl machts, einige Rick's ..ähhh... ich meinte Professoren haben sich ${enemy.name} geschnappt")
                     println("Zusammen haben sie ihm immerhin $abzug Abzug an Lebensenergie beschert, ich hoffe bei den ganzen toten ist nicht unser Professor")
-                }else{
+                } else {
                     println("Guck mal, wie viele sich auf ${enemy.name} werfen")
                     println("Sie haben ihr spannendes Wissenschaftler Leben für unser Erde geopfert, für ... naja für $abzug Punkte Abzug, sind es dann doch viele Leichen")
 

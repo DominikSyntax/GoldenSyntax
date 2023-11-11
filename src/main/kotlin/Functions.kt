@@ -3,24 +3,17 @@ import charakter.Enemy
 import charakter.Hero
 import kotlin.NumberFormatException
 
-// Die Funktionen für die main.kt hier drin, hab ich auf alle erdenklichen Fehler getesten(nur die erste bis jetzt, in der zweiten könnten noch Fehler sein)
 
 
 /*
+
 -   -   -   -   -   -   -   -   -   -   TO DO's   -   -   -   -   -   -   -   -   -   -   -   -   -   -
 -                                                                                                     -
 -                                                                                                     -
-- * heilen heißt natürlich nur 100% der start HP! aber um  fäir zu bleiben darf alles was über die    -
--   100 % geht auch nur eine zeit darüber bestehen                                                    -
--                                                                                                     -
--                                                                                                     -
-- * Damit das mit den Runden klappt, brauche ich wahrscheinlich, einen return wert für die Runden     -
--   auf die ich von außen zugreifen kann. In der Runden- Schleife (sobald es sie richtig gibt)        -
-- * ich glaube es ist besser die Namen der Helden , nicht in der Klasse festzulegen, sodern später    -
--   in der main.kt                                                                                    -
 -                                                                                                     -
 -                                                                                                     -
 -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   - -
+
  */
 
 
@@ -36,14 +29,11 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
     println()
     for (hero in heroList) {
         println()
-        println("Gib die  $int ein und kämpfst  ")
+        println("Du hast die Wahl aus...")
         hero.printInfo()
+        absatz()
         println()
-        int++
     }
-    int =1
-
-
 
     println()
 
@@ -53,7 +43,14 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
     )
 
     println()
+    println("Hier nochmal besser zu lesen:")
+    for (h in heroList) {
+        println("$int für ${h.name}")
+        int++
+        absatz()
 
+    }
+    int=1
     var userChoise: Int = 0
     var preChoise: Int = 0
 
