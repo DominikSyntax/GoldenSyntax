@@ -178,12 +178,13 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
     for (hero in heros) {
         println("Du bist mit ${hero.name} am Zug")
         println("Was möchtest du machen, du hast die Wahl aus...")
-        hero.printAllFunktion()
+        hero.printAllFunktion(bag)
         var userChoiceFun: Int
         try {
             userChoiceFun = readln().toInt()
         } catch (e: NumberFormatException) {
-            println("Nummern, sind die Dinger hinter dem - auf deinem Konto")
+            println("Nummern, sind die Dinger hinter dem - auf deinem Konto \n" +
+                    "Nur Chuck Norris darf hier auch Buchstaben eingeben!")
             return
         }
 
@@ -191,7 +192,7 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
             if (enemy.healthPower <= 0) {
                 enemy.healthPower = 0
                 enemy.isDead = true
-                println("Mit ${enemy.name} ist nichts mehr anzufangen, das Weichei hat den Tod vorgezogen, anstatt sich seiner verantwortung zu stellen")
+                println("Mit ${enemy.name} ist nichts mehr anzufangen, das Weichei hat den Tod vorgezogen, anstatt sich seiner Verantwortung zu stellen")
             } else {
                 println("${enemy.name} hat noch ${enemy.healthPower} Lebenspunkte ")
             }
