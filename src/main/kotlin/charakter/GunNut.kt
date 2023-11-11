@@ -9,6 +9,9 @@ class GunNut(
     override var damagePower: Int = 150
 ) : Human(name, healthPower, damagePower) {
 
+    override var nanoAreUsed = false
+    override var otherHeroHaveNanos =false
+
 
     override fun printInfo(){
         super.printInfo()
@@ -57,6 +60,7 @@ class GunNut(
     }
 
     fun bazooka(enemy: Enemy) {
+        var damage = ((50..150).random()/100 * damagePower).toInt()
         if (enemy.healthPower > 150) {
             enemy.healthPower -= 150
         } else
@@ -68,7 +72,7 @@ class GunNut(
         var bullets = (12..34).random()
         var damage = 0
         for (bullet in 1..bullets){
-            damage += (5..10).random()
+            damage += ((5..10).random()/100 * damagePower).toInt()
             if (enemy.healthPower > damage){
                 enemy.healthPower -= damage
             }else {
@@ -83,7 +87,7 @@ class GunNut(
         println("$name hat Luftunterstützung angefordert....")
         var damage:Int
         for (enemy in enemies){
-            damage = (enemy.standartHP/100) * (9..35).random().toInt()
+            damage = ((enemy.standartHP/100) * (9..35).random()/100 * damagePower).toInt()
             if (damage >= enemy.healthPower ){
                 println("Der Luftschlag war zuviel für ${enemy.name}")
                 println()

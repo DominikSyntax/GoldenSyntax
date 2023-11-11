@@ -194,7 +194,14 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
 
 
 
+
     for (hero in heros) {
+        if (hero.nanoAreUsed){
+            if (hero.healthPower>0) {
+                var healing = hero.healthPower / 100 * 2
+                hero.healthPower += healing
+            }
+        }
         println("Du bist mit ${hero.name} am Zug")
         println("Was möchtest du machen, du hast die Wahl aus...")
         hero.printAllFunktion(bag)

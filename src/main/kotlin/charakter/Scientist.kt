@@ -10,6 +10,8 @@ class Scientist(
 ) : Human(name, healthPower, damagePower) {
 
     var rickIsUsed = false
+    override var nanoAreUsed = false
+    override var otherHeroHaveNanos =false
 
     override fun printInfo(){
         super.printInfo()

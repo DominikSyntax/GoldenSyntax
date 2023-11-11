@@ -14,6 +14,9 @@ class NatureMutant(
 
     ) : Hero(name, healthPower, damagePower) {
 
+    override var nanoAreUsed = false
+    override var otherHeroHaveNanos =false
+
     override fun printInfo(){
         super.printInfo()
         println("... eine Mutantin, die wie Ihr Name schon erahnen lässt, die Macht über die Natur hat  ")

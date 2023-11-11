@@ -14,7 +14,8 @@ class ElectricMutant(
     override var damagePower: Int = 100
 ) : Hero(name, healthPower, damagePower) {
 
-    var nanoAreUsed = false
+    override var nanoAreUsed = false
+    override var otherHeroHaveNanos =false
 
     override fun printInfo(){
         super.printInfo()
@@ -71,7 +72,7 @@ class ElectricMutant(
                 1 -> punch(evilChoice(enemies))
                 2 -> kick(evilChoice(enemies))
                 3 -> traficContol(evilChoice(enemies))
-                4 -> nanoBots(heroChoice(heros))
+                4 -> nanoBots(heros,heroChoice(heros))
                 5 -> livingCable(enemies)
             }
 
@@ -80,7 +81,7 @@ class ElectricMutant(
                 1 -> punch(evilChoice(enemies))
                 2 -> kick(evilChoice(enemies))
                 3 -> traficContol(evilChoice(enemies))
-                4 -> nanoBots(heroChoice(heros))
+                4 -> nanoBots(heros,heroChoice(heros))
                 5 -> livingCable(enemies)
                 6 -> bag.useBag(heros)
             }
@@ -108,7 +109,7 @@ class ElectricMutant(
 
         repeat(cars) {
             var damage = 0
-            damage += ((enemy.healthPower / 100) * (7..10).random()).toInt()
+            damage += (((enemy.healthPower / 100) * (7..10).random())/100 * damagePower).toInt()
             if (damage == 0) {
                 println("Es geht aufs Ende zu mit ${enemy.name}")
                 damage = 5
@@ -125,7 +126,7 @@ class ElectricMutant(
 
         if (buses > 0) {
             var damage = 0
-            damage += ((enemy.healthPower / 100) * (15..25).random()).toInt()
+            damage += (((enemy.healthPower / 100) * (15..25).random())/100 * damagePower).toInt()
 
             if (damage == 0) {
                 println("Es geht aufs Ende zu mit ${enemy.name}")
@@ -161,21 +162,34 @@ class ElectricMutant(
 
     /**
      * lässt sich nur 1x im Spiel für einen helden einsetzen
-     * pro runde 2% Lebensenergie zurück, für 20 Runden
+     * pro runde 2% Lebensenergie zurück
      * damagePower + 10%
      */
-    fun nanoBots(hero: Hero) {
-
-        hero.damagePower += (hero.damagePower / 100 * 10).toInt()
-        println("${hero.name} hat durch die NanoBots 10% an Schlagkraft gewonnen")
+    fun nanoBots(heros: MutableList<Hero>, hero: Hero) {
+        if (hero.otherHeroHaveNanos){
+            println("Nano Bots geht nur 1x im Spiel ")
+        }else {
+            hero.damagePower += (hero.damagePower / 100 * 10).toInt()
+            println("${hero.name} hat durch die NanoBots 10% an Schlagkraft gewonnen")
+            if (hero.healthPower>0) {
+                var healing = hero.healthPower / 100 * 2
+                hero.healthPower += healing
+            }else {
+                println("Nicht einmal Nano Bots aus lauter kleinen Chuck Norris könnten deinem Held jetzt noch helfen ")
+            }
+            hero.nanoAreUsed = true
+            for  (hero in heros) {
+                hero.otherHeroHaveNanos = true
+            }
+        }
 
     }
 
     fun livingCable(enemies: MutableList<Enemy>) {
         println("Strom-, Telefon- , und wer weiß, was noch für Kabel, tauchen aus der Erde auf, kommen aus den Wänden der Häuser und von den Überlandleitungen ")
         for (enemy in enemies) {
-            var deduction: Int = (7..25).random()
-            var deductionTwo = (25..50).random()
+            var deduction: Int = ((7..25).random()/100 * damagePower).toInt()
+            var deductionTwo = ((25..50).random()/100 * damagePower).toInt()
 
             if (enemy.damagePower > deduction) {
                 enemy.damagePower -= deduction
