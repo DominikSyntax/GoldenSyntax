@@ -13,21 +13,40 @@ class NatureMutant(
     override var damagePower: Int = 100,
 
     ) : Hero(name, healthPower, damagePower) {
-    override fun printAllFunktion() {
+    override fun printAllFunktion(bag: Bag) {
+        if (bag.bagIsUsed){
+            println(
+                "1 -> Schlagen \n" +
+                        "2 -> Treten \n" +
+                        "3 -> Gewittersturm \n" +
+                        "4 -> Giftwurzeln  \n" +
+                        "5 -> Teamheilung \n")
 
-        println(
-            "1 -> Schlagen \n" +
-                    "2 -> Treten \n" +
-                    "3 -> Gewittersturm \n" +
-                    "4 -> Giftwurzeln  \n" +
-                    "5 -> Teamheilung \n" +
-                    "6 -> Rucksack benutzen"
-        )
+        }else {
+            println(
+                "1 -> Schlagen \n" +
+                        "2 -> Treten \n" +
+                        "3 -> Gewittersturm \n" +
+                        "4 -> Giftwurzeln  \n" +
+                        "5 -> Teamheilung \n" +
+                        "6 -> Rucksack benutzen"
+            )
+        }
     }
 
 
     override fun attack(bag: Bag, int: Int, enemies: MutableList<Enemy>, heros: MutableList<Hero>){
-        when (int) {
+        if (bag.bagIsUsed){
+            when (int) {
+                1 -> punch(evilChoice(enemies))
+                2 -> kick(evilChoice(enemies))
+                3 -> thunderStorm(enemies)
+                4 -> poisonRoots(evilChoice(enemies))
+                5 -> healing(heros)
+                else -> println("Die Attackenauswahl war nicht gültig")
+            }
+        }else {
+            when (int) {
                 1 -> punch(evilChoice(enemies))
                 2 -> kick(evilChoice(enemies))
                 3 -> thunderStorm(enemies)
@@ -35,8 +54,8 @@ class NatureMutant(
                 5 -> healing(heros)
                 6 -> bag.useBag(heros)
                 else -> println("Die Attackenauswahl war nicht gültig")
+            }
         }
-
 
     }
 

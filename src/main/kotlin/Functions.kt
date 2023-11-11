@@ -172,9 +172,7 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
     println("Runde : $counter")
     println()
     println("Zuerst sind deine Helden dran")
-    var bagIsUsed = false
 
-    // hier noch eine einfache Abfrage, ob die Bag genutzt wurde
 
 
     for (hero in heros) {
@@ -199,13 +197,11 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
             }
         }
 
-        if (bag.bagIsUsed) {
-            println("Der Rucksack ist nicht mehr zu nutzen")
-        }
         hero.attack(bag, userChoiceFun, enemies, heros)
 
 
     }
+    bag.bagIsUsed = false
 
 
 

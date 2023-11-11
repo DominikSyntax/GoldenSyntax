@@ -9,27 +9,44 @@ class GunNut(
     override var damagePower: Int = 150
 ) : Human(name, healthPower, damagePower) {
 
-    override fun printAllFunktion() {
-        println(
-            "1 -> Schlagen \n" +
-                    "2 -> Treten \n" +
-                    "3 ->  Bazooka \n" +
-                    "4 -> Maschinengewähr \n" +
-                    "5 -> Luftschlag \n" +
-                    "6 -> Rucksack benutzen"
-
-        )
+    override fun printAllFunktion(bag: Bag) {
+        if (bag.bagIsUsed){
+            println(
+                "1 -> Schlagen \n" +
+                        "2 -> Treten \n" +
+                        "3 ->  Bazooka \n" +
+                        "4 -> Maschinengewähr \n" +
+                        "5 -> Luftschlag \n")
+        }else {
+            println(
+                "1 -> Schlagen \n" +
+                        "2 -> Treten \n" +
+                        "3 ->  Bazooka \n" +
+                        "4 -> Maschinengewähr \n" +
+                        "5 -> Luftschlag \n" +
+                        "6 -> Rucksack benutzen"
+            )
+        }
     }
 
     override fun attack(bag: Bag, int: Int, enemies:MutableList <Enemy>, heros:MutableList<Hero>) {
-
-        when (int) {
-            1 -> punch(evilChoice(enemies))
-            2 -> kick(evilChoice(enemies))
-            3 -> bazooka(evilChoice(enemies))
-            4 -> machineGun(evilChoice(enemies))
-            5 -> airstrike(enemies)
-            6 -> bag.useBag(heros)
+        if (bag.bagIsUsed){
+            when (int) {
+                1 -> punch(evilChoice(enemies))
+                2 -> kick(evilChoice(enemies))
+                3 -> bazooka(evilChoice(enemies))
+                4 -> machineGun(evilChoice(enemies))
+                5 -> airstrike(enemies)
+            }
+        }else {
+            when (int) {
+                1 -> punch(evilChoice(enemies))
+                2 -> kick(evilChoice(enemies))
+                3 -> bazooka(evilChoice(enemies))
+                4 -> machineGun(evilChoice(enemies))
+                5 -> airstrike(enemies)
+                6 -> bag.useBag(heros)
+            }
         }
 
     }

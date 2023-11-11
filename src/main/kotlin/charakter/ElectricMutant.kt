@@ -14,30 +14,56 @@ class ElectricMutant(
     override var damagePower: Int = 100
 ) : Hero(name, healthPower, damagePower) {
 
-    override fun printAllFunktion() {
-        println(
-            "1 -> Schlagen \n" +
-                    "2 -> Treten \n" +
-                    "3 ->  Fahrzeugkontrolle \n" +
-                    "4 -> NanoBot Hilfe \n" +
-                    "5 -> lebendige Kabel \n" +
-                    "6 -> Rucksack benutzen"
+        var nanoAreUsed = false
+    override fun printAllFunktion(bag: Bag) {
+        if (bag.bagIsUsed)
+            println("Der Rucksack ist in dieser Runde nicht mehr verfügbar")
 
-        )
+        if (nanoAreUsed){
+            println("" +
+                    "1 -> Schlagen \n" +
+                    "2 -> Treten \n" +
+                    "3 -> Fahrzeugkontrolle \n" +
+                    "4 -> NanoBot NICHT VERFÜGBAR \n" +
+                    "5 -> lebendige Kabel \n" +
+                    "6 -> Rucksack benutzen")
+        }else {
+            println(
+                "1 -> Schlagen \n" +
+                        "2 -> Treten \n" +
+                        "3 -> Fahrzeugkontrolle \n" +
+                        "4 -> NanoBot Hilfe \n" +
+                        "5 -> lebendige Kabel \n" +
+                        "6 -> Rucksack benutzen"
+
+            )
+        }
     }
 
 
-    override fun attack(bag:Bag, int: Int, enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
-        var isBagUsed = false
-        when (int) {
-            1 -> punch(evilChoice(enemies))
-            2 -> kick(evilChoice(enemies))
-            3 -> traficContol(evilChoice(enemies))
-            4 -> nanoBots(heroChoice(heros))
-            5 -> livingCable(enemies)
-            6 -> bag.useBag(heros)
-        }
+    override fun attack(bag: Bag, int: Int, enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
+        if (nanoAreUsed) {
+            println("Die Nano Bots wurden schon benutzt, sie können nur 1x im Spiel eingesetzt werden.")
+        } else
+        if (bag.bagIsUsed) {
+            when (int) {
+                1 -> punch(evilChoice(enemies))
+                2 -> kick(evilChoice(enemies))
+                3 -> traficContol(evilChoice(enemies))
+                4 -> nanoBots(heroChoice(heros))
+                5 -> livingCable(enemies)
+            }
 
+        } else {
+            when (int) {
+                1 -> punch(evilChoice(enemies))
+                2 -> kick(evilChoice(enemies))
+                3 -> traficContol(evilChoice(enemies))
+                4 -> nanoBots(heroChoice(heros))
+                5 -> livingCable(enemies)
+                6 -> bag.useBag(heros)
+            }
+        }
 
 
     }
@@ -118,6 +144,7 @@ class ElectricMutant(
      * damagePower + 10%
      */
     fun nanoBots(hero: Hero) {
+
         hero.damagePower += (hero.damagePower / 100 * 10).toInt()
         println("${hero.name} hat durch die NanoBots 10% an Schlagkraft gewonnen")
 

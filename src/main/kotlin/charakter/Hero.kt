@@ -21,7 +21,7 @@ open class Hero(open var name: String = String(), open var healthPower: Int = 10
     }
 
 
-    open fun printAllFunktion() {
+    open fun printAllFunktion(bag: Bag) {
         println(
             "1 -> Schlagen  \n" +
                     "2 -> Treten "

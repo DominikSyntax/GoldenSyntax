@@ -11,15 +11,25 @@ class Scientist(
 
     var rickIsUsed = false
 
-    override fun printAllFunktion() {
-        println(
-            "1 -> Schlagen \n" +
-                    "2 -> Treten \n" +
-                    "3 ->  Fahrzeugkontrolle \n" +
-                    "4 -> NanoBot Hilfe \n" +
-                    "5 -> lebendige Kabel \n" +
-                    "6 -> Rucksack benutzen"
-        )
+    override fun printAllFunktion(bag: Bag) {
+        if (bag.bagIsUsed){
+            println(
+                "1 -> Schlagen \n" +
+                        "2 -> Treten \n" +
+                        "3 -> Panzerschokolade \n" +
+                        "4 -> Mac Gyver \n" +
+                        "5 -> Rick & Morty \n"
+            )
+        }else {
+            println(
+                "1 -> Schlagen \n" +
+                        "2 -> Treten \n" +
+                        "3 -> Panzerschokolade \n" +
+                        "4 -> Mac Gyver \n" +
+                        "5 -> Rick & Morty \n" +
+                        "6 -> Rucksack benutzen"
+            )
+        }
     }
 
     /**
@@ -28,14 +38,24 @@ class Scientist(
      * @param int - die Auswahl der Funktion nach printAll Funktion
      */
     override fun attack(bag: Bag, int: Int, enemies:MutableList <Enemy>, heros:MutableList<Hero>) {
+        if (bag.bagIsUsed) {
+            when (int) {
+                1 -> punch(evilChoice(enemies))
+                2 -> kick(evilChoice(enemies))
+                3 -> tankChocolate(heroChoice(heros))
+                4 -> macGyver(evilChoice(enemies))
+                5 -> rickAndMorty(enemies)
+            }
 
-        when (int) {
-            1 -> punch(evilChoice(enemies))
-            2 -> kick(evilChoice(enemies))
-            3 -> tankChocolate(heroChoice(heros))
-            4 -> macGyver(evilChoice(enemies))
-            5 -> rickAndMorty(enemies)
-            6 -> bag.useBag(heros)
+        } else {
+            when (int) {
+                1 -> punch(evilChoice(enemies))
+                2 -> kick(evilChoice(enemies))
+                3 -> tankChocolate(heroChoice(heros))
+                4 -> macGyver(evilChoice(enemies))
+                5 -> rickAndMorty(enemies)
+                6 -> bag.useBag(heros)
+            }
         }
     }
 
