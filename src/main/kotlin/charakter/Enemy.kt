@@ -1,9 +1,12 @@
 import charakter.*
 
-open class Enemy(open var name: String, open var healthPower: Int = 2000, open var damagePower: Int = 100){
+open class Enemy(override var name: String, override var healthPower: Int = 2000, override var damagePower: Int = 100):OverCharakter(name, healthPower, damagePower){
 
-    open var standartHP = healthPower
-    open var isDead: Boolean = false
+
+    override  var standartHP:Int = healthPower
+    override var isDead: Boolean = if (healthPower <= 0){true}else{false}
+    open var endbossFluch = false
+
 
 
 

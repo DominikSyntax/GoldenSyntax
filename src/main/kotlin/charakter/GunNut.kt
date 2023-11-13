@@ -10,6 +10,13 @@ class GunNut(
     override var damagePower: Int = 150
 ) : Human(name, healthPower, damagePower) {
 
+    override var isDead: Boolean =
+        if (healthPower <= 0) {
+            true
+        } else {
+            false
+        }
+
     override var nanoAreUsed = false
     override var otherHeroHaveNanos =false
     override var endbossFluch: Boolean = false

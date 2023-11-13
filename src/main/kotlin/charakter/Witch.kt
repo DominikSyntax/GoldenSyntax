@@ -9,6 +9,13 @@ class Witch(
 
     override var standartHP: Int = healthPower
 
+    override var isDead: Boolean =
+        if (healthPower <= 0) {
+            true
+        } else {
+            false
+        }
+
     override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
         var dice = (1..6).random()
         var randomHero = heros.random()

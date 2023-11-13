@@ -8,6 +8,14 @@ import heroChoice
 class Scientist(
     override var name: String = "Prof. Proton", override var healthPower: Int = 750, override var damagePower: Int = 75) : Human(name, healthPower, damagePower) {
 
+
+    override var isDead: Boolean =
+        if (healthPower <= 0) {
+            true
+        } else {
+            false
+        }
+
     var rickIsUsed = false
     override var nanoAreUsed = false
     override var otherHeroHaveNanos = false

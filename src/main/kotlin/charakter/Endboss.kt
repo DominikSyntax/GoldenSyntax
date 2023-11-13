@@ -7,7 +7,13 @@ import charakter.*
 open class Endboss(override var name: String = "Dajjal", override var healthPower: Int = 3000, override var damagePower: Int = 100):Enemy(name,healthPower,damagePower) {
 
 
-    override var isDead: Boolean = false
+    override var isDead: Boolean =
+        if (healthPower <= 0) {
+            true
+        } else {
+            false
+        }
+
     open var helperIsUsed: Boolean = false
     open var armeIsUsed: Boolean = false
     final override var standartHP: Int = healthPower

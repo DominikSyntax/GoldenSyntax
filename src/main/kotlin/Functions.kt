@@ -580,36 +580,6 @@ fun displayHpHero (hero:Hero) {
 
 }
 
-/*
-fun displayHpEnemy (enemy: Enemy) {
-    if (enemy.healthPower < 1 )
-        enemy.healthPower = 0
-
-    val hpBarLength = 20
-    val hpPercentage = (100/enemy.standartHP)*enemy.healthPower.toInt()
-    val currentHpBarLength = (hpPercentage *hpBarLength /100).coerceIn(0,hpBarLength)
-    val maxHpBarLength = hpBarLength - currentHpBarLength
-
-    var currentHpColor =
-        if (hpPercentage>60) {
-            GREEN_BACKGROUND
-        }else if (hpPercentage in 30..60) {
-            YELLOW_BACKGROUND
-        }else
-            RED_BACKGROUND
-
-    val maxHpColor = WHITE_BACKGROUND
-    val currentHPBar = " ".repeat(currentHpBarLength)
-    val maxHPBar = " ".repeat(maxHpBarLength)
-    val resetColor = STANDARTCOLOR
-
-
-    var hpInfo = "(${enemy.healthPower/enemy.standartHP})".padStart("${enemy.name}'Lebensenergie: $currentHPBar$maxHPBar".length)
-    println("${enemy.name}'s Lebensenergie : $currentHpColor$currentHPBar$resetColor$maxHpColor$maxHPBar$resetColor $resetColor \n $hpInfo \n")
-
-}
-
- */
 
 fun displayHpEnemy(enemy: Enemy) {
     if (enemy.healthPower < 1)
@@ -633,7 +603,7 @@ fun displayHpEnemy(enemy: Enemy) {
     val maxHPBar = " ".repeat(maxHpBarLength.toInt())
     val resetColor = STANDARTCOLOR
 
-    var hpInfo = "(${enemy.healthPower / enemy.standartHP})".padStart("${enemy.name}'Lebensenergie: $currentHPBar$maxHPBar".length)
+    var hpInfo = "(${enemy.healthPower} / ${enemy.standartHP})"
     println(
         "${enemy.name}'s Lebensenergie : $currentHpColor$currentHPBar$resetColor$maxHpColor$maxHPBar$resetColor $resetColor \n $hpInfo \n"
     )

@@ -5,6 +5,15 @@ import Enemy
 class Undead(name: String, override var healthPower: Int=200, override var damagePower: Int=25):
     Enemy(name,healthPower,damagePower) {
 
+
+    override var isDead: Boolean =
+        if (healthPower <= 0) {
+            true
+        } else {
+            false
+        }
+
+
     override var standartHP: Int = healthPower
     override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
         var dice = listOf(1,2).random()

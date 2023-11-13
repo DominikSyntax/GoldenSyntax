@@ -5,20 +5,26 @@ import Enemy
 import evilChoice
 import charakter.*
 
-open class Hero(open var name: String, open var healthPower: Int = 1000, open var damagePower: Int) {
-    open var isDead: Boolean = false
-    open var standartHP = healthPower
+open class Hero(override var name:String, override var healthPower: Int = 1000, override var damagePower: Int = 100):OverCharakter(name, healthPower, damagePower) {
+
+
+        override var isDead: Boolean =
+        if (healthPower <= 0) {
+            true
+        } else {
+            false
+        }
+
+    override var standartHP = healthPower
     open var usedTankChocolade = false
     open var nanoAreUsed = false
-    open  var otherHeroHaveNanos =false
+    open var otherHeroHaveNanos = false
     open var endbossFluch = false
 
 
-
-    open fun printInfo(){
+    open fun printInfo() {
         println("Mit $name,  ...")
     }
-
 
 
     open fun attack(bag: Bag, int: Int, enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
@@ -41,13 +47,13 @@ open class Hero(open var name: String, open var healthPower: Int = 1000, open va
     }
 
     open fun punch(enemy: Enemy) {
-        var abzug =enemy.standartHP/100 * (5..7).random()
+        var abzug = enemy.standartHP / 100 * (5..7).random()
         enemy.healthPower -= abzug
         println("${enemy.name} wurden durch den Schlag von $name $abzug Lebenspunkte abgezogen")
     }
 
     open fun kick(enemy: Enemy) {
-        var abzug = enemy.standartHP/100 * (7..9).random()
+        var abzug = enemy.standartHP / 100 * (7..9).random()
         enemy.healthPower -= abzug
         println("${enemy.name} wurden durch den Tritt von $name $abzug Lebenspunkte abgezogen")
     }
