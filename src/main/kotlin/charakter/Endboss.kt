@@ -1,16 +1,16 @@
 package charakter
 
-class Endboss(
-    override var name: String = "Dajjal",
-    override var healthPower: Int = 3000,
-    override var damagePower: Int = 100
-) : Enemy(name, healthPower, damagePower) {
+import Enemy
+import charakter.*
+
+
+open class Endboss(override var name: String = "Dajjal", override var healthPower: Int = 3000, override var damagePower: Int = 100):Enemy(name,healthPower,damagePower) {
 
 
     override var isDead: Boolean = false
-    var helperIsUsed: Boolean = false
-    var armeIsUsed: Boolean = false
-    override val standartHP: Int = healthPower
+    open var helperIsUsed: Boolean = false
+    open var armeIsUsed: Boolean = false
+    final override var standartHP: Int = healthPower
 
 
 
@@ -64,7 +64,7 @@ class Endboss(
      * Ruft den UnderBoss zur Hilfe (geht nur 1 x im Spiel)
      */
     fun underBoss(list: MutableList<Enemy>){
-        var witch: Witch = Witch("Agnes Waterhouse")
+        val witch: Witch = Witch("Agnes Waterhouse")
         if (!helperIsUsed) {
             list += witch
             helperIsUsed = true

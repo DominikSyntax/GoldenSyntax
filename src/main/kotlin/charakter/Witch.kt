@@ -1,11 +1,13 @@
 package charakter
 
+import Enemy
+
 class Witch(
     override var name: String, override var healthPower: Int = 1500,
     override var damagePower: Int = 100
 ) : Enemy(name, healthPower, damagePower) {
 
-    override val standartHP: Int = healthPower
+    override var standartHP: Int = healthPower
 
     override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
         var dice = (1..6).random()

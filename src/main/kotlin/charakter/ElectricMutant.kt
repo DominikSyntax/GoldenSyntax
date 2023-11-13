@@ -5,6 +5,7 @@ package charakter
  * Er kann alles, was mit Technik zu tun hat kontrollieren
  */
 import Bag
+import Enemy
 import evilChoice
 import heroChoice
 

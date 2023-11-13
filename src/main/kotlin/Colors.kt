@@ -48,4 +48,4 @@ val BRIGHT_WHITE_BACKGROUND = "\u001b[107m"
 
 // Farbformatierung zurück setzen
 
-val STANDART = "\u001b[0m"
+val STANDARTCOLOR = "\u001b[0m"

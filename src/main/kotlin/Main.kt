@@ -36,7 +36,7 @@ fun main() {
 
         roundCounter++
 
-    }while (deadBads||deadGoods)
+    }while (deadBads&&deadGoods)
 
 }
 

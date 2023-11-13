@@ -1,6 +1,7 @@
 package charakter
 
 import Bag
+import Enemy
 import evilChoice
 
 class GunNut(

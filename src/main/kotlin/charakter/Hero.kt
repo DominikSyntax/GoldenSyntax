@@ -1,11 +1,13 @@
 package charakter
 
 import Bag
+import Enemy
 import evilChoice
+import charakter.*
 
-open class Hero(open var name: String = String(), open var healthPower: Int = 1000, open var damagePower: Int = 100) {
+open class Hero(open var name: String, open var healthPower: Int = 1000, open var damagePower: Int) {
     open var isDead: Boolean = false
-    open val standartHP = 1000
+    open var standartHP = healthPower
     open var usedTankChocolade = false
     open var nanoAreUsed = false
     open  var otherHeroHaveNanos =false

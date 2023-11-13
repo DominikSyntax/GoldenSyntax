@@ -1,19 +1,18 @@
 package charakter
 
 import Bag
+import Enemy
 import evilChoice
 import heroChoice
 
 class Scientist(
-    override var name: String = "Prof. Proton", override var healthPower: Int = 750,
-    override var damagePower: Int = 75
-) : Human(name, healthPower, damagePower) {
+    override var name: String = "Prof. Proton", override var healthPower: Int = 750, override var damagePower: Int = 75) : Human(name, healthPower, damagePower) {
 
     var rickIsUsed = false
     override var nanoAreUsed = false
     override var otherHeroHaveNanos = false
     override var endbossFluch: Boolean = false
-
+    override var standartHP: Int = healthPower
     override fun printInfo() {
         println(
             """

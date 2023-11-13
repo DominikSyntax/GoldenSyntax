@@ -1,7 +1,8 @@
-import charakter.Endboss
-import charakter.Enemy
-import charakter.Hero
+
+import charakter.*
+
 import kotlin.NumberFormatException
+
 
 
 /*
@@ -533,37 +534,107 @@ fun greeting() {
 }
 
 fun absatz() {
-    var loading = listOf<String>(
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-"
-    )
+    var loading = listOf<String>("-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-")
+    var colorChoise = (0..4).random()
+    var colors:List<String> = listOf(RED_TEXT,GREEN_TEXT,BLUE_TEXT,YELLOW_TEXT,MAGENTA_TEXT)
     println()
-    Thread.sleep(200)
+    Thread.sleep(100)
     for (i in loading) {
-        print(i)
-        Thread.sleep(120)
+        print(colors[colorChoise] + i )
+        Thread.sleep(100)
     }
-    println()
+    println(STANDARTCOLOR)
 
+}
+
+
+
+/**
+ * Balken zur Grafischen Anzeige der Lebensenergie der Helden
+ */
+fun displayHpHero (hero:Hero) {
+    if (hero.healthPower < 1 )
+        hero.healthPower = 0
+
+    val hpBarLength = 20
+    val hpPercentage = (hero.healthPower/hero.standartHP * 100).toInt()
+    val currentHpBarLength = (hpPercentage *hpBarLength /100).coerceIn(0,hpBarLength)
+    val maxHpBarLength = hpBarLength - currentHpBarLength
+
+    var currentHpColor =
+        if (hpPercentage>60) {
+            GREEN_BACKGROUND
+        }else if (hpPercentage in 30..60) {
+            YELLOW_BACKGROUND
+        }else
+            RED_BACKGROUND
+
+    val maxHpColor = WHITE_BACKGROUND
+    val currentHPBar = " ".repeat(currentHpBarLength)
+    val maxHPBar = " ".repeat(maxHpBarLength)
+    val resetColor = STANDARTCOLOR
+
+
+    var hpInfo = "(${hero.healthPower/hero.standartHP})".padStart("${hero.name}'Lebensenergie: $currentHPBar$maxHPBar".length)
+    println("${hero.name}'s Lebensenergie : $currentHpColor$currentHPBar$resetColor$maxHpColor$maxHPBar$resetColor $resetColor \n $hpInfo \n")
+
+}
+
+/*
+fun displayHpEnemy (enemy: Enemy) {
+    if (enemy.healthPower < 1 )
+        enemy.healthPower = 0
+
+    val hpBarLength = 20
+    val hpPercentage = (100/enemy.standartHP)*enemy.healthPower.toInt()
+    val currentHpBarLength = (hpPercentage *hpBarLength /100).coerceIn(0,hpBarLength)
+    val maxHpBarLength = hpBarLength - currentHpBarLength
+
+    var currentHpColor =
+        if (hpPercentage>60) {
+            GREEN_BACKGROUND
+        }else if (hpPercentage in 30..60) {
+            YELLOW_BACKGROUND
+        }else
+            RED_BACKGROUND
+
+    val maxHpColor = WHITE_BACKGROUND
+    val currentHPBar = " ".repeat(currentHpBarLength)
+    val maxHPBar = " ".repeat(maxHpBarLength)
+    val resetColor = STANDARTCOLOR
+
+
+    var hpInfo = "(${enemy.healthPower/enemy.standartHP})".padStart("${enemy.name}'Lebensenergie: $currentHPBar$maxHPBar".length)
+    println("${enemy.name}'s Lebensenergie : $currentHpColor$currentHPBar$resetColor$maxHpColor$maxHPBar$resetColor $resetColor \n $hpInfo \n")
+
+}
+
+ */
+
+fun displayHpEnemy(enemy: Enemy) {
+    if (enemy.healthPower < 1)
+        enemy.healthPower = 0
+
+    val hpBarLength = 20.0f
+    val hpPercentage = ((100.0f / enemy.standartHP) * enemy.healthPower)
+    val currentHpBarLength = ((hpPercentage * hpBarLength) / 100.0f).coerceIn(0.0f, hpBarLength)
+    val maxHpBarLength = hpBarLength - currentHpBarLength
+
+    var currentHpColor =
+        if (hpPercentage > 60.0f) {
+            GREEN_BACKGROUND
+        } else if (hpPercentage  in 30.0f..60.0f) {
+            YELLOW_BACKGROUND
+        } else
+            RED_BACKGROUND
+
+    val maxHpColor = WHITE_BACKGROUND
+    val currentHPBar = " ".repeat(currentHpBarLength.toInt())
+    val maxHPBar = " ".repeat(maxHpBarLength.toInt())
+    val resetColor = STANDARTCOLOR
+
+    var hpInfo = "(${enemy.healthPower / enemy.standartHP})".padStart("${enemy.name}'Lebensenergie: $currentHPBar$maxHPBar".length)
+    println(
+        "${enemy.name}'s Lebensenergie : $currentHpColor$currentHPBar$resetColor$maxHpColor$maxHPBar$resetColor $resetColor \n $hpInfo \n"
+    )
 }
