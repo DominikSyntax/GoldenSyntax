@@ -1,11 +1,8 @@
 package charakter
 
-/**
- * Tekk ist das Kücken, mit gerade einmal 22 Jahren. Dafür ist er aber auch deutlich schneller als die Anderen
- * Er kann alles, was mit Technik zu tun hat kontrollieren
- */
 import Bag
 import Enemy
+import cableCounter
 import evilChoice
 import heroChoice
 
@@ -16,28 +13,24 @@ class ElectricMutant(
 ) : Hero(name, healthPower, damagePower) {
 
     override var nanoAreUsed = false
-    override var otherHeroHaveNanos =false
+    override var otherHeroHaveNanos = false
     override var endbossFluch: Boolean = false
 
 
-    override fun printInfo(){
+    override fun printInfo() {
         println("""
-            _________        _______           ___  __            ___  __       
-            |\___   ___\     |\  ___ \         |\  \|\  \         |\  \|\  \     
-            \|___ \  \_|     \ \   __/|        \ \  \/  /|_       \ \  \/  /|_   
-                 \ \  \       \ \  \_|/__       \ \   ___  \       \ \   ___  \  
-                  \ \  \       \ \  \_|\ \       \ \  \\ \  \       \ \  \\ \  \ 
-                   \ \__\       \ \_______\       \ \__\\ \__\       \ \__\\ \__\
-                    \|__|        \|_______|        \|__| \|__|        \|__| \|__|                        
-                                             
- __   _    _    __   _  _     _       _      
- //_//_`  /_`/ /// //_//_`  //_`  /|// /| | |
-// //_,  /  /_///_// \/_,  /._/  / |/_/ |/|/ 
-            
+            ::::::::::: :::::::::: :::    ::: :::    :::      
+                :+:     :+:        :+:   :+:  :+:   :+:       
+                +:+     +:+        +:+  +:+   +:+  +:+        
+                +#+     +#++:++#   +#++:++    +#++:++         
+                +#+     +#+        +#+  +#+   +#+  +#+        
+                #+#     #+#        #+#   #+#  #+#   #+#       
+                ###     ########## ###    ### ###    ###      
         """.trimIndent())
         super.printInfo()
         println("... einen starken Elektro Mutanten. Mit der Fähigkeit alles was irgendwie mit Technik zu tun hat zu kontrollieren. ")
     }
+
     override fun printAllFunktion(bag: Bag) {
         if (bag.bagIsUsed) {
             println("Der Rucksack ist in dieser Runde nicht mehr verfügbar")
@@ -89,8 +82,8 @@ class ElectricMutant(
                 1 -> punch(evilChoice(enemies))
                 2 -> kick(evilChoice(enemies))
                 3 -> traficContol(evilChoice(enemies))
-                4 -> nanoBots(heros,heroChoice(heros))
-                5 -> livingCable(enemies)
+                4 -> nanoBots(heros, heroChoice(heros))
+                5 -> livingCable(evilChoice(enemies))
             }
 
         } else {
@@ -98,8 +91,8 @@ class ElectricMutant(
                 1 -> punch(evilChoice(enemies))
                 2 -> kick(evilChoice(enemies))
                 3 -> traficContol(evilChoice(enemies))
-                4 -> nanoBots(heros,heroChoice(heros))
-                5 -> livingCable(enemies)
+                4 -> nanoBots(heros, heroChoice(heros))
+                5 -> livingCable(evilChoice(enemies))
                 6 -> bag.useBag(heros)
             }
         }
@@ -126,7 +119,7 @@ class ElectricMutant(
 
         repeat(cars) {
             var damage = 0
-            damage += (((enemy.healthPower / 100) * (7..10).random())/100 * damagePower).toInt()
+            damage += (((enemy.healthPower / 100) * (7..10).random()) / 100 * damagePower).toInt()
             if (damage == 0) {
                 println("Es geht aufs Ende zu mit ${enemy.name}")
                 damage = 5
@@ -143,7 +136,7 @@ class ElectricMutant(
 
         if (buses > 0) {
             var damage = 0
-            damage += (((enemy.healthPower / 100) * (15..25).random())/100 * damagePower).toInt()
+            damage += (((enemy.healthPower / 100) * (15..25).random()) / 100 * damagePower).toInt()
 
             if (damage == 0) {
                 println("Es geht aufs Ende zu mit ${enemy.name}")
@@ -183,49 +176,35 @@ class ElectricMutant(
      * damagePower + 10%
      */
     fun nanoBots(heros: MutableList<Hero>, hero: Hero) {
-        if (hero.otherHeroHaveNanos){
+        if (hero.otherHeroHaveNanos) {
             println("Nano Bots geht nur 1x im Spiel ")
-        }else {
+        } else {
             hero.damagePower += (hero.damagePower / 100 * 10).toInt()
             println("${hero.name} hat durch die NanoBots 10% an Schlagkraft gewonnen")
-            if (hero.healthPower>0) {
+            if (hero.healthPower > 0) {
                 var healing = hero.healthPower / 100 * 2
                 hero.healthPower += healing
-            }else {
+            } else {
                 println("Nicht einmal Nano Bots aus lauter kleinen Chuck Norris könnten deinem Held jetzt noch helfen ")
             }
             hero.nanoAreUsed = true
-            for  (hero in heros) {
+            for (hero in heros) {
                 hero.otherHeroHaveNanos = true
             }
         }
 
     }
 
-    fun livingCable(enemies: MutableList<Enemy>) {
-        println("Strom-, Telefon- , und wer weiß, was noch für Kabel, tauchen aus der Erde auf, kommen aus den Wänden der Häuser und von den Überlandleitungen ")
-        for (enemy in enemies) {
-            var deduction: Int = ((7..25).random()/100 * damagePower).toInt()
-            var deductionTwo = ((25..50).random()/100 * damagePower).toInt()
+    fun livingCable(enemy: Enemy) {
+        var randomRounds = (3..5).random()
+        if (!enemy.cable) {
+            println("Strom-, Telefon- , und wer weiß, was noch für Kabel, tauchen aus der Erde auf, kommen aus den Wänden der Häuser und von den Überlandleitungen ")
+            enemy.cable = true
+            cableCounter = randomRounds
 
-            if (enemy.damagePower > deduction) {
-                enemy.damagePower -= deduction
-                println(" ... einige Kabel halten ${enemy.name} fest. Seine Angiffskraft sinkt um $deduction Punkte...")
-            } else {
-                println("... einige Kabel halten ${enemy.name} fest. Seine Angiffskraft sind ist auf 0 gesunken... ")
-                enemy.damagePower = 0
-            }
-            if (enemy.healthPower > deductionTwo) {
-                enemy.healthPower -= deductionTwo
-                println(".. oh, da war wohl ein Starkstromkabel mit dabei. ${enemy.name} hat $deductionTwo Punkte Lebenskraft abgezogen")
-            } else {
-                println(".. oh, das war wohl ein Starkstromkabel zuviel ${enemy.name} ist in Rauch aufgegangen. ")
-                enemy.damagePower = 0
-            }
-
-
-        }
-
+        } else
+            println("Du kannst diesen Angriff nicht 2x beim selben Gegner machen")
     }
+
 
 }

@@ -13,6 +13,8 @@ class Undead(name: String, override var healthPower: Int=200, override var damag
             false
         }
 
+    override var roots:Boolean=false
+    override var cable: Boolean =false
 
     override var standartHP: Int = healthPower
     override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>) {

@@ -17,6 +17,8 @@ open class Endboss(override var name: String = "Dajjal", override var healthPowe
     open var helperIsUsed: Boolean = false
     open var armeIsUsed: Boolean = false
     final override var standartHP: Int = healthPower
+    override var roots=false
+    override var cable: Boolean =false
 
 
 

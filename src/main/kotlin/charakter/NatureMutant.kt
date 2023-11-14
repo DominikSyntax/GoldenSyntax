@@ -2,6 +2,10 @@ package charakter
 
 import Bag
 import Enemy
+import GREEN_TEXT
+import STANDARTCOLOR
+import WHITE_BACKGROUND
+import cableCounter
 import evilChoice
 
 /**
@@ -29,15 +33,16 @@ class NatureMutant(
 
     override fun printInfo(){
         println("""
-             ____        ______      ______      ______                                                                                              
-            /\  _`\     /\  _  \    /\__  _\    /\  _  \                                                                                             
-            \ \ \L\_\   \ \ \L\ \   \/_/\ \/    \ \ \L\ \                                                                                            
-             \ \ \L_L    \ \  __ \     \ \ \     \ \  __ \                                                                                           
-              \ \ \/, \   \ \ \/\ \     \_\ \__   \ \ \/\ \                                                                                          
-               \ \____/    \ \_\ \_\    /\_____\   \ \_\ \_\                                                                                         
-                \/___/      \/_/\/_/    \/_____/    \/_/\/_/                                                                                                   
-                                                                                                                                         
-                                                                                                                                         
+            $WHITE_BACKGROUND$GREEN_TEXT
+             ::::::::      :::     :::::::::::     :::     
+            :+:    :+:   :+: :+:       :+:       :+: :+:   
+            +:+         +:+   +:+      +:+      +:+   +:+  
+            :#:        +#++:++#++:     +#+     +#++:++#++: 
+            +#+   +#+# +#+     +#+     +#+     +#+     +#+ 
+            #+#    #+# #+#     #+#     #+#     #+#     #+# 
+             ########  ###     ### ########### ###     ### 
+             
+                                                                                                                                             
  ____                                                  ___      __    __                  __  __            __                           
 /\  _`\                                              /'___\    /\ \__/\ \                /\ \/\ \          /\ \__                        
 \ \ \L\ \___   __  __  __     __   _ __         ___ /\ \__/    \ \ ,_\ \ \___      __    \ \ `\\ \     __  \ \ ,_\  __  __  _ __    __   
@@ -45,7 +50,7 @@ class NatureMutant(
   \ \ \/\ \L\ \ \ \_/ \_/ \/\  __/\ \ \/      /\ \L\ \ \ \_/     \ \ \_\ \ \ \ \/\  __/    \ \ \`\ \/\ \L\.\_\ \ \_\ \ \_\ \ \ \//\  __/ 
    \ \_\ \____/\ \___x___/'\ \____\\ \_\      \ \____/\ \_\       \ \__\\ \_\ \_\ \____\    \ \_\ \_\ \__/.\_\\ \__\\ \____/\ \_\\ \____\
     \/_/\/___/  \/__//__/   \/____/ \/_/       \/___/  \/_/        \/__/ \/_/\/_/\/____/     \/_/\/_/\/__/\/_/ \/__/ \/___/  \/_/ \/____/
-        """.trimIndent())
+        $STANDARTCOLOR""".trimIndent())
         super.printInfo()
         println("... eine Mutantin, die wie Ihr Name schon erahnen lässt, die Macht über die Natur hat  ")
     }
@@ -117,6 +122,7 @@ class NatureMutant(
                         println("Die Blitze haben Ihm den Rest gegeben")
                         println("${enemy.name} hat keine Lebensenergie mehr")
                         enemy.healthPower = 0
+                        enemy.isDead =true
                     }
                 }
             } else
@@ -130,29 +136,18 @@ class NatureMutant(
      * Zusätzlich verursacht diese Methode zwischen 3 und 5 Runden einen Gift-Schaden von je 7 % Lebensenergie.
      *@param enemy
      */
-    fun poisonRoots(enemy: Enemy): Int {
-        // random rounds, die die Lebenspunkte abgezogen werden
-        var randomRounds = (1..5).random()
-        var abzug: Int = (7..25).random()
-        println("Die Wurzeln haben ${enemy.name} fest im Giff, für ${randomRounds + 1} Runden werden ihm Lebenspunkte abgezogen")
-
-        if (enemy.healthPower == 0) {
-            println("${enemy.name} hat keine Lebenspunkte mehr")
-
-        } else {
-            if (enemy.healthPower >= abzug) {
-                enemy.healthPower -= abzug
-            } else {
-                enemy.healthPower = 0
-                println("${enemy.name} hat durch das Gift $abzug Schaden genommen ")
-
-            }
+    fun poisonRoots(enemy: Enemy) {
+        var randomRounds = (3..5).random()
+        if (!enemy.roots){
+            println("Die Erde bebt und reist überall auf, unzählige Wurzeln kommen aus der Erde. Von Oberschenkel dicken, bis zu Haarfeinen ist alles dabei... ")
+            enemy.roots = true
+            cableCounter = randomRounds
         }
-        return randomRounds
+
     }
 
     /**
-     *Heilt einen Set<charakter.Hero>
+     *Heilt die ganze Truppe
      */
     fun healing(heros: MutableList<Hero>) {
         for (hero in heros) {

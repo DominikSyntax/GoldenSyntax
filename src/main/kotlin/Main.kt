@@ -21,7 +21,8 @@ var roundCounter: Int = 1
 var deadGoods = false
 var deadBads = false
 
-
+var rootCounter:Int = 0
+var cableCounter:Int = 0
 fun main() {
 
     //greeting()
