@@ -304,6 +304,7 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
         }
         hero.attack(bag, userChoiceFun, enemies, heros)
     }
+
     bag.bagIsUsed = false
     absatz()
 
@@ -331,7 +332,7 @@ fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter:
                 absatz()
 
             } else {
-                println("${hero.name} hat noch ${hero.healthPower} Lebensenergie")
+
                 absatz()
             }
         }

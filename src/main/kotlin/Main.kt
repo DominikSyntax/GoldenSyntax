@@ -25,7 +25,7 @@ var rootCounter:Int = 0
 var cableCounter:Int = 0
 fun main() {
 
-    //greeting()
+    greeting()
 
     myTeam = mutableListOf(gaiaHero,tekkHero,jonnyHero)   //makeYouTeam(heroList)
 
@@ -34,10 +34,15 @@ fun main() {
         roundForGoods(bag, myTeam, enemies, roundCounter)
 
         roundForBads(myTeam, enemies, roundCounter)
+        for (hero in myTeam)
+            displayHp(hero)
+        for (enemy in enemies)
+            displayHp(enemy)
 
         roundCounter++
 
-    }while (deadBads&&deadGoods)
+    }while (allGoodsAreDead(myTeam)&&allBadsAreDead(enemies))
+    ending(myTeam,enemies)
 
 }
 
