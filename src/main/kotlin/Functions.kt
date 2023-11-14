@@ -342,22 +342,24 @@ fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter:
 
 
 fun allGoodsAreDead(heros: MutableList<Hero>): Boolean {
-    var allDead = false
-    if (heros.all { it.isDead }) {
-        allDead = true
+    for (hero in heros) {
+            if (!hero.isDead) {
+                return false
+            }
+        }
+        return true
     }
-    return allDead
 
-
-}
 
 fun allBadsAreDead(enemies: MutableList<Enemy>): Boolean {
-    var allDead = false
-    if (enemies.all { it.isDead }) {
-        allDead = true
-    }
-    return allDead
+        for (enemy in enemies) {
+            if (!enemy.isDead) {
+                return false
+            }
+        }
+        return true
 }
+
 
 
 fun greeting() {

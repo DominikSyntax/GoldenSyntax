@@ -15,22 +15,17 @@ var bag = Bag()
 var endboss: Endboss = Endboss()
 var enemies = mutableListOf<Enemy>(endboss)
 
-// Einen Rundenzähler
+// Einen Rundenzähler und noch ein paar für Angriffe
 var roundCounter: Int = 1
-
-var deadGoods = false
-var deadBads = false
-
-var rootCounter:Int = 0
-var cableCounter:Int = 0
+var rootCounter: Int = 0
+var cableCounter: Int = 0
 fun main() {
 
-    greeting()
+    //greeting()
 
-    myTeam = mutableListOf(gaiaHero,tekkHero,jonnyHero)   //makeYouTeam(heroList)
+    myTeam = mutableListOf(gaiaHero,tekkHero,jonnyHero)     //makeYouTeam(heroList)
 
-
-    do {
+    while (!allGoodsAreDead(myTeam) && !allBadsAreDead(enemies)) {
         roundForGoods(bag, myTeam, enemies, roundCounter)
 
         roundForBads(myTeam, enemies, roundCounter)
@@ -40,9 +35,8 @@ fun main() {
             displayHp(enemy)
 
         roundCounter++
-
-    }while (allGoodsAreDead(myTeam)&&allBadsAreDead(enemies))
-    ending(myTeam,enemies)
+    }
+    ending(myTeam, enemies)
 
 }
 
