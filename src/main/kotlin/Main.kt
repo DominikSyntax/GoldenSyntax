@@ -25,7 +25,7 @@ fun main() {
 
     myTeam = mutableListOf(gaiaHero,tekkHero,jonnyHero)     //makeYouTeam(heroList)
 
-    while (!allGoodsAreDead(myTeam) && !allBadsAreDead(enemies)) {
+    while (myTeam.size> 0 && enemies.size > 0) {
         roundForGoods(bag, myTeam, enemies, roundCounter)
 
         roundForBads(myTeam, enemies, roundCounter)

@@ -276,64 +276,76 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
     println("Runde : $counter")
     println()
 
-    println("$BLUE_BACKGROUND$RED_TEXT Deine Helden dran $STANDARTCOLOR")
+    println("$BLUE_BACKGROUND$RED_TEXT Deine Helden sind dran $STANDARTCOLOR")
+    if (heros.size==0){
+        println(" du hast keinen Helden mehr am Leben , der was machen kann ")
+    }else {
 
+        for (hero in heros) {
+            if (hero.healthPower > 0) {
 
-    for (hero in heros) {
+                isCursed(hero)
 
-        isCursed(hero)
+                botsAreGreat(hero)
+                println("Du bist mit $BLUE_TEXT${hero.name}$STANDARTCOLOR am Zug")
+                println("Was möchtest du machen, du hast die Wahl aus...")
+                hero.printAllFunktion(bag)
 
-        botsAreGreat(hero)
-        println("Du bist mit $BLUE_TEXT${hero.name}$STANDARTCOLOR am Zug")
-        println("Was möchtest du machen, du hast die Wahl aus...")
-        hero.printAllFunktion(bag)
+                var userChoiceFun: Int
 
-        var userChoiceFun: Int
-
-        try {
-            userChoiceFun = readln().toInt()
-        } catch (e: NumberFormatException) {
-            println(
-                """
+                try {
+                    userChoiceFun = readln().toInt()
+                } catch (e: NumberFormatException) {
+                    println(
+                        """
                 $RED_BACKGROUND$BLACK_TEXT
                 Nur Chuck Norris darf hier auch Buchstaben eingeben!
                 $STANDARTCOLOR
                 """
-            )
-            return
-        }
-        hero.attack(bag, userChoiceFun, enemies, heros)
-    }
+                    )
+                    return
+                }
+                hero.attack(bag, userChoiceFun, enemies, heros)
+            }
 
-    bag.bagIsUsed = false
-    absatz()
+        }
+
+        bag.bagIsUsed = false
+        absatz()
+    }
 
 }
 
 
 fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
-    absatz()
-    println("Die haben gut ausgeteilt, mal sehen was der Gegner macht in seiner $counter Runde... ")
-    println()
+    if (enemies.size == 0){
+        println("Kein Feind mehr zum prügeln, die spinnen , die Römer")
+    }else {
 
-    // if abfrage wegen den wurzeln . bzw kabeln falls ja abziehen
+        absatz()
+        println("Die haben gut ausgeteilt, mal sehen was der Gegner macht in seiner $counter Runde... ")
+        println()
 
-    var enemiesCopy = enemies.toMutableList()
+        // if abfrage wegen den wurzeln . bzw kabeln falls ja abziehen
 
-    for (enemy in enemiesCopy) {
-        rootsOrCable(enemy)
-        println("${enemy.name} ist am Zug")
-        enemy.fight(enemies, heros)
-        for (hero in heros) {
-            if (hero.healthPower <= 0) {
-                hero.healthPower = 0
-                hero.isDead = true
-                println("${hero.name} hat den Angriff nicht überlebt")
-                absatz()
+        var enemiesCopy = enemies.toMutableList()
 
-            } else {
+        for (enemy in enemiesCopy) {
+            if (enemy.healthPower> 0) {
+                rootsOrCable(enemy)
+                println("${enemy.name} ist am Zug")
+                enemy.fight(enemies, heros)
+                for (hero in heros) {
+                    if (hero.healthPower <= 0) {
+                        hero.healthPower = 0
+                        hero.isDead = true
+                        println("${hero.name} hat den Angriff nicht überlebt")
+                        absatz()
 
-                absatz()
+                    } else {
+                        absatz()
+                    }
+                }
             }
         }
     }
@@ -341,20 +353,18 @@ fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter:
 }
 
 
-fun allGoodsAreDead(heros: MutableList<Hero>): Boolean {
+fun allGoodsAreDead(heros: MutableList<Hero>) {
     for (hero in heros) {
-            if (!hero.isDead) {
-                return false
-            }
+        if (hero.isDead || hero.healthPower <= 0) {
+            heros.remove(hero)
         }
-        return true
     }
-
+}
 
 fun allBadsAreDead(enemies: MutableList<Enemy>): Boolean {
-        for (enemy in enemies) {
-            if (!enemy.isDead) {
-                return false
+        for (e in enemies) {
+            if (e.isDead|| e.healthPower <= 0) {
+                enemies.remove(e)
             }
         }
         return true
@@ -488,7 +498,7 @@ fun chuckNorris(round: Int) {
 }
 
 fun ending(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
-    if (allBadsAreDead(enemies)) {
+    if (enemies.size == 0) {
         println(
             """
             ███▄▄▄▄      ▄████████  ▄█  ███▄▄▄▄   
@@ -539,7 +549,7 @@ fun ending(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
 
 
     }
-    if (allGoodsAreDead(heros)) {
+    if (heros.size == 0) {
         println(
             """
                  ▄█    ▄████████  ▄█     █▄   ▄██████▄     ▄█    █▄     ▄█                    ▄████████ ███▄▄▄▄   ████████▄   ▄█        ▄█   ▄████████    ▄█    █▄    
