@@ -17,6 +17,15 @@ class ElectricMutant(
     override var nanoAreUsed = false
     override var otherHeroHaveNanos = false
     override var endbossFluch: Boolean = false
+    override var standartHP: Int = healthPower
+
+    override var isDead: Boolean =
+        if (healthPower <= 0) {
+            true
+        } else {
+            false
+        }
+
 
 
     override fun printInfo() {

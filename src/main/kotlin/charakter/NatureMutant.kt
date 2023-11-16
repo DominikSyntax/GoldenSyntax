@@ -33,16 +33,14 @@ class NatureMutant(
 
     override fun printInfo(){
         println("""
-            $WHITE_BACKGROUND$GREEN_TEXT
-             ::::::::      :::     :::::::::::     :::     
-            :+:    :+:   :+: :+:       :+:       :+: :+:   
-            +:+         +:+   +:+      +:+      +:+   +:+  
-            :#:        +#++:++#++:     +#+     +#++:++#++: 
-            +#+   +#+# +#+     +#+     +#+     +#+     +#+ 
-            #+#    #+# #+#     #+#     #+#     #+#     #+# 
-             ########  ###     ### ########### ###     ### 
-             
-                                                                                                                                             
+            $GREEN_TEXT
+              ________     _____    .___     _____   
+             /  _____/    /  _  \   |   |   /  _  \  
+            /   \  ___   /  /_\  \  |   |  /  /_\  \ 
+            \    \_\  \ /    |    \ |   | /    |    \
+             \______  / \____|__  / |___| \____|__  /
+                      
+                                                                                                                                                         
  ____                                                  ___      __    __                  __  __            __                           
 /\  _`\                                              /'___\    /\ \__/\ \                /\ \/\ \          /\ \__                        
 \ \ \L\ \___   __  __  __     __   _ __         ___ /\ \__/    \ \ ,_\ \ \___      __    \ \ `\\ \     __  \ \ ,_\  __  __  _ __    __   
@@ -113,6 +111,7 @@ class NatureMutant(
                 println("Es ziehen dunkle Wolken auf ...")
                 var shocksInt = (1..3).random()
                 var abzug = (25..50).random()
+                abzug == abzug/100 * damagePower
 
                 repeat(shocksInt) {
                     if (enemy.healthPower >= abzug) {
