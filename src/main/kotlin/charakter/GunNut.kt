@@ -16,6 +16,8 @@ class GunNut(
     override var otherHeroHaveNanos =false
     override var endbossFluch: Boolean = false
     override var witchPoisen = false
+    override var standartHP: Int = healthPower
+
 
 
     override fun printInfo(){
@@ -41,14 +43,14 @@ class GunNut(
             println(
                 "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
-                        "3 ->  Bazooka \n" +
+                        "3 -> Bazooka \n" +
                         "4 -> Maschinengewähr \n" +
                         "5 -> Luftschlag \n")
         }else {
             println(
                 "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
-                        "3 ->  Bazooka \n" +
+                        "3 -> Bazooka \n" +
                         "4 -> Maschinengewähr \n" +
                         "5 -> Luftschlag \n" +
                         "6 -> Rucksack benutzen"
@@ -89,9 +91,9 @@ class GunNut(
 
     fun machineGun(enemy: Enemy){
         var bullets = (12..34).random()
-        var damage = 0
+        var damage = 10
         for (bullet in 1..bullets){
-            damage += ((5..10).random()/100 * damagePower).toInt()
+            damage += ((5..10).random() * (damagePower/100)).toInt()
             if (enemy.healthPower > damage){
                 enemy.healthPower -= damage
             }else {
