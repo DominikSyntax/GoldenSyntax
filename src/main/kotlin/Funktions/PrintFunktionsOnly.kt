@@ -138,7 +138,8 @@ fun endPrint(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
     if (allBadsAreDead(enemies)) {
         println(
             """
-        $RED_TEXT    ███▄▄▄▄      ▄████████  ▄█  ███▄▄▄▄        ███████
+        $RED_TEXT  
+                     ███▄▄▄▄      ▄████████  ▄█  ███▄▄▄▄        ███████
                      ███▀▀▀██▄   ███    ███ ███  ███▀▀▀██▄      ██████
                      ███   ███   ███    █▀  ███▌ ███   ███      ██████
                      ███   ███  ▄███▄▄▄     ███▌ ███   ███      █████
@@ -154,7 +155,7 @@ fun endPrint(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
         newLine()
         println(
             """
-            Während die Helden haben alle Feinde besiegt haben , hat Dajjal, heimlich und mit letzter Kraft einen 
+            Während die Helden alle Feinde, nach und nach besiegt haben , hat Dajjal, heimlich und mit letzter Kraft einen 
             $RED_TEXT
             
                      ▄█   ▄█▄    ▄██████▄     ▄▄▄▄███▄▄▄▄      ▄████████      ███     
@@ -179,15 +180,15 @@ fun endPrint(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
         Thread.sleep(500)
         println("Kleine Kinder spielen mit Ihren Eltern auf dem Spielplatz in der Nähe, plötzlich bleiben einige stehen und schauen zum Himmel...")
         println()
-        println(
-            "Was ist das ${useSpannung(spannung)}?  Ein Stern ${useSpannung(spannung)} ? Aber es wird so schnell größer ${
-                useSpannung(
-                    spannung
-                )
-            } "
-        )
-        newLine()
+        println("Was ist das ?")
+        useSpannung(spannung)
+        print("Ein Stern?")
+        useSpannung(spannung)
+        print("Aber es wird so schnell größer")
+        println()
         println("Bevor jemand etwas verstanden hat...")
+
+        newLine()
         println(
             """
             █████████▄   ▄██████▄   ▄██████▄    ▄▄▄▄███▄▄▄▄   
