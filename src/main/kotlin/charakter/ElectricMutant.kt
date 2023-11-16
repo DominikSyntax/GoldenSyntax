@@ -1,12 +1,12 @@
 package charakter
 
-import BLUE_TEXT
+import Funktions.BLUE_TEXT
 import Bag
 import Enemy
-import STANDARTCOLOR
+import Funktions.STANDARTCOLOR
 import cableCounter
-import evilChoice
-import heroChoice
+import Funktions.evilChoice
+import Funktions.heroChoice
 
 class ElectricMutant(
     override var name: String = "Tekk",

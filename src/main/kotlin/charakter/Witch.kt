@@ -1,7 +1,7 @@
 package charakter
 
 import Enemy
-import witchPoisenRounds
+import Funktions.witchPoisenRounds
 
 class Witch(
     override var name: String, override var healthPower: Int = 1500,

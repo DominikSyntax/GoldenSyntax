@@ -1,3 +1,4 @@
+import Funktions.*
 import charakter.*
 
 // ALLE HELDEN

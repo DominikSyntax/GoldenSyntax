@@ -2,8 +2,7 @@ package charakter
 
 import Bag
 import Enemy
-import evilChoice
-import charakter.*
+import Funktions.evilChoice
 
 open class Hero(override var name:String, override var healthPower: Int = 1000, override var damagePower: Int = 100):OverCharakter(name, healthPower, damagePower) {
 

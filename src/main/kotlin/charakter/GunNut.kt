@@ -2,7 +2,7 @@ package charakter
 
 import Bag
 import Enemy
-import evilChoice
+import Funktions.evilChoice
 
 class GunNut(
     override var name: String = "Jonny Rambo",

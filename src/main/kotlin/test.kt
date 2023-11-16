@@ -1,3 +1,5 @@
+import Funktions.chuckNorris
+import Funktions.loadingPrint
 import charakter.*
 
 

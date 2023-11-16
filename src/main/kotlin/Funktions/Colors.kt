@@ -1,3 +1,5 @@
+package Funktions
+
 val BLACK_TEXT = "\u001b[30m"
 val BLACK_BACKGROUND = "\u001b[40m"
 

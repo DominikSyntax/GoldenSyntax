@@ -2,11 +2,11 @@ package charakter
 
 import Bag
 import Enemy
-import GREEN_BACKGROUND
-import RED_TEXT
-import STANDARTCOLOR
-import evilChoice
-import heroChoice
+import Funktions.GREEN_BACKGROUND
+import Funktions.RED_TEXT
+import Funktions.STANDARTCOLOR
+import Funktions.evilChoice
+import Funktions.heroChoice
 
 class Scientist(
     override var name: String = "Prof. Proton", override var healthPower: Int = 750, override var damagePower: Int = 75) : Human(name, healthPower, damagePower) {
@@ -23,7 +23,7 @@ class Scientist(
     override fun printInfo() {
         println(
             """
-            $GREEN_BACKGROUND$RED_TEXT
+            $RED_TEXT
                   _____            __        _____           _              
                  |  __ \          / _|      |  __ \         | |             
                  | |__) | __ ___ | |_       | |__) | __ ___ | |_ ___  _ __  

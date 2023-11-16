@@ -2,11 +2,10 @@ package charakter
 
 import Bag
 import Enemy
-import GREEN_TEXT
-import STANDARTCOLOR
-import WHITE_BACKGROUND
+import Funktions.GREEN_TEXT
+import Funktions.STANDARTCOLOR
 import cableCounter
-import evilChoice
+import Funktions.evilChoice
 
 /**
  * Die Heldin Gaia ist ein Natur-Mutant, das bedeutet, Sie hat die Kraft, alles was mit der Natur zu tun hat, zu beeinflussen.
