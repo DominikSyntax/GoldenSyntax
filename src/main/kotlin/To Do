@@ -6,12 +6,12 @@
 - bis auf Jonny Rambo und Tekk kann man nix lesen, bei der Vorstellung der Leute                                                                    //erledigt
 - Direkt am Anfang der Runde " Deine Helden !SIND! dran ..... das SIND fehlt                                                                        //erledigt
 - einen Absatz zwischen die Helden machen beim kämpfen                                                                                              //erledigt
-- kleine splitter machen beim luftschlag von jonnyRambo 0 Schaden
-- bei Agnes , dem Möllemann Anmgriff, wird der angegriffe Held nicht angezeigt
+- kleine splitter machen beim luftschlag von jonnyRambo 0 Schaden                                                                                   //erledigt
+- bei Agnes , dem Möllemann Anmgriff, wird der angegriffe Held nicht angezeigt                                                                      // sollte erledigt sein
 
-- !!! Bei der auswahl der Feide, kommt es zu einem Problem wenn tote nin der liste sind. Am besten die toten einfach löschen                        //hab ich versucht aber dajjal und agnes werden nicht gelöscht
+- !!! Bei der auswahl der Feide, kommt es zu einem Problem wenn tote nin der liste sind. Am besten die toten einfach löschen                        //nicht gelöscht aber gelöst
 
-- !!! Die Angriffskraftv vernünftig implimentieren und Grafisch anzeigen3!!!
+- !!! Die Angriffskraftv vernünftig implimentieren und Grafisch anzeigen!!!
 - bei agnes macht ein auto 100 schaden und andere nur 5 , wo roller schon zwischen 40 und 63 schaden machen5
 
 - wenn zombies gebissen haben, wird die Person im laufe des spiels ein feind, es kommt der ersatzheld (der am anfang  nicht gewählt wurde) zu hilfe
@@ -26,6 +26,7 @@
 -------------------------------------------------
       Zusatz  TO DO's
 -------------------------------------------------
+-Damage power grafisch anzeigen
 - Menü erstellen
 - Seite wählen können
 - neue Helden

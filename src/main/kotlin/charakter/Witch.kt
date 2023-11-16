@@ -102,6 +102,11 @@ class Witch(
         var usedList: MutableList<Boolean> = mutableListOf(false, false, false, false)
         var randomHero = heros.random()
         var damage = (50..100).random()
+        damage = (damage/100 * damagePower).toInt()
+
+        println("Dieses kranke Weibsbild hat den Geist von Möllemann in die Köpfe der Flugzeugbesatzungen in der Nähe eingepflanzt.... ")
+        if (randomHero.healthPower == 0)
+            randomHero = heros.random()
 
         if (!usedList[0]) {
 
@@ -117,43 +122,48 @@ class Witch(
             randomHero.healthPower -= damage
 
 
-        } else if (usedList[0] && !usedList[1]) {
-            println("Man sollte meinen, das nicht so viele Flugzeuge beim Weltuntergang am Himmel sind, haben die Leute nix besseres vor? Familie oder so .... oooohhhhhh...")
-            println()
-            println("..während ich den Text geschrieben hab und du ihn gelesen hast, hat ein Fallschirmspringer wieder einen auf FDP gemacht.")
-            println()
-            Thread.sleep(1500)
-            println("Er hat eine Hauswand durchschlagen und die Trümmer, gemischt mit breiartigen Menschenresten treffen einen unserer Helden")
-            println("$randomHero hat $damagePower Schaden erlitten")
-            usedList[1] = true
-            randomHero.healthPower -= damage
+        }else{
+            if (!usedList[1]) {
+                println("Man sollte meinen, das nicht so viele Flugzeuge beim Weltuntergang am Himmel sind, haben die Leute nix besseres vor? Familie oder so .... oooohhhhhh...")
+                println()
+                println("..während ich den Text geschrieben hab und du ihn gelesen hast, hat ein Fallschirmspringer wieder einen auf FDP gemacht.")
+                println()
+                Thread.sleep(1500)
+                println("Er hat eine Hauswand durchschlagen und die Trümmer, gemischt mit breiartigen Menschenresten treffen einen unserer Helden")
+                println("$randomHero hat $damagePower Schaden erlitten")
+                usedList[1] = true
+                randomHero.healthPower -= damage
+            }else {
+                if (!usedList[2]) {
+                    println("Bei jedem Flugzeuggeräusch, zucken unsere Helden zusammen.... ")
+                    println()
+                    println("Tatsächlich, da ist ein kleines Sportflugzeug in unsere Heldengruppe gerauscht... ")
+                    for (hero in heros) {
+                        damage = (25..50).random()
+                        hero.healthPower -= damage
+                        println("${hero.name} hat $damage Schaden abbekommen")
+                    }
+                    usedList[2] = true
+                } else{
+                    if (!usedList[3]) {
+                        println(" In der Zwischenzeit würde der Luftraum gesperrt aber wie du siehst ist ein kleines Flugzeug noch durch gekommen.")
+                        println()
+                        println(
+                            "Schön , das es uns noch aufgefallen ist, ${randomHero.name} leider nicht, er wurde erwischt von der Pfütze da drüben. \n" +
+                                    "natürlich war es nicht immer eine Pfütze, vor Sekunden noch war es ein Mensch "
+                        )
+                        println()
+                        println("$damage Schaden für ${randomHero.name}")
+                        println()
+                        randomHero.healthPower -= damage
+                        usedList[3] = true
 
-        } else if (usedList[0] && usedList[1] && !usedList[2]) {
-            println("Bei jedem Flugzeuggeräusch, zucken unsere Helden zusammen.... ")
-            println()
-            println("Tatsächlich, da ist ein kleines Sportflugzeug in unsere Heldengruppe gerauscht... ")
-            for (hero in heros) {
-                damage = (25..50).random()
-                hero.healthPower -= damage
-                println("${hero.name} hat $damage Schaden abbekommen")
+                    }else {
+                        println("Gut das der Luftraum gesperrt ist, die Hexe hat es schon wieder versucht")
+                        println()
+                    }
+                }
             }
-            usedList[2] = true
-        } else if (usedList[0] && usedList[1] && usedList[2] && !usedList[3]) {
-            println(" In der Zwischenzeit würde der Luftraum gesperrt aber wie du siehst ist ein kleines Flugzeug noch durch gekommen.")
-            println()
-            println(
-                "Schön , das es uns noch aufgefallen ist, ${randomHero.name} leider nicht, er wurde erwischt von der Pfütze da drüben. \n" +
-                        "natürlich war es nicht immer eine Pfütze, vor Sekunden noch war es ein Mensch "
-            )
-            println()
-            println("$damage Schaden für ${randomHero.name}")
-            println()
-            randomHero.healthPower -= damage
-            usedList[3] = true
-
-        } else {
-            println("Gut das der Luftraum gesperrt ist, die Hex hat es schon wieder versucht")
-            println()
         }
         for (hero in heros){
             if (hero.healthPower <= 0) {

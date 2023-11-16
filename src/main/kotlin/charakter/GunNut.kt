@@ -115,6 +115,7 @@ class GunNut(
                 enemy.isDead = true
             }else {
                 if (damage <= 35) {
+                    damage = (5..35).random()
                     println("${enemy.name} hatte Glück und nur ein kleiner Splitter abbekommen. $damage Schaden ")
                     println()
                 } else if (damage <= 150 && damage > 35) {
