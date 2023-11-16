@@ -287,7 +287,9 @@ fun evilChoice(enemies: MutableList<Enemy>): Enemy {
         try {
             userInputInt = readln().toInt()
         } catch (e: NumberFormatException) {
-            println("Nummern Junge. Mir ist klar, das du in der Schule nur singen und klatschen hattest. Aber das ist mein Spiel und wenn du dich nicht ein bisschen konzentrierst, werde ich ${RED_TEXT}Chuck Norris $STANDARTCOLOR bitten, dich aus der Geschichte zu entfernen ")
+            println("Nummern Junge. Mir ist klar, das du in der Schule nur singen und klatschen hattest. \n" +
+                    "Aber das ist mein Spiel und wenn du dich nicht ein bisschen konzentrierst, \n" +
+                    "werde ich ${RED_TEXT}Chuck Norris $STANDARTCOLOR bitten, dich aus der Geschichte zu entfernen ")
         }
         if (userInputInt < 1 || userInputInt > enemies.size) {
             println("Das war keine gültige Auswahl")
@@ -346,7 +348,7 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
     loadingPrint()
 }
 
-}
+
 
 
 fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {

@@ -1,7 +1,9 @@
 package charakter
 
+import BLUE_TEXT
 import Bag
 import Enemy
+import STANDARTCOLOR
 import cableCounter
 import evilChoice
 import heroChoice
@@ -18,7 +20,7 @@ class ElectricMutant(
 
 
     override fun printInfo() {
-        println("""
+        println("""$BLUE_TEXT
             ::::::::::: :::::::::: :::    ::: :::    :::      
                 :+:     :+:        :+:   :+:  :+:   :+:       
                 +:+     +:+        +:+  +:+   +:+  +:+        
@@ -26,20 +28,21 @@ class ElectricMutant(
                 +#+     +#+        +#+  +#+   +#+  +#+        
                 #+#     #+#        #+#   #+#  #+#   #+#       
                 ###     ########## ###    ### ###    ###      
-        """.trimIndent())
+        $STANDARTCOLOR""".trimIndent())
         super.printInfo()
         println("... einen starken Elektro Mutanten. Mit der Fähigkeit alles was irgendwie mit Technik zu tun hat zu kontrollieren. ")
     }
 
     override fun printAllFunktion(bag: Bag) {
         if (bag.bagIsUsed) {
-            println("Der Rucksack ist in dieser Runde nicht mehr verfügbar")
+            println()
             println(
                 "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
                         "3 -> Fahrzeugkontrolle \n" +
-                        "4 -> NanoBot Hilfe \n" +
-                        "5 -> lebendige Kabel \n"
+                        "4 -> lebendige Kabel \n" +
+                        "5 -> NanoBot Hilfe \n" +
+                        "6 -> nicht verfügbar "
             )
         } else if (bag.bagIsUsed && nanoAreUsed) {
             println(
@@ -47,16 +50,17 @@ class ElectricMutant(
                         "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
                         "3 -> Fahrzeugkontrolle \n" +
-                        "4 -> NanoBot NICHT VERFÜGBAR \n" +
-                        "5 -> lebendige Kabel \n"
+                        "4 -> lebendige Kabel \n" +
+                        "5 -> nicht verfügbar \n" +
+                        "6 -> nicht verfügbar"
             )
         } else if (nanoAreUsed) {
             println(
                 "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
                         "3 -> Fahrzeugkontrolle \n" +
-                        "4 -> NanoBot NICHT VERFÜGBAR \n" +
-                        "5 -> lebendige Kabel \n" +
+                        "4 -> lebendige Kabel\n" +
+                        "5 -> nicht verfügbar \n" +
                         "6 -> Rucksack benutzen"
             )
         } else {
@@ -64,8 +68,8 @@ class ElectricMutant(
                 "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
                         "3 -> Fahrzeugkontrolle \n" +
-                        "4 -> NanoBot Hilfe \n" +
-                        "5 -> lebendige Kabel \n" +
+                        "4 -> lebendige Kabel \n" +
+                        "5 -> NanoBot Hilfe \n" +
                         "6 -> Rucksack benutzen"
 
             )
@@ -82,8 +86,8 @@ class ElectricMutant(
                 1 -> punch(evilChoice(enemies))
                 2 -> kick(evilChoice(enemies))
                 3 -> traficContol(evilChoice(enemies))
-                4 -> nanoBots(heros, heroChoice(heros))
-                5 -> livingCable(evilChoice(enemies))
+                4 -> livingCable(evilChoice(enemies))
+                5 -> nanoBots(heros, heroChoice(heros))
             }
 
         } else {
@@ -91,8 +95,8 @@ class ElectricMutant(
                 1 -> punch(evilChoice(enemies))
                 2 -> kick(evilChoice(enemies))
                 3 -> traficContol(evilChoice(enemies))
-                4 -> nanoBots(heros, heroChoice(heros))
-                5 -> livingCable(evilChoice(enemies))
+                4 -> livingCable(evilChoice(enemies))
+                5 -> nanoBots(heros, heroChoice(heros))
                 6 -> bag.useBag(heros)
             }
         }
@@ -118,52 +122,52 @@ class ElectricMutant(
         }
 
         repeat(cars) {
-            var damage = 0
+            var damage = 10
             damage += (((enemy.healthPower / 100) * (7..10).random()) / 100 * damagePower).toInt()
-            if (damage == 0) {
-                println("Es geht aufs Ende zu mit ${enemy.name}")
-                damage = 5
-            }
+
+
             if (enemy.healthPower > damage) {
                 enemy.healthPower -= damage
             } else {
                 enemy.healthPower = 0
-                println("${enemy.name} wurde besiegt")
+                Thread.sleep(500)
+                println("${enemy.name} wurde von einem Auto zerfetzt! Durch die Wucht des Aufpralls, sind seine umherfliegenden Knochensplitter \n" +
+                        "selbst zu geschossen geworden und haben einem Passanten, den halben Kopf zerfetzt. Die daneben stehende Frau konnte nicht lange trauern,\n" +
+                        "da ihr die platzende Schädeldecke ihres Mannes die Hauptschlagader aufgerissen hat")
+                Thread.sleep(1500)
                 return
             }
             println("Ein Auto hat ${enemy.name} getroffen und ihm $damage Schaden zugefügt")
         }
 
         if (buses > 0) {
-            var damage = 0
+            var damage = 20
             damage += (((enemy.healthPower / 100) * (15..25).random()) / 100 * damagePower).toInt()
 
-            if (damage == 0) {
-                println("Es geht aufs Ende zu mit ${enemy.name}")
-                damage = 15
-            }
+
             if (enemy.healthPower > damage) {
                 enemy.healthPower -= damage
             } else {
                 enemy.healthPower = 0
-                println("${enemy.name} wurde besiegt")
+                println("${enemy.name} wurde frontal von dem Bus erwischt, es sah aus wie eine Wassermelone in die man eine Handgranate gesteckt hat.\n" +
+                        "Das Blut hat sich in der Luft so sehr verteilt, das es unseren Helden als willkommene abkühlung dient  ")
                 return
             }
             println("Ein Bus hat ${enemy.name}getroffen und ihm $damage Schaden zugefügt")
         }
 
         repeat(mopets) {
-            var damage = 0
-            damage += ((enemy.healthPower / 100) * (3..7).random()).toInt()
-            if (damage == 0) {
-                println("Es geht aufs Ende zu mit ${enemy.name}")
-                damage = 5
-            }
+            var damage = 5
+            damage += ((enemy.healthPower / 100) * (3..7).random()/100 * damagePower).toInt()
+
             if (enemy.healthPower > damage) {
                 enemy.healthPower -= damage
             } else {
                 enemy.healthPower = 0
-                println("${enemy.name} wurde besiegt")
+                println("Absolut lächerlich, ${enemy.name} wurde von einem Moppet in zwei Teile gerissen, ober und unterkörper. \n" +
+                        "${enemy.name} lebte zwar noch ein bisschen aber ist so ungünstig gelandet, das er an seinem in den Hals fliesenden Blut ertrunken oder erstickt ist,\n" +
+                        " er hatte keine Lippen und keine Nase mehr im sich gegen das in den Hals laufende Blut zu schützen. ")
+                println("nach 15min kam aber kein zucken mehr" )
                 return
             }
             println("Ein Roller hat ${enemy.name}getroffen und ihm $damage Schaden zugefügt")
