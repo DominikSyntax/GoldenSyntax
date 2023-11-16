@@ -24,21 +24,33 @@ fun main() {
     //greeting()
 
     myTeam = mutableListOf(gaiaHero,tekkHero,jonnyHero)     //makeYouTeam(heroList)
+    var checkHeros = allGoodsAreDead(myTeam)
+    var checkBads = allBadsAreDead(enemies)
 
-    while (myTeam.size> 0 && enemies.size > 0) {
+    while (!allBadsAreDead(enemies) && !allGoodsAreDead(myTeam)){
+        chuckNorris(roundCounter)
+
         roundForGoods(bag, myTeam, enemies, roundCounter)
+        if (allBadsAreDead(enemies)){
+            break
+        }
+        showAllHP(myTeam,enemies)
+
 
         roundForBads(myTeam, enemies, roundCounter)
-        for (hero in myTeam)
-            displayHp(hero)
-        for (enemy in enemies)
-            displayHp(enemy)
+        if (allGoodsAreDead(myTeam)){
+            break
+
+        }
+        showAllHP(myTeam,enemies)
 
         roundCounter++
     }
     ending(myTeam, enemies)
 
 }
+
+
 
 
 

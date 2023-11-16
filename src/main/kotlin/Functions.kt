@@ -2,6 +2,34 @@ import charakter.*
 
 import kotlin.NumberFormatException
 
+
+fun loadingPrint() {
+    var loading = listOf<String>("-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-")
+
+    var colorChoise = (0..4).random()
+
+    var colors: List<String> = listOf(RED_TEXT, GREEN_TEXT, BLUE_TEXT, YELLOW_TEXT, MAGENTA_TEXT)
+
+    println()
+    println("loading....")
+
+    for (i in loading) {
+        print(colors[colorChoise] + i)
+        Thread.sleep(100)
+    }
+    println(STANDARTCOLOR)
+
+}
+
+fun newLine() {
+    println()
+    println("---------------------------------------------------------------------------")
+    println()
+    Thread.sleep(1000)
+
+}
+
+
 /**
  * Funktion zum Überprüfen, ob der Fluch des Endgegners aktiv ist und falls ja, werden dem Helden 10 % seiner Lebensenergie abgezogen.
  * Bis dieser nur noch 20 % über hat
@@ -76,7 +104,7 @@ fun rootsOrCable(enemy: Enemy) {
         cableCounter--
     }
 
-
+    newLine()
 }
 
 
@@ -90,6 +118,7 @@ fun botsAreGreat(hero: Hero) {
             var healing = hero.standartHP / 100 * 5
             hero.healthPower += healing
             println("$BLUE_TEXT Die NanoBots haben ${hero.name} um $healing Lebenspunkte geheilt")
+            newLine()
         }
     }
 }
@@ -111,8 +140,7 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
         println()
         println("Du hast die Wahl aus...")
         hero.printInfo()
-        absatz()
-        println()
+        newLine()
     }
 
     println()
@@ -122,7 +150,7 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
                 "Du kannst jeden nur Einmal in dein Team wählen, unsere Helden sind schließlich Unikate!"
     )
 
-    println()
+    newLine()
     println("Hier nochmal besser zu lesen:")
     for (h in heroList) {
         println("$int für ${h.name}")
@@ -145,14 +173,16 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
 
         if (userChoise == preChoise) {
             println(
-                "Ich weiß, so ein Text RPG braucht mehr als deine $userChoise Sekunden Aufmerksamkeitsspanne. Oder was wolltest du mir mit dieser Zahl sagen? \n" +
-                        "Ich bleibe heute einfach mal freundlich und sage dir, dass du dieses Unikat von Held schon ausgewählt hast."
-            )
-            println()
-            println(" Hier ein kleiner Livehack, so kommst du mit der Anzahl der Unikate nicht mehr so oft durcheinader....")
-            println(
-                " 0 < Unikat Anzahl < 2   \n" +
-                        "Triff eine andere Wahl, am besten eine Richtige"
+                """
+                Ich weiß, so ein Text RPG braucht mehr als deine $userChoise Sekunden Aufmerksamkeitsspanne. Oder was wolltest du mir mit dieser Zahl sagen?
+                        "Ich bleibe heute einfach mal freundlich und sage dir, dass du dieses Unikat von Held schon ausgewählt hast.
+            
+            
+             Hier ein kleiner Livehack, so kommst du mit der Anzahl der Unikate nicht mehr so oft durcheinader....
+                $RED_TEXT Man zählt da ungefähr so: $STANDARTCOLOR  
+                 0, ${RED_BACKGROUND}Die Anzahl die es von Unikaten gibt$STANDARTCOLOR, 2 ,3 ,4
+                        
+            """
             )
         }
 
@@ -186,7 +216,7 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
         print("${hero.name}, ")
     }
     var myTeamList = myTeam.toMutableList()
-    absatz()
+    loadingPrint()
     return myTeamList
 
 }
@@ -271,113 +301,119 @@ fun evilChoice(enemies: MutableList<Enemy>): Enemy {
 }
 
 fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
-    absatz()
+
+    newLine()
 
     println("Runde : $counter")
     println()
 
-    println("$BLUE_BACKGROUND$RED_TEXT Deine Helden sind dran $STANDARTCOLOR")
-    if (heros.size==0){
-        println(" du hast keinen Helden mehr am Leben , der was machen kann ")
-    }else {
+    println("$BLUE_BACKGROUND Deine Helden sind dran $STANDARTCOLOR")
 
-        for (hero in heros) {
-            if (hero.healthPower > 0) {
+    for (hero in heros) {
+        if (hero.healthPower > 0) {
 
-                isCursed(hero)
+            isCursed(hero)
+            botsAreGreat(hero)
 
-                botsAreGreat(hero)
-                println("Du bist mit $BLUE_TEXT${hero.name}$STANDARTCOLOR am Zug")
-                println("Was möchtest du machen, du hast die Wahl aus...")
-                hero.printAllFunktion(bag)
+            println("Du bist mit $BLUE_TEXT${hero.name}$STANDARTCOLOR am Zug")
+            println()
+            println("Was möchtest du machen, du hast die Wahl aus...")
+            hero.printAllFunktion(bag)
+            newLine()
 
-                var userChoiceFun: Int
+            var userChoiceFun: Int
 
-                try {
-                    userChoiceFun = readln().toInt()
-                } catch (e: NumberFormatException) {
-                    println(
-                        """
+            try {
+                userChoiceFun = readln().toInt()
+            } catch (e: NumberFormatException) {
+                println(
+                    """
                 $RED_BACKGROUND$BLACK_TEXT
                 Nur Chuck Norris darf hier auch Buchstaben eingeben!
                 $STANDARTCOLOR
                 """
-                    )
-                    return
-                }
-                hero.attack(bag, userChoiceFun, enemies, heros)
+                )
+                return
             }
+            hero.attack(bag, userChoiceFun, enemies, heros)
+            newLine()
 
         }
-
-        bag.bagIsUsed = false
-        absatz()
     }
+
+
+    bag.bagIsUsed = false
+    loadingPrint()
+}
 
 }
 
 
 fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter: Int) {
-    if (enemies.size == 0){
-        println("Kein Feind mehr zum prügeln, die spinnen , die Römer")
-    }else {
 
-        absatz()
-        println("Die haben gut ausgeteilt, mal sehen was der Gegner macht in seiner $counter Runde... ")
-        println()
 
-        // if abfrage wegen den wurzeln . bzw kabeln falls ja abziehen
+    newLine()
+    println("Die haben gut ausgeteilt, mal sehen was der Gegner macht in seiner $counter Runde... ")
+    println()
 
-        var enemiesCopy = enemies.toMutableList()
 
-        for (enemy in enemiesCopy) {
-            if (enemy.healthPower> 0) {
-                rootsOrCable(enemy)
-                println("${enemy.name} ist am Zug")
-                enemy.fight(enemies, heros)
-                for (hero in heros) {
-                    if (hero.healthPower <= 0) {
-                        hero.healthPower = 0
-                        hero.isDead = true
-                        println("${hero.name} hat den Angriff nicht überlebt")
-                        absatz()
+    for (enemy in enemies) {
+        if (enemy.healthPower > 0) {
+            newLine()
+            rootsOrCable(enemy)
 
-                    } else {
-                        absatz()
-                    }
-                }
-            }
+            newLine()
+            println("$RED_TEXT${enemy.name}$STANDARTCOLOR ist am Zug")
+
+            println()
+            enemy.fight(enemies, heros)
+
+            newLine()
         }
-    }
 
+    }
 }
 
 
-fun allGoodsAreDead(heros: MutableList<Hero>) {
+
+
+fun allGoodsAreDead(heros: MutableList<Hero>): Boolean {
+    var allDead = false
+
     for (hero in heros) {
         if (hero.isDead || hero.healthPower <= 0) {
-            heros.remove(hero)
+            hero.isDead = true
         }
     }
+    if (heros.all { it.isDead }) {
+        allDead = true
+    }
+    return allDead
+
+
 }
 
 fun allBadsAreDead(enemies: MutableList<Enemy>): Boolean {
-        for (e in enemies) {
-            if (e.isDead|| e.healthPower <= 0) {
-                enemies.remove(e)
-            }
+    var allEnemyDead = false
+    for (e in enemies) {
+        if (e.isDead || e.healthPower <= 0) {
+            e.isDead = true
         }
-        return true
+    }
+    if (enemies.all { it.isDead }) {
+        allEnemyDead = true
+    }
+    return allEnemyDead
+
 }
 
 
-
 fun greeting() {
-    absatz()
+    newLine()
 
     println(" Herzlich willkommen bei ...")
     println(
-        """ $WHITE_BACKGROUND$YELLOW_TEXT
+        """ $WHITE_BACKGROUND$BLACK_TEXT
  ____            ___       __                           ____                    __                      
 /\  _`\         /\_ \      /\ \                       /\  _`\                 /\ \__                   
 \ \ \L\_\     ___ \//\ \     \_\ \     __    ___     \ \,\L\_\   __  __    ___\ \ ,_\      __     __  _  
@@ -394,45 +430,7 @@ fun greeting() {
       * = (das heißt übersetzt ... es wird noch besser)
     """
     )
-    absatz()
-}
-
-fun absatz() {
-    var loading = listOf<String>(
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-",
-        "-"
-    )
-    var colorChoise = (0..4).random()
-    var colors: List<String> = listOf(RED_TEXT, GREEN_TEXT, BLUE_TEXT, YELLOW_TEXT, MAGENTA_TEXT)
-    println()
-    println("loading....")
-    for (i in loading) {
-        print(colors[colorChoise] + i)
-        Thread.sleep(100)
-    }
-    println(STANDARTCOLOR)
-
+    loadingPrint()
 }
 
 
@@ -472,17 +470,22 @@ fun chuckNorris(round: Int) {
     if (round == 4) {
         println("$BLUE_TEXT Chuck Norris $STANDARTCOLOR hat von der Bedrohung erfahren.... Die Helden und auch die Bösen fangen an sich zu beeilen, keiner möchte das er wütend wird.")
     } else if (round == 7) {
-        println(
-            "Das letzte mal das $BLUE_TEXT Chuck Norris $STANDARTCOLOR wirklich böse war, war als Gott versucht hat bei 'MENSCH ÄRGER DICH NICHT', zu schummeln. \n" +
-                    "Chuck hat mit der flachen Hand auf den Tisch gehauen, das nennen wir heutzutage $RED_BACKGROUND$BLACK_TEXT Die URKNALL THEORIE $STANDARTCOLOR ..."
+        println("Es gibt nur eine Theorie darüber, was passiert wenn Chuck Norris böse wird, \n " +
+            "Diese Theorie besagt das  $BLUE_TEXT Chuck Norris $STANDARTCOLOR böse war, weil Gott versucht hat bei 'MENSCH ÄRGER DICH NICHT', zu schummeln. \n" +
+                    "Chuck hat mit der flachen Hand auf den Tisch gehauen, das nennen wir heutzutage:\n" +
+                "$RED_BACKGROUND$BLACK_TEXT Die URKNALL THEORIE $STANDARTCOLOR ..."
         )
     } else if (round == 10) {
-        println("$BLUE_TEXT Chuck Norris $STANDARTCOLOR hat entschieden, sich raus zu halten. Er wollte einen Helden anfeuern, der ist dann aus Respekt wirklich verbrannt")
-    }else if (round == 20){
-        println("$BLUE_TEXT Chuck Norris $STANDARTCOLOR hat die Schnautze voll.... er schaut böse in die Richtung des Kampfes.\n" +
-                "Alle sind tot umgefallen ! ")
-        println("""
-            $RED_BACKGROUND$BLACK_TEXT
+        println("$BLUE_TEXT Chuck Norris $STANDARTCOLOR hat entschieden, sich erstmal raus zu halten. Als er das letzte mal jemanden angefeuert hat ist der aus respekt in Flammen aufgegangen")
+    } else if (round == 20) {
+        println(
+            "$BLUE_TEXT Chuck Norris $STANDARTCOLOR dauert das nun doch zu lange.... er schaut in die Richtung des Kampfes....\n" +
+                    "${RED_TEXT}UND$STANDARTCOLOR\n" +
+                    "Alle sind tot umgefallen ! "
+        )
+        println(
+            """
+            $BLUE_TEXT
              ::::::::  :::    ::: :::    :::  ::::::::  :::    :::      ::::    :::  ::::::::  :::::::::  :::::::::  ::::::::::: ::::::::       :::       ::: ::::::::::: ::::    :::  ::::::::  
             :+:    :+: :+:    :+: :+:    :+: :+:    :+: :+:   :+:       :+:+:   :+: :+:    :+: :+:    :+: :+:    :+:     :+:    :+:    :+:      :+:       :+:     :+:     :+:+:   :+: :+:    :+: 
             +:+        +:+    +:+ +:+    +:+ +:+        +:+  +:+        :+:+:+  +:+ +:+    +:+ +:+    +:+ +:+    +:+     +:+    +:+             +:+       +:+     +:+     :+:+:+  +:+ +:+        
@@ -491,47 +494,75 @@ fun chuckNorris(round: Int) {
             #+#    #+# #+#    #+# #+#    #+# #+#    #+# #+#   #+#       #+#   #+#+# #+#    #+# #+#    #+# #+#    #+#     #+#    #+#    #+#       #+#+# #+#+#      #+#     #+#   #+#+# #+#    #+# 
              ########  ###    ###  ########   ########  ###    ###      ###    ####  ########  ###    ### ###    ### ########### ########         ###   ###   ########### ###    ####  ########
                $STANDARTCOLOR
-        """.trimIndent())
+        """.trimIndent()
+        )
 
     }
 
 }
 
 fun ending(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
-    if (enemies.size == 0) {
+    var spannung = listOf<String>(".", ".", ".", ".", ".", ".", ".", ".", ".",)
+    fun useSpannung(s: List<String>) {
+        for (point in s) {
+            print(point)
+            Thread.sleep(150)
+        }
+    }
+
+    if (allBadsAreDead(enemies)) {
         println(
             """
-            ███▄▄▄▄      ▄████████  ▄█  ███▄▄▄▄   
-            ███▀▀▀██▄   ███    ███ ███  ███▀▀▀██▄ 
-            ███   ███   ███    █▀  ███▌ ███   ███ 
-            ███   ███  ▄███▄▄▄     ███▌ ███   ███ 
-            ███   ███ ▀▀███▀▀▀     ███▌ ███   ███ 
-            ███   ███   ███    █▄  ███  ███   ███ 
-            ███   ███   ███    ███ ███  ███   ███ 
-             ▀█   █▀    ██████████ █▀    ▀█   █▀  
+        $RED_TEXT    ███▄▄▄▄      ▄████████  ▄█  ███▄▄▄▄        ███████
+                     ███▀▀▀██▄   ███    ███ ███  ███▀▀▀██▄      ██████
+                     ███   ███   ███    █▀  ███▌ ███   ███      ██████
+                     ███   ███  ▄███▄▄▄     ███▌ ███   ███      █████
+                     ███   ███ ▀▀███▀▀▀     ███▌ ███   ███      ████
+                     ███   ███   ███    █▄  ███  ███   ███ 
+                     ███   ███   ███    ███ ███  ███   ███      ▄███▄
+                      ▀█   █▀    ██████████ █▀    ▀█   █▀       ▀███▀  
+                        $STANDARTCOLOR
                                       
-        Die guten haben schon wieder gewonnen, aber nicht in meinem Spiel. Das kann ich als Programmierer nicht zulassen.
+        Die guten haben schon wieder gewonnen, aber nicht in meinem Spiel Freundchen. Das kann ich als Programmierer einfach nicht zulassen.
         """
         )
-        absatz()
+        newLine()
         println(
-            "Die Helden haben alle Feinde besiegt, ihnen ist jedoch bei dem Kampf nicht aufgefallen, das ein " +
-                    """  ▄█   ▄█▄  ▄██████▄    ▄▄▄▄███▄▄▄▄      ▄████████     ███     
-                     ███ ▄███▀ ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███ ▀█████████▄ 
-                     ███▐██▀   ███    ███ ███   ███   ███   ███    █▀     ▀███▀▀██ 
-                    ▄█████▀    ███    ███ ███   ███   ███  ▄███▄▄▄         ███   ▀ 
-                   ▀▀█████▄    ███    ███ ███   ███   ███ ▀▀███▀▀▀         ███     
-                     ███▐██▄   ███    ███ ███   ███   ███   ███    █▄      ███     
-                     ███ ▀███▄ ███    ███ ███   ███   ███   ███    ███     ███     
-                     ███   ▀█▀  ▀██████▀   ▀█   ███   █▀    ██████████    ▄████▀   
-                             ▀                                                             """ +
-                    "(3x so groß und doppelt so schnell, wie der, der die Dinos ausgelöscht hat) \n" +
-                    "auf die Erde zugeflogen kam. \n" +
-                    ""
+            """
+            Während die Helden haben alle Feinde besiegt haben , hat Dajjal, heimlich und mit letzter Kraft einen 
+            $RED_TEXT
+            
+                     ▄█   ▄█▄    ▄██████▄     ▄▄▄▄███▄▄▄▄      ▄████████      ███     
+                     ███ ▄███▀  ███    ███  ▄██▀▀▀███▀▀▀██▄   ███    ███  ▀█████████▄ 
+                     ███▐██▀    ███    ███  ███   ███   ███   ███    █▀      ▀███▀▀██ 
+                    ▄█████▀     ███    ███  ███   ███   ███  ▄███▄▄▄          ███   ▀ 
+                   ▀▀█████▄     ███    ███  ███   ███   ███ ▀▀███▀▀▀          ███     
+                     ███▐██▄    ███    ███  ███   ███   ███   ███    █▄       ███     
+                     ███ ▀███▄  ███    ███  ███   ███   ███   ███    ███      ███     
+                     ███   ▀██▄  ▀██████▀    ▀█   ███   █▀    ██████████    ▄████▀ 
+                       $STANDARTCOLOR
+                     (von der größe des Mondes)
+                    
+            in Richtung gesteuert
+                    
+                    """
         )
         Thread.sleep(500)
-        println("Alle freuen sich, kleine Kinder spielen auf dem Spielplatz und plötzlich......")
         println()
+        println("Keiner auf der Erde merkt etwas, alle freuen sich über die bezwungene Bedrohung und den wieder erhaltenen Frieden auf der Erde")
+        println()
+        Thread.sleep(500)
+        println("Kleine Kinder spielen mit Ihren Eltern auf dem Spielplatz in der Nähe, plötzlich bleiben einige stehen und schauen zum Himmel...")
+        println()
+        println(
+            "Was ist das ${useSpannung(spannung)}?  Ein Stern ${useSpannung(spannung)} ? Aber es wird so schnell größer ${
+                useSpannung(
+                    spannung
+                )
+            } "
+        )
+        newLine()
+        println("Bevor jemand etwas verstanden hat...")
         println(
             """
             █████████▄   ▄██████▄   ▄██████▄    ▄▄▄▄███▄▄▄▄   
@@ -545,11 +576,16 @@ fun ending(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
                                                    
         """.trimIndent()
         )
-        println("Der ganze Planet explodiert, alle und alles tot..... überall Gedärme und Körperteile im Weltraum .... ENDE!")
+        println(
+            "Der ganze Planet explodiert, jeder und alles tot..... überall Gedärme und Körperteile im Weltraum, man sieht das Gesicht einer erschrockenen Frau \n" +
+                    " sie dreht sich langsam und erst jetzt sieht man das es nur ein halber Kopf ist , der da durch den Weltraum fliegt  .... \n" +
+                    "\n" +
+                    "$RED_TEXT ENDE! $STANDARTCOLOR"
+        )
 
 
     }
-    if (heros.size == 0) {
+    if (allGoodsAreDead(myTeam)) {
         println(
             """
                  ▄█    ▄████████  ▄█     █▄   ▄██████▄     ▄█    █▄     ▄█                    ▄████████ ███▄▄▄▄   ████████▄   ▄█        ▄█   ▄████████    ▄█    █▄    
@@ -565,52 +601,15 @@ fun ending(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
         Die bösen haben endlich mal gewonnen, das einzige Happy End das ich mag , ist ein romantisches Date mit mir, meiner Hand und einem Taschentuch
         """
         )
-        absatz()
-        println(
-            "Die Bösen haben alle Helden besiegt, ihnen ist jedoch bei dem Kampf nicht aufgefallen, das ein " +
-                    """  ▄█   ▄█▄  ▄██████▄    ▄▄▄▄███▄▄▄▄      ▄████████     ███     
-                     ███ ▄███▀ ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███ ▀█████████▄ 
-                     ███▐██▀   ███    ███ ███   ███   ███   ███    █▀     ▀███▀▀██ 
-                    ▄█████▀    ███    ███ ███   ███   ███  ▄███▄▄▄         ███   ▀ 
-                   ▀▀█████▄    ███    ███ ███   ███   ███ ▀▀███▀▀▀         ███     
-                     ███▐██▄   ███    ███ ███   ███   ███   ███    █▄      ███     
-                     ███ ▀███▄ ███    ███ ███   ███   ███   ███    ███     ███     
-                     ███   ▀█▀  ▀██████▀   ▀█   ███   █▀    ██████████    ▄████▀   
-                             ▀                                                             """ +
-                    "(3x so groß und doppelt so schnell, wie der, der die Dinos ausgelöscht hat) \n" +
-                    "auf die Erde zugeflogen kam. \n" +
-                    ""
-        )
-        Thread.sleep(500)
-        println("Alle Menschen auf der Erde leben in Angst und Schrecken. Doch plötzlich......")
-        println()
-        println(
-            """
-            █████████▄   ▄██████▄   ▄██████▄    ▄▄▄▄███▄▄▄▄   
-             ███    ███ ███    ███ ███    ███ ▄██▀▀▀███▀▀▀██▄ 
-             ███    ███ ███    ███ ███    ███ ███   ███   ███ 
-            ▄███▄▄▄██▀  ███    ███ ███    ███ ███   ███   ███ 
-           ▀▀███▀▀▀██▄  ███    ███ ███    ███ ███   ███   ███ 
-             ███    ██▄ ███    ███ ███    ███ ███   ███   ███ 
-             ███    ███ ███    ███ ███    ███ ███   ███   ███ 
-           ▄█████████▀   ▀██████▀   ▀██████▀   ▀█   ███   █▀  
-                                                   
-        """.trimIndent()
-        )
-        println("Der ganze Planet explodiert, alle und jeder sind tot..... überall Gedärme und Körperteile im Weltraum .... ENDE!")
     }
+}
 
-    println("Achja... ")
-    println("""
-        $RED_BACKGROUND$BLACK_TEXT
-         ::::::::  :::    ::: :::    :::  ::::::::  :::    :::      ::::    :::  ::::::::  :::::::::  :::::::::  ::::::::::: ::::::::       :::    :::     ::: :::::::::::      :::::::::: ::::::::       :::::::::  :::::::::: ::::    ::::       :::    ::: ::::::::  ::::    ::::  :::::::::: ::::::::::: :::::::::: ::::    :::      :::::::::: :::::::::  :::            :::     :::    ::: ::::::::: ::::::::::: 
-        :+:    :+: :+:    :+: :+:    :+: :+:    :+: :+:   :+:       :+:+:   :+: :+:    :+: :+:    :+: :+:    :+:     :+:    :+:    :+:      :+:    :+:   :+: :+:   :+:          :+:       :+:    :+:      :+:    :+: :+:        +:+:+: :+:+:+      :+:   :+: :+:    :+: +:+:+: :+:+:+ :+:            :+:     :+:        :+:+:   :+:      :+:        :+:    :+: :+:          :+: :+:   :+:    :+: :+:    :+:    :+:     
-        +:+        +:+    +:+ +:+    +:+ +:+        +:+  +:+        :+:+:+  +:+ +:+    +:+ +:+    +:+ +:+    +:+     +:+    +:+             +:+    +:+  +:+   +:+  +:+          +:+       +:+             +:+    +:+ +:+        +:+ +:+:+ +:+      +:+  +:+  +:+    +:+ +:+ +:+:+ +:+ +:+            +:+     +:+        :+:+:+  +:+      +:+        +:+    +:+ +:+         +:+   +:+  +:+    +:+ +:+    +:+    +:+     
-        +#+        +#++:++#++ +#+    +:+ +#+        +#++:++         +#+ +:+ +#+ +#+    +:+ +#++:++#:  +#++:++#:      +#+    +#++:++#++      +#++:++#++ +#++:++#++: +#+          +#++:++#  +#++:++#++      +#+    +:+ +#++:++#   +#+  +:+  +#+      +#++:++   +#+    +:+ +#+  +:+  +#+ +#++:++#       +#+     +#++:++#   +#+ +:+ +#+      +#++:++#   +#++:++#:  +#+        +#++:++#++: +#+    +:+ +#++:++#+     +#+     
-        +#+        +#+    +#+ +#+    +#+ +#+        +#+  +#+        +#+  +#+#+# +#+    +#+ +#+    +#+ +#+    +#+     +#+           +#+      +#+    +#+ +#+     +#+ +#+          +#+              +#+      +#+    +#+ +#+        +#+       +#+      +#+  +#+  +#+    +#+ +#+       +#+ +#+            +#+     +#+        +#+  +#+#+#      +#+        +#+    +#+ +#+        +#+     +#+ +#+    +#+ +#+    +#+    +#+     
-        #+#    #+# #+#    #+# #+#    #+# #+#    #+# #+#   #+#       #+#   #+#+# #+#    #+# #+#    #+# #+#    #+#     #+#    #+#    #+#      #+#    #+# #+#     #+# #+#          #+#       #+#    #+#      #+#    #+# #+#        #+#       #+#      #+#   #+# #+#    #+# #+#       #+# #+#            #+#     #+#        #+#   #+#+#      #+#        #+#    #+# #+#        #+#     #+# #+#    #+# #+#    #+#    #+#     
-         ########  ###    ###  ########   ########  ###    ###      ###    ####  ########  ###    ### ###    ### ########### ########       ###    ### ###     ### ###          ########## ########       #########  ########## ###       ###      ###    ### ########  ###       ### ##########     ###     ########## ###    ####      ########## ###    ### ########## ###     ###  ########  #########     ###     
-    
-    $STANDARTCOLOR
-    """.trimIndent())
+
+fun showAllHP(myTeam: MutableList<Hero>, enemies: MutableList<Enemy>) {
+    for (hero in myTeam) {
+        displayHp(hero)
+    }
+    for (enemy in enemies) {
+        displayHp(enemy)
+    }
 }

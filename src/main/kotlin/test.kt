@@ -8,9 +8,9 @@ fun main() {
     var counter = 5
 
     do {
-        absatz()
+        loadingPrint()
         chuckNorris(counter)
-        absatz()
+        loadingPrint()
         counter+= 1
     }while (counter<10)
 
