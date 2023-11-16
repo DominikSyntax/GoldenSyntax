@@ -2,26 +2,29 @@
 -------------------------------------------------
 - !!! wenn jemand tot ist, kann er natürlich keinen Angriff mehr machen !!! hammerhart, das jetzt noch so ein fehler auftaucht                      //erledigt
 - Begrüßung sieht scheiße aus (grau und gelb passt nicht)                                                                                           //erledigt
+
 - darauf achten n, das nur ein ladebalken kommt den rest mit prilntln oder leerzeile trennen                                                        //erledigt
 - bis auf Jonny Rambo und Tekk kann man nix lesen, bei der Vorstellung der Leute                                                                    //erledigt
+
 - Direkt am Anfang der Runde " Deine Helden !SIND! dran ..... das SIND fehlt                                                                        //erledigt
 - einen Absatz zwischen die Helden machen beim kämpfen                                                                                              //erledigt
+
 - kleine splitter machen beim luftschlag von jonnyRambo 0 Schaden                                                                                   //erledigt
 - bei Agnes , dem Möllemann Anmgriff, wird der angegriffe Held nicht angezeigt                                                                      // sollte erledigt sein
 
 - !!! Bei der auswahl der Feide, kommt es zu einem Problem wenn tote nin der liste sind. Am besten die toten einfach löschen                        //nicht gelöscht aber gelöst
+- !!! Die Angriffskraftv vernünftig implimentieren                                                                                                  //erledigt
 
-- !!! Die Angriffskraftv vernünftig implimentieren und Grafisch anzeigen!!!
-- bei agnes macht ein auto 100 schaden und andere nur 5 , wo roller schon zwischen 40 und 63 schaden machen5
-
-- wenn zombies gebissen haben, wird die Person im laufe des spiels ein feind, es kommt der ersatzheld (der am anfang  nicht gewählt wurde) zu hilfe
-
+- bei agnes macht ein auto 100 schaden und andere nur 5 , wo roller schon zwischen 40 und 63 schaden machen5                                        //erledigt(gemeint war tekk)
 - 27 kugeln aus dem maschienengewehr haben getroffen aber null schaden                                                                              //erledigt
+
 - Jonny Rambos Bazooka ist nicht richtig eingerückt                                                                                                 //erledigt
-- Das Spiel endet nach der ersten runde obwohl keiner tot ist
--Tekk + Jonny Rambo haben keine standartHP
-- mein Chuck norris am ende kann man nicht lesen
-- bei tekk vorwahnen, oder nicht möglich machen das man die kabel bei einem gegner 2x anwendet5
+- Das Spiel endet nach der ersten runde obwohl keiner tot ist                                                                                       //erledigt
+
+-Tekk + Jonny Rambo haben keine standartHP                                                                                                          //erledigt
+- mein Chuck norris am ende kann man nicht lesen                                                                                                    //erledigt
+
+- bei tekk vorwahnen, oder nicht möglich machen das man die kabel bei einem gegner 2x anwendet5                                                     //erledigt
 
 -------------------------------------------------
       Zusatz  TO DO's
@@ -34,6 +37,7 @@
 - Angriff/Verteidigung vorher auswählen können
 - Readme anpassen
 - Farben besser Abstimmen, weniger ist mehr !
+- wenn zombies gebissen haben, wird die Person im laufe des spiels ein feind, es kommt der ersatzheld (der am anfang  nicht gewählt wurde) zu hilfe
 -------------------------------------------------
 
 

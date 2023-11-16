@@ -46,7 +46,7 @@ class ElectricMutant(
                 "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
                         "3 -> Fahrzeugkontrolle \n" +
-                        "4 -> lebendige Kabel \n" +
+                        "4 -> lebendige Kabel (nur 1x pro Gegner verfügbar)\n" +
                         "5 -> NanoBot Hilfe \n" +
                         "6 -> nicht verfügbar "
             )
@@ -56,7 +56,7 @@ class ElectricMutant(
                         "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
                         "3 -> Fahrzeugkontrolle \n" +
-                        "4 -> lebendige Kabel \n" +
+                        "4 -> lebendige Kabel (nur 1x pro Gegner verfügbar)\n" +
                         "5 -> nicht verfügbar \n" +
                         "6 -> nicht verfügbar"
             )
@@ -65,7 +65,7 @@ class ElectricMutant(
                 "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
                         "3 -> Fahrzeugkontrolle \n" +
-                        "4 -> lebendige Kabel\n" +
+                        "4 -> lebendige Kabel(nur 1x pro Gegner verfügbar)\n" +
                         "5 -> nicht verfügbar \n" +
                         "6 -> Rucksack benutzen"
             )
@@ -74,7 +74,7 @@ class ElectricMutant(
                 "1 -> Schlagen \n" +
                         "2 -> Treten \n" +
                         "3 -> Fahrzeugkontrolle \n" +
-                        "4 -> lebendige Kabel \n" +
+                        "4 -> lebendige Kabel (nur 1x pro Gegner verfügbar)\n" +
                         "5 -> NanoBot Hilfe \n" +
                         "6 -> Rucksack benutzen"
 
