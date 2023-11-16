@@ -18,6 +18,7 @@ class Scientist(
     override var endbossFluch: Boolean = false
     override var standartHP: Int = healthPower
     var rickIsUsed = false
+    override var witchPoisen = false
 
     override fun printInfo() {
         println(

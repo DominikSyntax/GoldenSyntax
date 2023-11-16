@@ -1,6 +1,7 @@
 package charakter
 
 import Enemy
+import witchPoisenRounds
 
 class Witch(
     override var name: String, override var healthPower: Int = 1500,
@@ -10,31 +11,30 @@ class Witch(
     override var standartHP: Int = healthPower
     override var roots:Boolean=false
     override var cable: Boolean =false
-
-
-
     override var isDead: Boolean = false
 
 
     override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
-        var dice = (1..6).random()
-        var randomHero = heros.random()
-        var boss: Endboss? = null
-        for (enemy in enemies){
-            if (enemy is Endboss)
-                boss = enemy
-        }
+        if (healthPower>0) {
+            var dice = (1..6).random()
+            var randomHero = heros.random()
+            var boss: Endboss? = null
+            for (enemy in enemies) {
+                if (enemy is Endboss)
+                    boss = enemy
+            }
 
 
-        when (dice) {
-            1 -> prayToTheBoss(boss!!)
-            2 -> poisen(randomHero)
-            3 -> powerToTheBadGuys(enemies)
-            4 -> möllemann(heros)
-            5 -> yoga(boss!!)
+            when (dice) {
+                1 -> prayToTheBoss(boss!!)
+                2 -> poisen(randomHero)
+                3 -> powerToTheBadGuys(enemies)
+                4 -> möllemann(heros)
+                5 -> yoga()
 
-        }
-
+            }
+        }else
+            println("$name wurde vor 500 Jahren schon einmal verbrannt, tot ist bei ihr nicht immer tot.... warten wir mal ab")
     }
 
     /**
@@ -55,24 +55,45 @@ class Witch(
     }
 
 
-    fun poisen(hero: Hero): List<Int> {
-        var rounds: Int = (1..3).random()
-        var damage = ((hero.standartHP/100 *(3..7).random())/100 *damagePower).toInt()
-        println("$name hat giftige Wurzeln um ${hero.name} geschlungen. ")
-        println()
-        Thread.sleep(1500)
-        println("Für $rounds werden $damage Lebenspunkte abgezogen")
-        hero.healthPower
-        return listOf(rounds,damage,hero.healthPower)
+    open fun poisen(hero: Hero) {
 
+        if (hero.witchPoisen) {
+            println("Die Hexe hat ${hero.name} nochmal angespuckt, das bringt aber nix mehr außer ekel")
+            println()
+            println("Oh doch , die Angriffskraft von ${hero.name} sinkt etwas")
+            hero.damagePower -= 5
+        } else {
+            var rounds: Int = (2..4).random()
+            var damage = (((hero.standartHP / 100) * (3..7).random()) / 100 * damagePower).toInt()
+            if (damage > 10) {
+                damage = 10
+            }
+            println(
+                "$name hat ${hero.name} angespuckt, durch die letzten 500 Jahre mit nur wenig Zeit für Körperhygiene, und dem vielen verzweifelten Beischlaf mit Zombies \n" +
+                        "(Jaaaa, auch Hexen haben Bedürfnisse) hat sich ihre Sabber in pures Gift verwandelt."
+            )
+            println()
+            Thread.sleep(1500)
+            println("Für $rounds werden $damage Lebenspunkte abgezogen")
+            hero.healthPower -= damage
+            hero.witchPoisen = true
+            witchPoisenRounds = rounds - 1
+        }
     }
+
 
     fun powerToTheBadGuys(enemys: MutableList<Enemy>) {
 
         for (enemy in enemys) {
-            var bonusPower = (10..20).random().toInt()
-            enemy.damagePower += bonusPower
-            println("Die Hexe hat durch einen Zauber, ${enemy.name} $bonusPower Punkte für die Schadenskraft gegeben")
+            if (enemy.healthPower > 0) {
+                var bonusPower = (10..20).random().toInt()
+                enemy.damagePower += bonusPower
+                println("Die Hexe hat durch einen Zauber, ${enemy.name} $bonusPower Punkte für die Schadenskraft gegeben")
+                println()
+                var bonusHP = (15..35).random()
+                enemy.healthPower += bonusHP
+                println("Außerdem hat ${enemy.name} noch $bonusHP Lebenspunkte erhalten, ne wat ne geile Sau die Agnes .... So schaffen es die bösen vielleicht endlich mal")
+            }
         }
 
     }
@@ -148,7 +169,7 @@ class Witch(
 
     }
 
-    fun yoga(endboss: Endboss) {
+    fun yoga() {
         var plusHealth = healthPower / 100 * (5..9).random().toInt()
         var plusDamage = damagePower / 100
 

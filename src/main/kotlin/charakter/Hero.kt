@@ -20,6 +20,7 @@ open class Hero(override var name:String, override var healthPower: Int = 1000, 
     open var nanoAreUsed = false
     open var otherHeroHaveNanos = false
     open var endbossFluch = false
+    open var witchPoisen = false
 
 
     open fun printInfo() {

@@ -1,7 +1,7 @@
 import charakter.*
 
 import kotlin.NumberFormatException
-
+var witchPoisenRounds:Int = 0
 
 fun loadingPrint() {
     var loading = listOf<String>("-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-")
@@ -51,6 +51,29 @@ fun isCursed(hero: Hero) {
         println("Ich weiß, was ist das für ein Fluch , der Rücksicht auf deinen Gesundheitszustand nimmt ? Der Auftraggeber wollte es einfach so")
     }
 }
+
+fun isPoisoned(hero: Hero) {
+
+    if (hero.witchPoisen) {
+
+        while (witchPoisenRounds > 0) {
+            var damage = ((hero.standartHP / 100) * (3..7).random()).toInt()
+            if (damage > 10) {
+                damage = 10
+            }
+
+            println("Agnes Sabber hat ${hero.name} $damage durch vergiftung abgezogen.")
+            println()
+            Thread.sleep(1500)
+
+            hero.healthPower -= damage
+            witchPoisenRounds--
+        }
+    }
+}
+
+
+
 
 fun rootsOrCable(enemy: Enemy) {
 

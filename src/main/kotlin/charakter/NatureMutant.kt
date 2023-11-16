@@ -19,12 +19,8 @@ class NatureMutant(
 
     ) : Hero(name, healthPower, damagePower) {
 
-    override var isDead: Boolean =
-        if (healthPower <= 0) {
-            true
-        } else {
-            false
-        }
+    override var isDead: Boolean = false
+    override var witchPoisen = false
 
     override var nanoAreUsed = false
     override var otherHeroHaveNanos = false

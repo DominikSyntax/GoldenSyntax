@@ -21,11 +21,10 @@ var rootCounter: Int = 0
 var cableCounter: Int = 0
 fun main() {
 
-    //greeting()
+    greeting()
 
-    myTeam = mutableListOf(gaiaHero,tekkHero,jonnyHero)     //makeYouTeam(heroList)
-    var checkHeros = allGoodsAreDead(myTeam)
-    var checkBads = allBadsAreDead(enemies)
+    myTeam = makeYouTeam(heroList)
+
 
     while (!allBadsAreDead(enemies) && !allGoodsAreDead(myTeam)){
         chuckNorris(roundCounter)
@@ -46,7 +45,7 @@ fun main() {
 
         roundCounter++
     }
-    ending(myTeam, enemies)
+    endPrint(myTeam, enemies)
 
 }
 
