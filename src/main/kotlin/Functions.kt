@@ -56,12 +56,15 @@ fun rootsOrCable(enemy: Enemy) {
 
     if (enemy.roots) {
         if (enemy.healthPower > 0) {
-
-
             var abzug: Int = (7..25).random()
-            var damageMinus = (10..25).random()
+            abzug = (abzug / 100 * gaiaHero.damagePower).toInt()
+            if (abzug > 10) {
+                abzug = 10
+            }
+            var damageMinus = (1..5).random()
+            println()
 
-            println("Die Wurzeln haben ${enemy.name} fest im Giff, für mehrere Runden werden ihmLebenspu nkte abgezogen und die Angriffskraft sinkt etwas")
+            println("Die Wurzeln haben ${enemy.name} fest im Giff. Für $rootCounter Runden werden Lebenspunkte abgezogen und die Angriffskraft sinkt etwas")
             if (enemy.healthPower >= abzug) {
                 enemy.healthPower -= abzug
             } else {
@@ -72,38 +75,47 @@ fun rootsOrCable(enemy: Enemy) {
             }
         }
         rootCounter--
+        println()
     }
     if (enemy.cable) {
         var deduction: Int = (7..25).random()
+        deduction = (deduction / 100 * tekkHero.damagePower).toInt()
+
         var deductionTwo = (25..50).random()
+        deductionTwo = (deductionTwo / 100 * tekkHero.damagePower).toInt()
+
         var smallOrBig = listOf(deduction, deductionTwo)
         var abzug = smallOrBig.random()
+        if (enemy.healthPower > 0) {
 
-        if (enemy.healthPower > abzug) {
-            enemy.healthPower -= abzug
+            if (enemy.healthPower > abzug) {
+                enemy.healthPower -= abzug
 
-            if (abzug <= 10) {
-                println("Das war nicht mehr als ein prickeln auf ${enemy.name}'s Haut, du sollst ihn nicht zu Tode langweilen ")
-                println("$abzug Lebenspunkte abzug für ${enemy.name}")
-            } else if ((abzug > 11) && (abzug < 25)) {
-                println(
-                    "Schon besser, es kommt mir zwar noch immer so vor als hättest du lieber eine Beziehung zu ${enemy.name}, als seinen Kopf von seinem Körper zu trennen. \n" +
-                            "Aber Hey , jedem das seine. Wo die liebe hinfällt"
-                )
-                println("$abzug Lebenspunkte abzug für ${enemy.name}")
+                if (abzug <= 10) {
+                    println("Das war nicht mehr als ein prickeln auf ${enemy.name}'s Haut, du sollst ihn nicht zu Tode langweilen ")
+                    println("$abzug Lebenspunkte abzug für ${enemy.name}")
+                } else if ((abzug > 11) && (abzug < 25)) {
+                    println(
+                        "Schon besser, es kommt mir zwar noch immer so vor als hättest du lieber eine Beziehung zu ${enemy.name}, als seinen Kopf von seinem Körper zu trennen. \n" +
+                                "Aber Hey , jedem das seine. Wo die liebe hinfällt"
+                    )
+                    println("$abzug Lebenspunkte abzug für ${enemy.name}")
+                } else {
+                    println(".. oh, da war wohl ein Starkstromkabel mit dabei. ${enemy.name} hat $abzug Punkte Lebenskraft abgezogen")
+                }
             } else {
-                println(".. oh, da war wohl ein Starkstromkabel mit dabei. ${enemy.name} hat $abzug Punkte Lebenskraft abgezogen")
+                println(".. oh, das war wohl ein Starkstromkabel zuviel ${enemy.name} ist in Rauch aufgegangen. ")
+                enemy.damagePower = 0
+                enemy.isDead
             }
+        } else
+            println(
+                "Einem Haufen undefinierbarer Matsche machen die Stromschläge fast nix aus, hier und da zuckt noch ein Muskel aufgrund der Spannung.\n" +
+                        "Aber keine Sorge, von Wackelpudding, mit Knochen- und Hirnstückchen auf Blut und Kotsoße geht keine Gefahr aus, auser auszurutschen oder sich mit komischen Dingen anzustecken.  "
+            )
 
-        } else {
-            println(".. oh, das war wohl ein Starkstromkabel zuviel ${enemy.name} ist in Rauch aufgegangen. ")
-            enemy.damagePower = 0
-            enemy.isDead
-
-        }
-        cableCounter--
     }
-
+    cableCounter--
     newLine()
 }
 
@@ -167,6 +179,7 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
             userChoise = readln().toInt()
         } catch (e: NumberFormatException) {
             println("Wat is los mit dir Einstein? Ich hatte gesagt Zahlen! Das sind die Dinger die in $RED_TEXT Rot , hinter dem Minus auf deinem Konto stehen $STANDARTCOLOR.")
+            println()
             continue
         }
 
@@ -184,39 +197,50 @@ fun makeYouTeam(heroList: MutableList<Hero>): MutableList<Hero> {
                         
             """
             )
+            println()
         }
 
         if (userChoise < 1 || userChoise > 4) {
+            println()
             println(
                 "Okay, du hast schon einmal verstanden, was eine Zahl ist. Schafft nicht jeder auf anhieb :( \n" +
                         "Aber jetzt genug des Lobes, leider kommt die Zahl , die du wolltest, gar nicht in der Liste vor. \n" +
                         "Ich glaub an dich, schnapp dir alle deine $userChoise Imaginären Freunde (oder wo du diese Zahl auch her hast) \n" +
                         "und schaut euch, vielleicht zusammen die Liste nochmal an und triff die richtige Wahl."
             )
+            println()
         } else {
             var userHero: Hero = heroList[userChoise - 1]
+            println()
             myTeam.add(userHero)
+            println()
         }
 
 
         if (myTeam.size == 1) {
+            println()
             println("Einen hast du, deine Wahl ist auf ${myTeam.last().name} gefallen, es fehlen noch 2")
+            println()
         }
         if (myTeam.size == 2) {
+            println()
             println(
                 "Es ist unglaublich Bob, ich muss mir an den Kopf fassen, wir haben tatsächlich schon Zwei Helden. \n" +
                         "Du bist auf jeden Fall jetzt schon einer der besten Spieler ! Dein Neuzugang heißt ${myTeam.last().name}"
             )
+            println()
         }
         preChoise = userChoise
 
     }
+    println()
     println(" Geschafft! Dein Team besteht aus: ")
     for (hero in myTeam) {
         print("${hero.name}, ")
     }
     var myTeamList = myTeam.toMutableList()
     loadingPrint()
+
     return myTeamList
 
 }
@@ -267,16 +291,22 @@ fun evilChoice(enemies: MutableList<Enemy>): Enemy {
 
 
     if (enemies.size < 2) {
+        println()
         println("Aktuell gibt es nur ${enemies[0].name}, ich nehm dir die schwere Wahl ab und richte deinen Angiff mal gegen ihn. ")
+        println()
         chosenEnemy = enemies.first()
         return chosenEnemy
     } else {
+        println()
         println("Für diese Aktion, musst du dir einen Gegner aussuchen")
+        println()
     }
 
     for (enemy in enemies) {
         if (enemy.isDead) {
-            println("${enemy.name} ist bereits tot, ich würde deine Kraft nicht für dieses Kunstwerk aus $WHITE_BACKGROUND$RED_TEXT Blut, Knochen, Gedärmen und ein wirklich ungewöhnlich kleinen Teil Hirnmasse $STANDARTCOLOR verschwenden ")
+            println("Mit der $enemyInt wählst du ${enemy.name}. Allerdings ist ${enemy.name} bereits tot, du kannst natürlich solange du möchtest das Kunstwerk aus \n" +
+                    " $WHITE_BACKGROUND$RED_TEXT Blut, Knochen, Gedärmen und ein wirklich ungewöhnlich kleinen Teil Hirnmasse $STANDARTCOLOR weiter bearbeiten aber versuch doch \n" +
+                    "erstmal die anderen vom Waffenstillstand zu überzeugen oder verwandel sie auch in ein wunderschönes Kunstwerk  ")
         } else {
             println("Gib die $enemyInt für ${enemy.name} ein")
             enemyInt++
@@ -309,7 +339,8 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
     println("Runde : $counter")
     println()
 
-    println("$BLUE_BACKGROUND Deine Helden sind dran $STANDARTCOLOR")
+    println("$GREEN_TEXT Deine Helden sind dran $STANDARTCOLOR")
+    println()
 
     for (hero in heros) {
         if (hero.healthPower > 0) {
@@ -364,7 +395,7 @@ fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter:
             newLine()
             rootsOrCable(enemy)
 
-            newLine()
+            println()
             println("$RED_TEXT${enemy.name}$STANDARTCOLOR ist am Zug")
 
             println()
@@ -374,6 +405,7 @@ fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter:
         }
 
     }
+    loadingPrint()
 }
 
 
@@ -387,6 +419,7 @@ fun allGoodsAreDead(heros: MutableList<Hero>): Boolean {
             hero.isDead = true
         }
     }
+
     if (heros.all { it.isDead }) {
         allDead = true
     }
@@ -397,11 +430,13 @@ fun allGoodsAreDead(heros: MutableList<Hero>): Boolean {
 
 fun allBadsAreDead(enemies: MutableList<Enemy>): Boolean {
     var allEnemyDead = false
+
     for (e in enemies) {
         if (e.isDead || e.healthPower <= 0) {
             e.isDead = true
         }
     }
+
     if (enemies.all { it.isDead }) {
         allEnemyDead = true
     }
@@ -415,7 +450,7 @@ fun greeting() {
 
     println(" Herzlich willkommen bei ...")
     println(
-        """ $WHITE_BACKGROUND$BLACK_TEXT
+        """ $YELLOW_TEXT
  ____            ___       __                           ____                    __                      
 /\  _`\         /\_ \      /\ \                       /\  _`\                 /\ \__                   
 \ \ \L\_\     ___ \//\ \     \_\ \     __    ___     \ \,\L\_\   __  __    ___\ \ ,_\      __     __  _  
@@ -437,7 +472,7 @@ fun greeting() {
 
 
 /**
- * Balken zur Grafischen darstellung der Lebensenergie
+ * Balken zur Grafischen darstellung der Lebensenergie einer Person
  * @param person = egal ob gut oder böse
  */
 fun displayHp(person: OverCharakter) {
@@ -503,7 +538,7 @@ fun chuckNorris(round: Int) {
 
 }
 
-fun ending(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
+fun endPrint(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
     var spannung = listOf<String>(".", ".", ".", ".", ".", ".", ".", ".", ".",)
     fun useSpannung(s: List<String>) {
         for (point in s) {
@@ -603,6 +638,20 @@ fun ending(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
         Die bösen haben endlich mal gewonnen, das einzige Happy End das ich mag , ist ein romantisches Date mit mir, meiner Hand und einem Taschentuch
         """
         )
+        Thread.sleep(3500)
+      println("""
+          Oh Nooooo ${useSpannung(spannung)}
+          
+          $MAGENTA_TEXT
+               ___  _                   _          __                     _      
+              / __\| |__   _   _   ___ | | __   /\ \ \  ___   _ __  _ __ (_) ___ 
+             / /   | '_ \ | | | | / __|| |/ /  /  \/ / / _ \ | '__|| '__|| |/ __|
+            / /___ | | | || |_| || (__ |   <  / /\  / | (_) || |   | |   | |\__ \
+            \____/ |_| |_| \__,_| \___||_|\_\ \_\ \/   \___/ |_|   |_|   |_||___/
+            $STANDARTCOLOR
+          """.trimIndent())
+        println()
+        println("Jetzt sind alle tot, einfach aus Respekt, Chuck Norris hat gewonnen, kurz nachdem er gegen Gott 4 Gewinnt in nur 2 Zügen gewonnen hatte")
     }
 }
 
