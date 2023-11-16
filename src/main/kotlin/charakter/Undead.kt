@@ -6,17 +6,11 @@ class Undead(name: String, override var healthPower: Int=200, override var damag
     Enemy(name,healthPower,damagePower) {
 
 
-    override var isDead: Boolean =
-        if (healthPower <= 0) {
-            true
-        } else {
-            false
-        }
-
+    override var isDead: Boolean = false
     override var roots:Boolean=false
     override var cable: Boolean =false
-
     override var standartHP: Int = healthPower
+
     override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>) {
         var dice = listOf(1,2).random()
         var randomHero = heros.random()

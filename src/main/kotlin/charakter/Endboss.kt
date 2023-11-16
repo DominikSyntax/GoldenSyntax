@@ -7,13 +7,7 @@ import charakter.*
 open class Endboss(override var name: String = "Dajjal", override var healthPower: Int = 3000, override var damagePower: Int = 100):Enemy(name,healthPower,damagePower) {
 
 
-    override var isDead: Boolean =
-        if (healthPower <= 0) {
-            true
-        } else {
-            false
-        }
-
+    override var isDead: Boolean = false
     open var helperIsUsed: Boolean = false
     open var armeIsUsed: Boolean = false
     final override var standartHP: Int = healthPower
@@ -24,19 +18,20 @@ open class Endboss(override var name: String = "Dajjal", override var healthPowe
 
     override fun fight(enemies: MutableList<Enemy>, heros: MutableList<Hero>){
         val list = mutableListOf(1, 2, 3, 4, 5, 6)
+        if (healthPower>0) {
+            var dice = list.random()
+            var randomHero = heros.random()
 
-
-        var dice = list.random()
-        var randomHero = heros.random()
-
-        when (dice) {
-            1 -> sandStorm(heros)
-            2 -> selfAttack(randomHero)
-            3 -> underBoss(enemies)
-            4 -> armeOfDead(enemies)
-            5 -> strongDamage(enemies.random())
-            6 -> shield(enemies.random())
-        }
+            when (dice) {
+                1 -> sandStorm(heros)
+                2 -> selfAttack(randomHero)
+                3 -> underBoss(enemies)
+                4 -> armeOfDead(enemies)
+                5 -> strongDamage(enemies.random())
+                6 -> shield(enemies.random())
+            }
+        }else
+            println("Schau mal, hat sich die Leiche von $name nochmal bewegt? Oder dahinten, ich glaube die Stückchen gehören auch noch zu $name ")
 
     }
 
@@ -49,6 +44,7 @@ open class Endboss(override var name: String = "Dajjal", override var healthPowe
         println("$name hat einen Sandsturm ausgelöst")
         for (hero in heros) {
             var damage = (50..100).random()
+            damage = ((damage/100)*damagePower).toInt()
             println("${hero.name} hat durch den Sandsturm $damage Schaden erlitten")
             hero.healthPower -= damage
         }
