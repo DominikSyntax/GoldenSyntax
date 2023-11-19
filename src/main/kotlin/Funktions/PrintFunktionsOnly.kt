@@ -6,7 +6,31 @@ import charakter.OverCharakter
 import myTeam
 
 fun loadingPrint() {
-    var loading = listOf<String>("-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-")
+    var loading = listOf<String>(
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+    )
 
     var colorChoise = (0..4).random()
 
@@ -58,7 +82,6 @@ fun greeting() {
 }
 
 
-
 fun displayCondition(person: OverCharakter) {
     if (person.healthPower < 1) {
         person.healthPower = 0
@@ -89,9 +112,16 @@ fun displayCondition(person: OverCharakter) {
     var hpInfo = "(${person.healthPower} / ${person.standartHP})"
 
     // DP Darstellung
+
+    val currentDP = person.damagePower // Erstellen Sie eine separate Variable, um den aktuellen DP zu speichern
+
+    if (currentDP < 1) {
+        person.damagePower = 0 // Aktualisieren Sie die tatsächliche Eigenschaft damagePower, falls erforderlich
+    }
+
     val dpBarLength = 20.0f
-    val dpPercentage = ((100.0f / person.standartDP) * person.damagePower)
-    val currentDpBarLength = ((dpPercentage * dpBarLength) / 100.0f).coerceIn(0.0f, dpBarLength)
+    val dpPercentage = (100.0f / person.standartDP) * currentDP
+    val currentDpBarLength = ((dpPercentage * dpBarLength) / 10.0f).coerceIn(0.0f, dpBarLength)
     val maxDpBarLength = dpBarLength - currentDpBarLength
 
     var currentDpColor =
@@ -107,8 +137,12 @@ fun displayCondition(person: OverCharakter) {
     val maxDPBar = " ".repeat(maxDpBarLength.toInt())
 
 
-    var dpInfo = "(${person.healthPower} / ${person.standartHP})"
-    println("""
+    var dpInfo = "(${currentDP} / ${person.standartDP})"
+
+
+
+    println(
+        """
         - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         ${person.name}'s \n" +
                 Lebensenergie : $currentHpColor$currentHPBar$resetColor$maxHpColor$maxHPBar$resetColor $resetColor  $hpInfo
@@ -116,25 +150,20 @@ fun displayCondition(person: OverCharakter) {
                 Schlagkraft:    $currentDpColor$currentDPBar$resetColor$maxDpColor$maxDPBar$resetColor $resetColor  $dpInfo
         - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    """)
+    """
+    )
 }
-
-
-
-
-
-
-
 
 
 fun chuckNorris(round: Int) {
     if (round == 4) {
         println("$BLUE_TEXT Chuck Norris $STANDARTCOLOR hat von der Bedrohung erfahren.... Die Helden und auch die Bösen fangen an sich zu beeilen, keiner möchte das er wütend wird.")
     } else if (round == 7) {
-        println("Es gibt nur eine Theorie darüber, was passiert wenn Chuck Norris böse wird, \n " +
-                "Diese Theorie besagt das  $BLUE_TEXT Chuck Norris $STANDARTCOLOR böse war, weil Gott versucht hat bei 'MENSCH ÄRGER DICH NICHT', zu schummeln. \n" +
-                "Chuck hat mit der flachen Hand auf den Tisch gehauen, das nennen wir heutzutage:\n" +
-                "$RED_BACKGROUND$BLACK_TEXT Die URKNALL THEORIE $STANDARTCOLOR ..."
+        println(
+            "Es gibt nur eine Theorie darüber, was passiert wenn Chuck Norris böse wird, \n " +
+                    "Diese Theorie besagt das  $BLUE_TEXT Chuck Norris $STANDARTCOLOR böse war, weil Gott versucht hat bei 'MENSCH ÄRGER DICH NICHT', zu schummeln. \n" +
+                    "Chuck hat mit der flachen Hand auf den Tisch gehauen, das nennen wir heutzutage:\n" +
+                    "$RED_BACKGROUND$BLACK_TEXT Die URKNALL THEORIE $STANDARTCOLOR ..."
         )
     } else if (round == 10) {
         println("$BLUE_TEXT Chuck Norris $STANDARTCOLOR hat entschieden, sich erstmal raus zu halten. Als er das letzte mal jemanden angefeuert hat ist der aus respekt in Flammen aufgegangen")
@@ -164,7 +193,7 @@ fun chuckNorris(round: Int) {
 }
 
 fun endPrint(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
-    var spannung = listOf<String>(".", ".", ".", ".", ".", ".", ".", ".", ".",)
+    var spannung = listOf<String>(".", ".", ".", ".", ".", ".", ".", ".", ".")
     fun useSpannung(s: List<String>) {
         for (point in s) {
             print(point)
@@ -265,7 +294,8 @@ fun endPrint(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
         """
         )
         Thread.sleep(3500)
-        println("""
+        println(
+            """
           Oh Nooooo ${useSpannung(spannung)}
           
           $MAGENTA_TEXT
@@ -275,7 +305,8 @@ fun endPrint(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
             / /___ | | | || |_| || (__ |   <  / /\  / | (_) || |   | |   | |\__ \
             \____/ |_| |_| \__,_| \___||_|\_\ \_\ \/   \___/ |_|   |_|   |_||___/
             $STANDARTCOLOR
-          """.trimIndent())
+          """.trimIndent()
+        )
         println()
         println("Jetzt sind alle tot, einfach aus Respekt, Chuck Norris hat gewonnen, kurz nachdem er gegen Gott 4 Gewinnt in nur 2 Zügen gewonnen hatte")
     }

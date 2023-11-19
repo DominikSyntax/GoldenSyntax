@@ -251,6 +251,9 @@ fun roundForGoods(bag: Bag, heros: MutableList<Hero>, enemies: MutableList<Enemy
                 return
             }
             hero.attack(bag, userChoiceFun, enemies, heros)
+            for (enemy in enemies){
+                displayCondition(enemy)
+            }
             newLine()
 
         }
@@ -282,6 +285,9 @@ fun roundForBads(heros: MutableList<Hero>, enemies: MutableList<Enemy>, counter:
 
             println()
             enemy.fight(enemies, heros)
+            for (hero in heros){
+                displayCondition(hero)
+            }
 
             newLine()
         }

@@ -35,15 +35,14 @@ fun main() {
         if (allBadsAreDead(enemies)){
             break
         }
-        showAllHP(myTeam,enemies)
+
 
 
         roundForBads(myTeam, enemies, roundCounter)
-        if (allGoodsAreDead(myTeam)){
+        if (allGoodsAreDead(myTeam)) {
             break
-
         }
-        showAllHP(myTeam,enemies)
+
 
         roundCounter++
     }

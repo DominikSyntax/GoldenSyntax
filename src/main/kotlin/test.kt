@@ -3,34 +3,30 @@ import charakter.*
 
 
 fun main() {
+    var enemy = Endboss("Spinner")
+    var herohero :GunNut = GunNut("Trottel")
 
-    var myboss:Endboss = Endboss("Dominik")
-
-
-    myboss.healthPower -= 55
-    myboss.damagePower -= 10
-
-    displayHp(myboss)
+    herohero.bazooka(enemy)
+    newLine()
+    displayCondition(enemy)
 
 
+    herohero.bazooka(enemy)
+    newLine()
+    displayCondition(enemy)
 
-    myboss.healthPower -= 10
-    myboss.damagePower -= 40
+    newLine()
+    herohero.bazooka(enemy)
+    newLine()
+    displayCondition(enemy)
 
-    displayHp(myboss)
+    herohero.bazooka(enemy)
+    newLine()
 
+    herohero.bazooka(enemy)
+    newLine()
 
-    myboss.healthPower -= 55
-    myboss.healthPower -= 55
-    myboss.healthPower -= 55
-
-    displayHp(myboss)
-
-
-
-
-
-
+    displayCondition(enemy)
 }
 
 
