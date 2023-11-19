@@ -85,9 +85,7 @@ fun displayHp(person: OverCharakter) {
     val resetColor = STANDARTCOLOR
 
     var hpInfo = "(${person.healthPower} / ${person.standartHP})"
-    println(
-        "${person.name}'s Lebensenergie : $currentHpColor$currentHPBar$resetColor$maxHpColor$maxHPBar$resetColor $resetColor \n $hpInfo \n"
-    )
+    println("${person.name}'s Lebenskraft: $currentHpColor$currentHPBar$resetColor$maxHpColor$maxHPBar$resetColor $resetColor \n $hpInfo")
 }
 
 fun displayDp(person: OverCharakter) {
@@ -95,14 +93,14 @@ fun displayDp(person: OverCharakter) {
         person.damagePower = 0
 
     val dpBarLength = 20.0f
-    val dpPercentage = ((100.0f / person.standartDP) * person.damagePower)
-    val currentDpBarLength = ((dpPercentage * dpBarLength) / 100.0f).coerceIn(0.0f, dpBarLength)
+    val dpPercentage = ((10.0f / person.standartDP) * person.damagePower)
+    val currentDpBarLength = ((dpPercentage * dpBarLength) / 10.0f).coerceIn(0.0f, dpBarLength)
     val maxDpBarLength = dpBarLength - currentDpBarLength
 
     var currentDpColor =
-        if (dpPercentage > 60.0f) {
+        if (dpPercentage > 6.0f) {
             BLUE_BACKGROUND
-        } else if (dpPercentage in 30.0f..60.0f) {
+        } else if (dpPercentage in 3.0f..6.0f) {
             YELLOW_BACKGROUND
         } else
             RED_BACKGROUND
@@ -113,9 +111,7 @@ fun displayDp(person: OverCharakter) {
     val resetColor = STANDARTCOLOR
 
     var dpInfo = "(${person.healthPower} / ${person.standartHP})"
-    println(
-        "${person.name}'s Lebensenergie : $currentDpColor$currentDPBar$resetColor$maxDpColor$maxDPBar$resetColor $resetColor \n $dpInfo \n"
-    )
+    println("Schlagkraft : $currentDpColor$currentDPBar$resetColor$maxDpColor$maxDPBar$resetColor $resetColor \n $dpInfo")
 }
 
 fun chuckNorris(round: Int) {
