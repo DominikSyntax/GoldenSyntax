@@ -89,18 +89,21 @@ fun displayHp(person: OverCharakter) {
 }
 
 fun displayDp(person: OverCharakter) {
-    if (person.damagePower < 1)
-        person.damagePower = 0
+    val currentDP = person.damagePower // Erstellen Sie eine separate Variable, um den aktuellen DP zu speichern
+
+    if (currentDP < 1) {
+        person.damagePower = 0 // Aktualisieren Sie die tatsächliche Eigenschaft damagePower, falls erforderlich
+    }
 
     val dpBarLength = 20.0f
-    val dpPercentage = ((10.0f / person.standartDP) * person.damagePower)
+    val dpPercentage = (100.0f / person.standartDP) * currentDP
     val currentDpBarLength = ((dpPercentage * dpBarLength) / 10.0f).coerceIn(0.0f, dpBarLength)
     val maxDpBarLength = dpBarLength - currentDpBarLength
 
     var currentDpColor =
-        if (dpPercentage > 6.0f) {
+        if (dpPercentage > 60.0f) {
             BLUE_BACKGROUND
-        } else if (dpPercentage in 3.0f..6.0f) {
+        } else if (dpPercentage in 30.0f..60.0f) {
             YELLOW_BACKGROUND
         } else
             RED_BACKGROUND
@@ -110,9 +113,10 @@ fun displayDp(person: OverCharakter) {
     val maxDPBar = " ".repeat(maxDpBarLength.toInt())
     val resetColor = STANDARTCOLOR
 
-    var dpInfo = "(${person.healthPower} / ${person.standartHP})"
+    var dpInfo = "(${currentDP} / ${person.standartDP})"
     println("Schlagkraft : $currentDpColor$currentDPBar$resetColor$maxDpColor$maxDPBar$resetColor $resetColor \n $dpInfo")
 }
+
 
 fun chuckNorris(round: Int) {
     if (round == 4) {
