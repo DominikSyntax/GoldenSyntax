@@ -58,14 +58,17 @@ fun greeting() {
 }
 
 
-/**
- * Balken zur Grafischen darstellung der Lebensenergie einer Person
- * @param person = egal ob gut oder böse
- */
-fun displayHp(person: OverCharakter) {
-    if (person.healthPower < 1)
-        person.healthPower = 0
 
+fun displayCondition(person: OverCharakter) {
+    if (person.healthPower < 1) {
+        person.healthPower = 0
+    }
+    if (person.damagePower < 1) {
+        person.damagePower = 0
+    }
+    val resetColor = STANDARTCOLOR
+
+    // HP Darstellung
     val hpBarLength = 20.0f
     val hpPercentage = ((100.0f / person.standartHP) * person.healthPower)
     val currentHpBarLength = ((hpPercentage * hpBarLength) / 100.0f).coerceIn(0.0f, hpBarLength)
@@ -82,22 +85,13 @@ fun displayHp(person: OverCharakter) {
     val maxHpColor = WHITE_BACKGROUND
     val currentHPBar = " ".repeat(currentHpBarLength.toInt())
     val maxHPBar = " ".repeat(maxHpBarLength.toInt())
-    val resetColor = STANDARTCOLOR
 
     var hpInfo = "(${person.healthPower} / ${person.standartHP})"
-    println("${person.name}'s Lebenskraft: $currentHpColor$currentHPBar$resetColor$maxHpColor$maxHPBar$resetColor $resetColor \n $hpInfo")
-}
 
-fun displayDp(person: OverCharakter) {
-    val currentDP = person.damagePower // Erstellen Sie eine separate Variable, um den aktuellen DP zu speichern
-
-    if (currentDP < 1) {
-        person.damagePower = 0 // Aktualisieren Sie die tatsächliche Eigenschaft damagePower, falls erforderlich
-    }
-
+    // DP Darstellung
     val dpBarLength = 20.0f
-    val dpPercentage = (100.0f / person.standartDP) * currentDP
-    val currentDpBarLength = ((dpPercentage * dpBarLength) / 10.0f).coerceIn(0.0f, dpBarLength)
+    val dpPercentage = ((100.0f / person.standartDP) * person.damagePower)
+    val currentDpBarLength = ((dpPercentage * dpBarLength) / 100.0f).coerceIn(0.0f, dpBarLength)
     val maxDpBarLength = dpBarLength - currentDpBarLength
 
     var currentDpColor =
@@ -111,11 +105,26 @@ fun displayDp(person: OverCharakter) {
     val maxDpColor = WHITE_BACKGROUND
     val currentDPBar = " ".repeat(currentDpBarLength.toInt())
     val maxDPBar = " ".repeat(maxDpBarLength.toInt())
-    val resetColor = STANDARTCOLOR
 
-    var dpInfo = "(${currentDP} / ${person.standartDP})"
-    println("Schlagkraft : $currentDpColor$currentDPBar$resetColor$maxDpColor$maxDPBar$resetColor $resetColor \n $dpInfo")
+
+    var dpInfo = "(${person.healthPower} / ${person.standartHP})"
+    println("""
+        - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        ${person.name}'s \n" +
+                Lebensenergie : $currentHpColor$currentHPBar$resetColor$maxHpColor$maxHPBar$resetColor $resetColor  $hpInfo
+                 
+                Schlagkraft:    $currentDpColor$currentDPBar$resetColor$maxDpColor$maxDPBar$resetColor $resetColor  $dpInfo
+        - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    """)
 }
+
+
+
+
+
+
+
 
 
 fun chuckNorris(round: Int) {
@@ -275,12 +284,12 @@ fun endPrint(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
 
 fun showAllHP(myTeam: MutableList<Hero>, enemies: MutableList<Enemy>) {
     for (hero in myTeam) {
-        displayHp(hero)
-        displayDp(hero)
+        displayCondition(hero)
+
     }
     for (enemy in enemies) {
-        displayHp(enemy)
-        displayDp(enemy)
+        displayCondition(enemy)
+
     }
 }
 

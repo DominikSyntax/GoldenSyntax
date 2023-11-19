@@ -5,18 +5,30 @@ import charakter.*
 fun main() {
 
     var myboss:Endboss = Endboss("Dominik")
-    displayHp(myboss)
-    displayDp(myboss)
+
 
     myboss.healthPower -= 55
     myboss.damagePower -= 10
+
     displayHp(myboss)
-    displayDp(myboss)
+
+
+
+    myboss.healthPower -= 10
+    myboss.damagePower -= 40
+
+    displayHp(myboss)
+
 
     myboss.healthPower -= 55
-    myboss.damagePower -= 10
+    myboss.healthPower -= 55
+    myboss.healthPower -= 55
+
     displayHp(myboss)
-    displayDp(myboss)
+
+
+
+
 
 
 }
