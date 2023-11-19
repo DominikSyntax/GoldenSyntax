@@ -18,6 +18,7 @@ class ElectricMutant(
     override var otherHeroHaveNanos = false
     override var endbossFluch: Boolean = false
     override var standartHP: Int = healthPower
+    override val standartDP: Int = damagePower
 
     override var isDead: Boolean = false
     override var witchPoisen = false

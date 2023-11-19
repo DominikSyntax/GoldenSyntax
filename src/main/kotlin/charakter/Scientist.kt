@@ -17,8 +17,9 @@ class Scientist(
     override var otherHeroHaveNanos = false
     override var endbossFluch: Boolean = false
     override var standartHP: Int = healthPower
-    var rickIsUsed = false
+    override val standartDP: Int = damagePower
     override var witchPoisen = false
+    var rickIsUsed = false
 
     override fun printInfo() {
         println(

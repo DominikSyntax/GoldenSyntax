@@ -25,6 +25,7 @@ class NatureMutant(
     override var otherHeroHaveNanos = false
     override var endbossFluch: Boolean = false
     override var standartHP: Int = healthPower
+    override val standartDP: Int = damagePower
 
     override fun printInfo() {
         println(

@@ -17,6 +17,7 @@ class GunNut(
     override var endbossFluch: Boolean = false
     override var witchPoisen = false
     override var standartHP: Int = healthPower
+    override val standartDP: Int = damagePower
 
 
 

@@ -10,7 +10,8 @@ open class OverCharakter(open var name: String, open var healthPower: Int, open 
         }
 
 
-    open var standartHP = healthPower
+    open val standartHP = healthPower
+    open val standartDP = damagePower
 
 
 

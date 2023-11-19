@@ -9,6 +9,7 @@ class Witch(
 ) : Enemy(name, healthPower, damagePower) {
 
     override var standartHP: Int = healthPower
+    override val standartDP: Int = damagePower
     override var roots:Boolean=false
     override var cable: Boolean =false
     override var isDead: Boolean = false

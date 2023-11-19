@@ -5,6 +5,7 @@ open class Enemy(override var name: String, override var healthPower: Int = 2000
 
 
     override var standartHP: Int = healthPower
+    override val standartDP: Int = damagePower
     override var isDead: Boolean = false
 
     open var endbossFluch = false

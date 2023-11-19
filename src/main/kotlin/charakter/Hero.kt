@@ -7,14 +7,12 @@ import Funktions.evilChoice
 open class Hero(override var name:String, override var healthPower: Int = 1000, override var damagePower: Int = 100):OverCharakter(name, healthPower, damagePower) {
 
 
-        override var isDead: Boolean =
-        if (healthPower <= 0) {
-            true
-        } else {
-            false
-        }
+        override var isDead: Boolean = false
+
 
     override var standartHP = healthPower
+    override val standartDP: Int = damagePower
+
     open var usedTankChocolade = false
     open var nanoAreUsed = false
     open var otherHeroHaveNanos = false

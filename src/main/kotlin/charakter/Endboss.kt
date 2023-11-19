@@ -4,14 +4,15 @@ import Enemy
 import charakter.*
 
 
-open class Endboss(override var name: String = "Dajjal", override var healthPower: Int = 3000, override var damagePower: Int = 100):Enemy(name,healthPower,damagePower) {
+final class Endboss(override var name: String = "Dajjal", override var healthPower: Int = 3000, override var damagePower: Int = 100):Enemy(name,healthPower,damagePower) {
 
 
     override var isDead: Boolean = false
     open var helperIsUsed: Boolean = false
     open var armeIsUsed: Boolean = false
-    final override var standartHP: Int = healthPower
-    override var roots=false
+    override var standartHP: Int = healthPower
+    override val standartDP: Int = damagePower
+    override var roots = false
     override var cable: Boolean =false
 
 
@@ -69,6 +70,7 @@ open class Endboss(override var name: String = "Dajjal", override var healthPowe
      */
     fun underBoss(list: MutableList<Enemy>){
         val witch: Witch = Witch("Agnes Waterhouse")
+
         if (!helperIsUsed) {
             list += witch
             helperIsUsed = true

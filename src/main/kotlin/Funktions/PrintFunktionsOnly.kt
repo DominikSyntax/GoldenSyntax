@@ -90,6 +90,34 @@ fun displayHp(person: OverCharakter) {
     )
 }
 
+fun displayDp(person: OverCharakter) {
+    if (person.damagePower < 1)
+        person.damagePower = 0
+
+    val dpBarLength = 20.0f
+    val dpPercentage = ((100.0f / person.standartDP) * person.damagePower)
+    val currentDpBarLength = ((dpPercentage * dpBarLength) / 100.0f).coerceIn(0.0f, dpBarLength)
+    val maxDpBarLength = dpBarLength - currentDpBarLength
+
+    var currentDpColor =
+        if (dpPercentage > 60.0f) {
+            BLUE_BACKGROUND
+        } else if (dpPercentage in 30.0f..60.0f) {
+            YELLOW_BACKGROUND
+        } else
+            RED_BACKGROUND
+
+    val maxDpColor = WHITE_BACKGROUND
+    val currentDPBar = " ".repeat(currentDpBarLength.toInt())
+    val maxDPBar = " ".repeat(maxDpBarLength.toInt())
+    val resetColor = STANDARTCOLOR
+
+    var dpInfo = "(${person.healthPower} / ${person.standartHP})"
+    println(
+        "${person.name}'s Lebensenergie : $currentDpColor$currentDPBar$resetColor$maxDpColor$maxDPBar$resetColor $resetColor \n $dpInfo \n"
+    )
+}
+
 fun chuckNorris(round: Int) {
     if (round == 4) {
         println("$BLUE_TEXT Chuck Norris $STANDARTCOLOR hat von der Bedrohung erfahren.... Die Helden und auch die Bösen fangen an sich zu beeilen, keiner möchte das er wütend wird.")
@@ -248,9 +276,11 @@ fun endPrint(heros: MutableList<Hero>, enemies: MutableList<Enemy>) {
 fun showAllHP(myTeam: MutableList<Hero>, enemies: MutableList<Enemy>) {
     for (hero in myTeam) {
         displayHp(hero)
+        displayDp(hero)
     }
     for (enemy in enemies) {
         displayHp(enemy)
+        displayDp(enemy)
     }
 }
 
