@@ -61,21 +61,20 @@ fun greeting() {
 
     println(" Herzlich willkommen bei ...")
     println(
-        """ $YELLOW_TEXT
- ____            ___       __                           ____                    __                      
-/\  _`\         /\_ \      /\ \                       /\  _`\                 /\ \__                   
-\ \ \L\_\     ___ \//\ \     \_\ \     __    ___     \ \,\L\_\   __  __    ___\ \ ,_\      __     __  _  
- \ \ \L_L    / __`\ \ \ \    /'_` \   /'__`\ /' _ `\   \/_\__ \  /\ \/\ \  /' _ `\ \ \/  /'__`\  /\ \/'\ 
-  \ \ \/, \ /\ \L\ \ \_\ \_ /\ \L\ \ /\  __/ /\ \/\ \    /\ \L\ \  \ \_\ \ /\ \/\ \ \ \_/\ \L\.\_\/>  </ 
-   \ \____/ \ \____// \____\  \___,_\  \____ \ \_\ \_\   \ `\____\ /`____ \  \_\ \_\ \__\ \__/.\_\/\_/\_\
-    \/___/   \/___/  \/____/ \/__,_ / \/____/ \/_/\/_/    \/_____/ `/___/>  \/_/\/_/\/__/\/__/\/_/\//\/_/
-                                                                  /\___/                            
-                                                                   \/__/  
-                                                                                         $STANDARTCOLOR
-    Golden Syntax...by Dominik Weber v 1.1
-      * v1.2 coming soon * 
+        """ 
+$YELLOW_BACKGROUND$BLACK_TEXT      ________ ________  .____     ________  ___________ _______       ______________.___._______________________  ____  ___       $STANDARTCOLOR
+$YELLOW_BACKGROUND$BLACK_TEXT     /  _____/ \_____  \ |    |    \______ \ \_   _____/ \      \     /   _____/\__  |   |\      \__    ___/  _  \ \   \/  /       $STANDARTCOLOR
+$YELLOW_BACKGROUND$BLACK_TEXT    /   \  ___  /   |   \|    |     |    |  \ |    __)_  /   |   \    \_____  \  /   |   |/   |   \|    | /  /_\  \ \     /        $STANDARTCOLOR 
+$YELLOW_BACKGROUND$BLACK_TEXT    \    \_\  \/    |    \    |___  |    `   \|        \/    |    \   /        \ \____   /    |    \    |/    |    \/     \        $STANDARTCOLOR
+$YELLOW_BACKGROUND$BLACK_TEXT     \______  /\_______  /_______ \/_______  /_______  /\____|__  /  /_______  / / ______\____|__  /____|\____|__  /___/\  \       $STANDARTCOLOR
+$YELLOW_BACKGROUND$BLACK_TEXT            \/         \/        \/        \/        \/         \/           \/  \/              \/              \/      \_/       $STANDARTCOLOR
+
+                                                                                            Golden Syntax 
+                                                                                                       by Dominik Weber v 1.1 / 2023
+                                                                                            $RED_TEXT  * v1.2 coming soon ... $STANDARTCOLOR 
       
-      * = (das heißt übersetzt ... es wird noch besser)
+      
+* = (das heißt für dich in einfacher Sprache: es wird ${BRIGHT_CYAN_TEXT}NOCH$STANDARTCOLOR besser)
     """
     )
     loadingPrint()

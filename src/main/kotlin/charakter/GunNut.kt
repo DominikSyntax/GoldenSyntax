@@ -195,19 +195,21 @@ class GunNut(
         println("$name hat Luftunterstützung angefordert....")
         var damage: Int
         for (enemy in enemies) {
-            damage = ((enemy.standartHP / 100) * (9..35).random() / 100 * damagePower).toInt()
+            damage = (enemy.standartHP / 100) * (9..35).random()
+            damage = (damage/ 100 * damagePower).toInt()
+
             if (damage >= enemy.healthPower) {
                 println("Der Luftschlag war zuviel für ${enemy.name}")
                 println()
                 Thread.sleep(1500)
                 enemy.healthPower = 0
                 enemy.isDead = true
-            } else {
+            }else {
                 if (damage <= 35) {
                     damage = (5..35).random()
                     println("${enemy.name} hatte Glück und nur ein kleiner Splitter abbekommen. $damage Schaden ")
                     println()
-                } else if (damage <= 150 && damage > 35) {
+                } else if (damage in 36..150) {
                     println("${enemy.name} hat einige Tiefe Fleischwunden. $damage Schaden ")
                     println()
                 } else if (damage > 150) {
